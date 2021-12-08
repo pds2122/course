@@ -1,0 +1,1242 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> &#8212; Practical Data Science 2021/2022</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Deep Learning on Tabular Data" href="05_Deep_Larning_Tabular.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/unilogo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Practical Data Science 2021/2022</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   Practical Data Science 2021/2022
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01_Introduction.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02_Descriptive_Analytics.html">
+   <div class="bar_title">
+   </div>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03_Machine_Learning_Intro.html">
+   Machine Learning Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04_Feature_Engineering.html">
+   Feature Engineering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05_Deep_Larning_Tabular.html">
+   Deep Learning on Tabular Data
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   <div class="bar_title">
+   </div>
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/06_Image_Classification.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/06_Image_Classification.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   <div class="bar_title">
+   </div>
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#image-classification-with-deep-learning">
+   Image Classification with Deep Learning
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#processing-image-data">
+     Processing Image Data
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#requirements">
+       Requirements
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dataset-imagewoof">
+       Dataset: Imagewoof
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#looking-at-the-data">
+       Looking at the data
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#creating-dataloaders">
+       Creating DataLoaders
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#factory-methods-imagedataloaders">
+         Factory Methods: ImageDataLoaders
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-data-block-api">
+       The data block API
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#presizing">
+         Presizing
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#dataloaders">
+         Dataloaders
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#training">
+     Training
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-cnn-learner">
+       The cnn_learner
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#find-the-learning-rate">
+       Find the learning rate
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fit-the-model">
+       Fit the model
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#unfreeze-and-train-again">
+       Unfreeze and train again
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#results">
+     Results
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#top-losses">
+       Top Losses
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#confusion-matrix">
+       Confusion Matrix
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="div-class-bar-title-div">
+<h1><div class='bar_title'></div><a class="headerlink" href="#div-class-bar-title-div" title="Permalink to this headline">¶</a></h1>
+<p><em>Practical Data Science</em></p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="image-classification-with-deep-learning">
+<h1>Image Classification with Deep Learning<a class="headerlink" href="#image-classification-with-deep-learning" title="Permalink to this headline">¶</a></h1>
+<p>Matthias Griebel<br>
+Chair of Information Systems and Business Analytics</p>
+<p>Winter Semester 21/22</p>
+<h1>Table of Contents<span class="tocSkip"></span></h1>
+<div class="toc"><ul class="toc-item"><li><span><a href="#Processing-Image-Data" data-toc-modified-id="Processing-Image-Data-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>Processing Image Data</a></span><ul class="toc-item"><li><span><a href="#Requirements" data-toc-modified-id="Requirements-1.1"><span class="toc-item-num">1.1&nbsp;&nbsp;</span>Requirements</a></span></li><li><span><a href="#Dataset:-Imagewoof" data-toc-modified-id="Dataset:-Imagewoof-1.2"><span class="toc-item-num">1.2&nbsp;&nbsp;</span>Dataset: Imagewoof</a></span></li><li><span><a href="#Looking-at-the-data" data-toc-modified-id="Looking-at-the-data-1.3"><span class="toc-item-num">1.3&nbsp;&nbsp;</span>Looking at the data</a></span></li><li><span><a href="#Creating-DataLoaders" data-toc-modified-id="Creating-DataLoaders-1.4"><span class="toc-item-num">1.4&nbsp;&nbsp;</span>Creating DataLoaders</a></span><ul class="toc-item"><li><span><a href="#Factory-Methods:-ImageDataLoaders" data-toc-modified-id="Factory-Methods:-ImageDataLoaders-1.4.1"><span class="toc-item-num">1.4.1&nbsp;&nbsp;</span>Factory Methods: ImageDataLoaders</a></span></li></ul></li><li><span><a href="#The-data-block-API" data-toc-modified-id="The-data-block-API-1.5"><span class="toc-item-num">1.5&nbsp;&nbsp;</span>The data block API</a></span><ul class="toc-item"><li><span><a href="#Presizing" data-toc-modified-id="Presizing-1.5.1"><span class="toc-item-num">1.5.1&nbsp;&nbsp;</span>Presizing</a></span></li><li><span><a href="#Dataloaders" data-toc-modified-id="Dataloaders-1.5.2"><span class="toc-item-num">1.5.2&nbsp;&nbsp;</span>Dataloaders</a></span></li></ul></li></ul></li><li><span><a href="#Training" data-toc-modified-id="Training-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>Training</a></span><ul class="toc-item"><li><span><a href="#The-cnn_learner" data-toc-modified-id="The-cnn_learner-2.1"><span class="toc-item-num">2.1&nbsp;&nbsp;</span>The cnn_learner</a></span></li><li><span><a href="#Find-the-learning-rate" data-toc-modified-id="Find-the-learning-rate-2.2"><span class="toc-item-num">2.2&nbsp;&nbsp;</span>Find the learning rate</a></span></li><li><span><a href="#Fit-the-model" data-toc-modified-id="Fit-the-model-2.3"><span class="toc-item-num">2.3&nbsp;&nbsp;</span>Fit the model</a></span></li><li><span><a href="#Unfreeze-and-train-again" data-toc-modified-id="Unfreeze-and-train-again-2.4"><span class="toc-item-num">2.4&nbsp;&nbsp;</span>Unfreeze and train again</a></span></li></ul></li><li><span><a href="#Results" data-toc-modified-id="Results-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>Results</a></span><ul class="toc-item"><li><span><a href="#Top-Losses" data-toc-modified-id="Top-Losses-3.1"><span class="toc-item-num">3.1&nbsp;&nbsp;</span>Top Losses</a></span></li><li><span><a href="#Confusion-Matrix" data-toc-modified-id="Confusion-Matrix-3.2"><span class="toc-item-num">3.2&nbsp;&nbsp;</span>Confusion Matrix</a></span></li></ul></li></ul></div><p><strong>Credits for this lecture</strong></p>
+<img src="https://images-na.ssl-images-amazon.com/images/I/516YvsJCS9L._SX379_BO1,204,203,200_.jpg" width="500" align="right"/>
+<p><strong>Jeremy Howard and Sylvian Gugger: “Deep Learning for Coders with Fastai and PyTorch: AI Applications without a PhD.” (2020).</strong></p>
+<p>Available as <a class="reference external" href="https://github.com/fastai/fastbook">Jupyter Notebook</a></p>
+<p>Materials taken from</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/fastai/fastbook/blob/master/05_pet_breeds.ipynb">https://github.com/fastai/fastbook/blob/master/05_pet_breeds.ipynb</a></p></li>
+<li><p><a class="reference external" href="https://github.com/hiromis/notes/blob/master/Lesson1.md">https://github.com/hiromis/notes/blob/master/Lesson1.md</a></p></li>
+<li><p><a class="reference external" href="https://sgugger.github.io/how-do-you-find-a-good-learning-rate.html">https://sgugger.github.io/how-do-you-find-a-good-learning-rate.html</a></p></li>
+</ul>
+<div class="section" id="processing-image-data">
+<h2>Processing Image Data<a class="headerlink" href="#processing-image-data" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="requirements">
+<h3>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h3>
+<p><strong>Hardware: Graphics Processing Unit (GPU)</strong></p>
+<p>GPU is fit for training the deep learning systems in a long run for very large datasets. CPU can train a deep learning model quite slowly. GPU accelerates the training of the model. Hence, GPU is a better choice to train the Deep Learning Model efficiently and effectively (<a class="reference external" href="https://medium.com/&#64;shachishah.ce/do-we-really-need-gpu-for-deep-learning-47042c02efe2">Medium</a>).</p>
+<p>Make sure your GPU environment is set up and you can run Jupyter Notebook.</p>
+<p><strong>GPU on <a class="reference external" href="http://colab.research.google.com">Google Colab</a></strong></p>
+<ul class="simple">
+<li><p>Select ‘Runtime’ -&gt; ‘Change runtime time’ -&gt; ‘Python 3’ (and ‘GPU’) before running the notebook.</p></li>
+</ul>
+<p><strong>Libraries</strong></p>
+<p>We are going to work with the fastai V2 library which sits on top of Pytorch.
+The fastai library as a layered API as summarized by this graph:</p>
+<img src="https://docs.fast.ai/images/layered.png" width="500"/><p>We need to install/upgrade fastai</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install git+https://github.com/fastai/fastai.git # we need the current git version</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>and import the library</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fastai.vision.all</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="dataset-imagewoof">
+<h3>Dataset: Imagewoof<a class="headerlink" href="#dataset-imagewoof" title="Permalink to this headline">¶</a></h3>
+<img src="https://miro.medium.com/max/960/1*zZJpK1EXPU-gVyt46kNypQ.jpeg" width="500" align="right"/>
+<p>We are going to use the <a class="reference external" href="https://github.com/fastai/imagenette">Imagewoof</a> data set, a subset of 10 classes from Imagenet that aren’t so easy to classify, since they’re all dog breeds.</p>
+<p>The breeds are: Australian terrier, Border terrier, Samoyed, Beagle, Shih-Tzu, English foxhound, Rhodesian ridgeback, Dingo, Golden retriever, Old English sheepdog.</p>
+<p><strong>Download and extract</strong></p>
+<p>The first thing we have to do is download and extract the data that we want. <code class="docutils literal notranslate"><span class="pre">untar_data</span></code> will download that to some convenient path and untar it for us and it will then return the value of path.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># URLs.IMAGEWOOF_160 = &#39;https://s3.amazonaws.com/fast-ai-imageclas/imagewoof-160&#39;</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">untar_data</span><span class="p">(</span><span class="n">URLs</span><span class="o">.</span><span class="n">IMAGEWOOF_160</span><span class="p">);</span> <span class="n">path</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Path(&#39;/media/data/home/mag01ud/.fastai/data/imagewoof2-160&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next time you run this, since you’ve already downloaded it, it won’t download it again. Since you’ve already untared it, it won’t untar it again. So everything is designed to be pretty automatic and easy.</p>
+</div>
+<div class="section" id="looking-at-the-data">
+<h3>Looking at the data<a class="headerlink" href="#looking-at-the-data" title="Permalink to this headline">¶</a></h3>
+<p>The first thing we do when we approach a problem is to take a look at the data. We always need to understand very well what the problem is and what the data looks like before we can figure out how to solve it. Taking a look at the data means understanding how the data directories are structured, what the labels are and what some sample images look like.</p>
+<p><strong>Python 3 pathlib</strong></p>
+<p>For convenience, <a class="reference external" href="http://fast.ai">fast.ai</a> adds functionality into existing Python stuff. One of these things is add a <code class="docutils literal notranslate"><span class="pre">ls()</span></code> method to path.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(#3) [Path(&#39;/media/data/home/mag01ud/.fastai/data/imagewoof2-160/val&#39;),Path(&#39;/media/data/home/mag01ud/.fastai/data/imagewoof2-160/noisy_imagewoof.csv&#39;),Path(&#39;/media/data/home/mag01ud/.fastai/data/imagewoof2-160/train&#39;)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">path</span><span class="o">/</span><span class="s1">&#39;train&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(#10) [Path(&#39;/media/data/home/mag01ud/.fastai/data/imagewoof2-160/train/n02096294&#39;),Path(&#39;/media/data/home/mag01ud/.fastai/data/imagewoof2-160/train/n02111889&#39;),Path(&#39;/media/data/home/mag01ud/.fastai/data/imagewoof2-160/train/n02093754&#39;),Path(&#39;/media/data/home/mag01ud/.fastai/data/imagewoof2-160/train/n02115641&#39;),Path(&#39;/media/data/home/mag01ud/.fastai/data/imagewoof2-160/train/n02086240&#39;),Path(&#39;/media/data/home/mag01ud/.fastai/data/imagewoof2-160/train/n02089973&#39;),Path(&#39;/media/data/home/mag01ud/.fastai/data/imagewoof2-160/train/n02088364&#39;),Path(&#39;/media/data/home/mag01ud/.fastai/data/imagewoof2-160/train/n02087394&#39;),Path(&#39;/media/data/home/mag01ud/.fastai/data/imagewoof2-160/train/n02099601&#39;),Path(&#39;/media/data/home/mag01ud/.fastai/data/imagewoof2-160/train/n02105641&#39;)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Path objects from the <a class="reference external" href="https://docs.python.org/3/library/pathlib.html">pathlib</a> module are much better to use than strings. It doesn’t matter if you’re on Windows, Linux, or Mac. It is always going to work exactly the same way.</p>
+<p><strong>get_image_files</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">get_image_files</span></code> will just grab an array of all of the image files based on extension in a path.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fnames</span> <span class="o">=</span> <span class="n">get_image_files</span><span class="p">(</span><span class="n">path</span><span class="o">/</span><span class="s1">&#39;train&#39;</span><span class="p">)</span>
+<span class="n">fnames</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(#9025) [Path(&#39;/media/data/home/mag01ud/.fastai/data/imagewoof2-160/train/n02096294/n02096294_7257.JPEG&#39;),Path(&#39;/media/data/home/mag01ud/.fastai/data/imagewoof2-160/train/n02096294/n02096294_6269.JPEG&#39;),Path(&#39;/media/data/home/mag01ud/.fastai/data/imagewoof2-160/train/n02096294/n02096294_6129.JPEG&#39;),Path(&#39;/media/data/home/mag01ud/.fastai/data/imagewoof2-160/train/n02096294/n02096294_6886.JPEG&#39;),Path(&#39;/media/data/home/mag01ud/.fastai/data/imagewoof2-160/train/n02096294/n02096294_9024.JPEG&#39;),Path(&#39;/media/data/home/mag01ud/.fastai/data/imagewoof2-160/train/n02096294/n02096294_8747.JPEG&#39;),Path(&#39;/media/data/home/mag01ud/.fastai/data/imagewoof2-160/train/n02096294/n02096294_3256.JPEG&#39;),Path(&#39;/media/data/home/mag01ud/.fastai/data/imagewoof2-160/train/n02096294/n02096294_5449.JPEG&#39;),Path(&#39;/media/data/home/mag01ud/.fastai/data/imagewoof2-160/train/n02096294/n02096294_6277.JPEG&#39;),Path(&#39;/media/data/home/mag01ud/.fastai/data/imagewoof2-160/train/n02096294/n02096294_3384.JPEG&#39;)...]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here, ‘n02115641’ refers to the class <em>dingo</em> in <a class="reference external" href="https://gist.github.com/aaronpolhamus/964a4411c0906315deb9f4a3723aac57">imagenet</a>.</p>
+</div>
+<div class="section" id="creating-dataloaders">
+<h3>Creating DataLoaders<a class="headerlink" href="#creating-dataloaders" title="Permalink to this headline">¶</a></h3>
+<p>The main difference between the handling of image classification datasets is the way labels are stored. In this particular dataset, labels are stored in the names of the (sub-)folders. We will need to extract them to be able to classify the images into the correct categories.</p>
+<p>We will now explore different ways load these such datasets.</p>
+<div class="section" id="factory-methods-imagedataloaders">
+<h4>Factory Methods: ImageDataLoaders<a class="headerlink" href="#factory-methods-imagedataloaders" title="Permalink to this headline">¶</a></h4>
+<p>The <a class="reference external" href="https://docs.fast.ai/vision.data.html#ImageDataLoaders"><code class="docutils literal notranslate"><span class="pre">ImageDataLoaders</span></code></a> Class is a basic wrapper around several DataLoaders with factory methods for computer vision problems.</p>
+<p>Here, we can use <code class="docutils literal notranslate"><span class="pre">ImageDataLoaders.from_folder</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dls</span> <span class="o">=</span> <span class="n">ImageDataLoaders</span><span class="o">.</span><span class="n">from_folder</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">valid</span><span class="o">=</span><span class="s1">&#39;val&#39;</span><span class="p">,</span> <span class="n">item_tfms</span><span class="o">=</span><span class="n">Resize</span><span class="p">(</span><span class="mi">224</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>data.show_batch</strong></p>
+<p>Let’s take a look at a few pictures. <code class="docutils literal notranslate"><span class="pre">dls.show_batch</span></code> can be used to show me some of the contents  So you can see roughly what’s happened is that they all seem to have being zoomed and cropped in a reasonably nice way.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dls</span><span class="o">.</span><span class="n">show_batch</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/06_Image_Classification_28_0.png" src="_images/06_Image_Classification_28_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="the-data-block-api">
+<h3>The data block API<a class="headerlink" href="#the-data-block-api" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="https://docs.fast.ai/data.block.html#DataBlock">data block API</a> lets you customize the creation of the Dataloaders by isolating the underlying parts of that process in separate blocks, mainly:</p>
+<ol class="simple">
+<li><p>The types of your input and labels</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_items</span></code> (how to get your input)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">splitter</span></code> (How to split the data into a training and validation sets?)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_y</span></code> (How to label the inputs?)</p></li>
+</ol>
+<p>… and suitable transforms.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">woof</span> <span class="o">=</span> <span class="n">DataBlock</span><span class="p">(</span><span class="n">blocks</span> <span class="o">=</span> <span class="p">(</span><span class="n">ImageBlock</span><span class="p">,</span> <span class="n">CategoryBlock</span><span class="p">),</span>
+                 <span class="n">get_items</span><span class="o">=</span><span class="n">get_image_files</span><span class="p">,</span> 
+                 <span class="n">splitter</span><span class="o">=</span><span class="n">GrandparentSplitter</span><span class="p">(</span><span class="n">train_name</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">valid_name</span><span class="o">=</span><span class="s1">&#39;val&#39;</span><span class="p">),</span>
+                 <span class="n">get_y</span><span class="o">=</span><span class="n">parent_label</span><span class="p">,</span>
+                 <span class="n">item_tfms</span><span class="o">=</span><span class="n">Resize</span><span class="p">(</span><span class="mi">460</span><span class="p">),</span>
+                 <span class="n">batch_tfms</span><span class="o">=</span><span class="n">aug_transforms</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">224</span><span class="p">,</span> <span class="n">min_scale</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+                 <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>One important piece of this <code class="docutils literal notranslate"><span class="pre">DataBlock</span></code> call that we haven’t seen before is in these two lines:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">item_tfms</span><span class="o">=</span><span class="n">Resize</span><span class="p">(</span><span class="mi">460</span><span class="p">),</span>
+<span class="n">batch_tfms</span><span class="o">=</span><span class="n">aug_transforms</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">224</span><span class="p">,</span> <span class="n">min_scale</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>These lines implement a fastai data augmentation strategy which we call <em>presizing</em>. Presizing is a particular way to do image augmentation that is designed to minimize data destruction while maintaining good performance.</p>
+<div class="section" id="presizing">
+<h4>Presizing<a class="headerlink" href="#presizing" title="Permalink to this headline">¶</a></h4>
+<img alt="Presizing on the training set" width="600" caption="Presizing on the training set" id="presizing" src="https://raw.githubusercontent.com/fastai/fastbook/master/images/att_00060.png" align="right">
+<p>Presizing adopts two strategies</p>
+<ol class="simple">
+<li><p><em>Crop full width or height</em>: This is in <code class="docutils literal notranslate"><span class="pre">item_tfms</span></code>, so it’s applied to each individual image before it is copied to the GPU. It’s used to ensure all images are the same size. On the training set, the crop area is chosen randomly. On the validation set, the center square of the image is always chosen.</p></li>
+<li><p><em>Random crop and augment</em>: This is in <code class="docutils literal notranslate"><span class="pre">batch_tfms</span></code>, so it’s applied to a batch all at once on the GPU, which means it’s fast. On the validation set, only the resize to the final size needed for the model is done here. On the training set, the random crop and any other augmentations are done first.</p></li>
+</ol>
+<p>To implement this process in fastai you use <code class="docutils literal notranslate"><span class="pre">Resize</span></code> as an item transform with a large size, and <code class="docutils literal notranslate"><span class="pre">RandomResizedCrop</span></code> as a batch transform with a smaller size. <code class="docutils literal notranslate"><span class="pre">RandomResizedCrop</span></code> will be added for you if you include the <code class="docutils literal notranslate"><span class="pre">min_scale</span></code> parameter in your <code class="docutils literal notranslate"><span class="pre">aug_transforms</span></code> function, as was done in the <code class="docutils literal notranslate"><span class="pre">DataBlock</span></code> call in the previous section. Alternatively, you can use <code class="docutils literal notranslate"><span class="pre">pad</span></code> or <code class="docutils literal notranslate"><span class="pre">squish</span></code> instead of <code class="docutils literal notranslate"><span class="pre">crop</span></code> (the default) for the initial <code class="docutils literal notranslate"><span class="pre">Resize</span></code>.</p>
+</div>
+<div class="section" id="dataloaders">
+<h4>Dataloaders<a class="headerlink" href="#dataloaders" title="Permalink to this headline">¶</a></h4>
+<p>From the Datablock we can automatically get a our DataLoaders:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dls</span> <span class="o">=</span> <span class="n">woof</span><span class="o">.</span><span class="n">dataloaders</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>.. and have a look at the summary:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">woof</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Setting-up type transforms pipelines
+Collecting items from /media/data/home/mag01ud/.fastai/data/imagewoof2-160
+Found 12954 items
+2 datasets of sizes 9025,3929
+Setting up Pipeline: PILBase.create
+Setting up Pipeline: parent_label -&gt; Categorize -- {&#39;vocab&#39;: None, &#39;sort&#39;: True, &#39;add_na&#39;: False}
+
+Building one sample
+  Pipeline: PILBase.create
+    starting from
+      /media/data/home/mag01ud/.fastai/data/imagewoof2-160/train/n02096294/n02096294_7257.JPEG
+    applying PILBase.create gives
+      PILImage mode=RGB size=160x213
+  Pipeline: parent_label -&gt; Categorize -- {&#39;vocab&#39;: None, &#39;sort&#39;: True, &#39;add_na&#39;: False}
+    starting from
+      /media/data/home/mag01ud/.fastai/data/imagewoof2-160/train/n02096294/n02096294_7257.JPEG
+    applying parent_label gives
+      n02096294
+    applying Categorize -- {&#39;vocab&#39;: None, &#39;sort&#39;: True, &#39;add_na&#39;: False} gives
+      TensorCategory(5)
+
+Final sample: (PILImage mode=RGB size=160x213, TensorCategory(5))
+
+
+Collecting items from /media/data/home/mag01ud/.fastai/data/imagewoof2-160
+Found 12954 items
+2 datasets of sizes 9025,3929
+Setting up Pipeline: PILBase.create
+Setting up Pipeline: parent_label -&gt; Categorize -- {&#39;vocab&#39;: None, &#39;sort&#39;: True, &#39;add_na&#39;: False}
+Setting up after_item: Pipeline: Resize -- {&#39;size&#39;: (460, 460), &#39;method&#39;: &#39;crop&#39;, &#39;pad_mode&#39;: &#39;reflection&#39;, &#39;resamples&#39;: (2, 0), &#39;p&#39;: 1.0} -&gt; ToTensor
+Setting up before_batch: Pipeline: 
+Setting up after_batch: Pipeline: IntToFloatTensor -- {&#39;div&#39;: 255.0, &#39;div_mask&#39;: 1} -&gt; Flip -- {&#39;size&#39;: None, &#39;mode&#39;: &#39;bilinear&#39;, &#39;pad_mode&#39;: &#39;reflection&#39;, &#39;mode_mask&#39;: &#39;nearest&#39;, &#39;align_corners&#39;: True, &#39;p&#39;: 0.5} -&gt; RandomResizedCropGPU -- {&#39;size&#39;: (224, 224), &#39;min_scale&#39;: 0.75, &#39;ratio&#39;: (1, 1), &#39;mode&#39;: &#39;bilinear&#39;, &#39;valid_scale&#39;: 1.0, &#39;max_scale&#39;: 1.0, &#39;p&#39;: 1.0} -&gt; Brightness -- {&#39;max_lighting&#39;: 0.2, &#39;p&#39;: 1.0, &#39;draw&#39;: None, &#39;batch&#39;: False}
+
+Building one batch
+Applying item_tfms to the first sample:
+  Pipeline: Resize -- {&#39;size&#39;: (460, 460), &#39;method&#39;: &#39;crop&#39;, &#39;pad_mode&#39;: &#39;reflection&#39;, &#39;resamples&#39;: (2, 0), &#39;p&#39;: 1.0} -&gt; ToTensor
+    starting from
+      (PILImage mode=RGB size=160x213, TensorCategory(5))
+    applying Resize -- {&#39;size&#39;: (460, 460), &#39;method&#39;: &#39;crop&#39;, &#39;pad_mode&#39;: &#39;reflection&#39;, &#39;resamples&#39;: (2, 0), &#39;p&#39;: 1.0} gives
+      (PILImage mode=RGB size=460x460, TensorCategory(5))
+    applying ToTensor gives
+      (TensorImage of size 3x460x460, TensorCategory(5))
+
+Adding the next 3 samples
+
+No before_batch transform to apply
+
+Collating items in a batch
+
+Applying batch_tfms to the batch built
+  Pipeline: IntToFloatTensor -- {&#39;div&#39;: 255.0, &#39;div_mask&#39;: 1} -&gt; Flip -- {&#39;size&#39;: None, &#39;mode&#39;: &#39;bilinear&#39;, &#39;pad_mode&#39;: &#39;reflection&#39;, &#39;mode_mask&#39;: &#39;nearest&#39;, &#39;align_corners&#39;: True, &#39;p&#39;: 0.5} -&gt; RandomResizedCropGPU -- {&#39;size&#39;: (224, 224), &#39;min_scale&#39;: 0.75, &#39;ratio&#39;: (1, 1), &#39;mode&#39;: &#39;bilinear&#39;, &#39;valid_scale&#39;: 1.0, &#39;max_scale&#39;: 1.0, &#39;p&#39;: 1.0} -&gt; Brightness -- {&#39;max_lighting&#39;: 0.2, &#39;p&#39;: 1.0, &#39;draw&#39;: None, &#39;batch&#39;: False}
+    starting from
+      (TensorImage of size 4x3x460x460, TensorCategory([5, 5, 5, 5], device=&#39;cuda:0&#39;))
+    applying IntToFloatTensor -- {&#39;div&#39;: 255.0, &#39;div_mask&#39;: 1} gives
+      (TensorImage of size 4x3x460x460, TensorCategory([5, 5, 5, 5], device=&#39;cuda:0&#39;))
+    applying Flip -- {&#39;size&#39;: None, &#39;mode&#39;: &#39;bilinear&#39;, &#39;pad_mode&#39;: &#39;reflection&#39;, &#39;mode_mask&#39;: &#39;nearest&#39;, &#39;align_corners&#39;: True, &#39;p&#39;: 0.5} gives
+      (TensorImage of size 4x3x460x460, TensorCategory([5, 5, 5, 5], device=&#39;cuda:0&#39;))
+    applying RandomResizedCropGPU -- {&#39;size&#39;: (224, 224), &#39;min_scale&#39;: 0.75, &#39;ratio&#39;: (1, 1), &#39;mode&#39;: &#39;bilinear&#39;, &#39;valid_scale&#39;: 1.0, &#39;max_scale&#39;: 1.0, &#39;p&#39;: 1.0} gives
+      (TensorImage of size 4x3x224x224, TensorCategory([5, 5, 5, 5], device=&#39;cuda:0&#39;))
+    applying Brightness -- {&#39;max_lighting&#39;: 0.2, &#39;p&#39;: 1.0, &#39;draw&#39;: None, &#39;batch&#39;: False} gives
+      (TensorImage of size 4x3x224x224, TensorCategory([5, 5, 5, 5], device=&#39;cuda:0&#39;))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dls</span><span class="o">.</span><span class="n">show_batch</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/06_Image_Classification_39_0.png" src="_images/06_Image_Classification_39_0.png" />
+</div>
+</div>
+<p>To make the classes easier to read and interpret, we can modify our <code class="docutils literal notranslate"><span class="pre">get_y</span></code> function. First, we define a dictionary for the labels:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dogs_dict</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;n02086240&#39;</span><span class="p">:</span> <span class="s1">&#39;Shih-Tzu&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;n02087394&#39;</span><span class="p">:</span> <span class="s1">&#39;Rhodesian_ridgeback&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;n02088364&#39;</span><span class="p">:</span> <span class="s1">&#39;beagle&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;n02089973&#39;</span><span class="p">:</span> <span class="s1">&#39;English_foxhound&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;n02093754&#39;</span><span class="p">:</span> <span class="s1">&#39;Border_terrier&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;n02096294&#39;</span><span class="p">:</span> <span class="s1">&#39;Australian_terrier&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;n02099601&#39;</span><span class="p">:</span> <span class="s1">&#39;golden_retriever&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;n02105641&#39;</span><span class="p">:</span> <span class="s1">&#39;Old_English_sheepdog&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;n02111889&#39;</span><span class="p">:</span> <span class="s1">&#39;Samoyed&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;n02115641&#39;</span><span class="p">:</span> <span class="s1">&#39;dingo&#39;</span><span class="p">,</span>
+              <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And define our own <code class="docutils literal notranslate"><span class="pre">get_y</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">get_y</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">dogs_dict</span><span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, we can create the <code class="docutils literal notranslate"><span class="pre">DataBlock</span></code> again</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">woof</span> <span class="o">=</span> <span class="n">DataBlock</span><span class="p">(</span><span class="n">blocks</span> <span class="o">=</span> <span class="p">(</span><span class="n">ImageBlock</span><span class="p">,</span> <span class="n">CategoryBlock</span><span class="p">),</span>
+                 <span class="n">get_items</span><span class="o">=</span><span class="n">get_image_files</span><span class="p">,</span> 
+                 <span class="n">splitter</span><span class="o">=</span><span class="n">GrandparentSplitter</span><span class="p">(</span><span class="n">train_name</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">valid_name</span><span class="o">=</span><span class="s1">&#39;val&#39;</span><span class="p">),</span>
+                 <span class="n">get_y</span><span class="o">=</span><span class="n">get_y</span><span class="p">,</span>
+                 <span class="n">item_tfms</span><span class="o">=</span><span class="n">Resize</span><span class="p">(</span><span class="mi">460</span><span class="p">),</span>
+                 <span class="n">batch_tfms</span><span class="o">=</span><span class="n">aug_transforms</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">224</span><span class="p">,</span> <span class="n">min_scale</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+                 <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dls</span> <span class="o">=</span> <span class="n">woof</span><span class="o">.</span><span class="n">dataloaders</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="n">dls</span><span class="o">.</span><span class="n">show_batch</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/06_Image_Classification_46_0.png" src="_images/06_Image_Classification_46_0.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="training">
+<h2>Training<a class="headerlink" href="#training" title="Permalink to this headline">¶</a></h2>
+<p>Now we will start training our model. We will use a convolutional neural network backbone and a fully connected head with a single hidden layer as a classifier.</p>
+<div class="section" id="the-cnn-learner">
+<h3>The cnn_learner<a class="headerlink" href="#the-cnn-learner" title="Permalink to this headline">¶</a></h3>
+<p>This method creates a Learner object from the data object and model inferred from it with the backbone given in <code class="docutils literal notranslate"><span class="pre">arch</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">learn</span> <span class="o">=</span> <span class="n">cnn_learner</span><span class="p">(</span><span class="n">dls</span><span class="o">=</span><span class="n">dls</span><span class="p">,</span> <span class="n">arch</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">resnet34</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">accuracy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>dls</strong>: Dataloaders</p></li>
+<li><p><strong>arch</strong>: architecture. There are lots of different ways of constructing a convolutional neural network. For now, the most important thing for you to know is that there’s a particular kind of model called ResNet which works extremely well nearly all the time. For a while, at least, you really only need to be doing choosing between two things which is what size ResNet do you want. There are ResNet34 and ResNet50.</p></li>
+<li><p><strong>metrics</strong>: accuracy</p></li>
+<li><p><strong>loss_func</strong>: automatically inferred from <code class="docutils literal notranslate"><span class="pre">dls</span></code>. What kind of loss function would typically choose for this task?</p></li>
+</ul>
+<p>Let’s print a summary of the model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sequential (Input shape: 64 x 3 x 224 x 224)
+============================================================================
+Layer (type)         Output Shape         Param #    Trainable 
+============================================================================
+                     64 x 64 x 112 x 112 
+Conv2d                                    9408       False     
+BatchNorm2d                               128        True      
+ReLU                                                           
+____________________________________________________________________________
+                     64 x 64 x 56 x 56   
+MaxPool2d                                                      
+Conv2d                                    36864      False     
+BatchNorm2d                               128        True      
+ReLU                                                           
+Conv2d                                    36864      False     
+BatchNorm2d                               128        True      
+Conv2d                                    36864      False     
+BatchNorm2d                               128        True      
+ReLU                                                           
+Conv2d                                    36864      False     
+BatchNorm2d                               128        True      
+Conv2d                                    36864      False     
+BatchNorm2d                               128        True      
+ReLU                                                           
+Conv2d                                    36864      False     
+BatchNorm2d                               128        True      
+____________________________________________________________________________
+                     64 x 128 x 28 x 28  
+Conv2d                                    73728      False     
+BatchNorm2d                               256        True      
+ReLU                                                           
+Conv2d                                    147456     False     
+BatchNorm2d                               256        True      
+Conv2d                                    8192       False     
+BatchNorm2d                               256        True      
+Conv2d                                    147456     False     
+BatchNorm2d                               256        True      
+ReLU                                                           
+Conv2d                                    147456     False     
+BatchNorm2d                               256        True      
+Conv2d                                    147456     False     
+BatchNorm2d                               256        True      
+ReLU                                                           
+Conv2d                                    147456     False     
+BatchNorm2d                               256        True      
+Conv2d                                    147456     False     
+BatchNorm2d                               256        True      
+ReLU                                                           
+Conv2d                                    147456     False     
+BatchNorm2d                               256        True      
+____________________________________________________________________________
+                     64 x 256 x 14 x 14  
+Conv2d                                    294912     False     
+BatchNorm2d                               512        True      
+ReLU                                                           
+Conv2d                                    589824     False     
+BatchNorm2d                               512        True      
+Conv2d                                    32768      False     
+BatchNorm2d                               512        True      
+Conv2d                                    589824     False     
+BatchNorm2d                               512        True      
+ReLU                                                           
+Conv2d                                    589824     False     
+BatchNorm2d                               512        True      
+Conv2d                                    589824     False     
+BatchNorm2d                               512        True      
+ReLU                                                           
+Conv2d                                    589824     False     
+BatchNorm2d                               512        True      
+Conv2d                                    589824     False     
+BatchNorm2d                               512        True      
+ReLU                                                           
+Conv2d                                    589824     False     
+BatchNorm2d                               512        True      
+Conv2d                                    589824     False     
+BatchNorm2d                               512        True      
+ReLU                                                           
+Conv2d                                    589824     False     
+BatchNorm2d                               512        True      
+Conv2d                                    589824     False     
+BatchNorm2d                               512        True      
+ReLU                                                           
+Conv2d                                    589824     False     
+BatchNorm2d                               512        True      
+____________________________________________________________________________
+                     64 x 512 x 7 x 7    
+Conv2d                                    1179648    False     
+BatchNorm2d                               1024       True      
+ReLU                                                           
+Conv2d                                    2359296    False     
+BatchNorm2d                               1024       True      
+Conv2d                                    131072     False     
+BatchNorm2d                               1024       True      
+Conv2d                                    2359296    False     
+BatchNorm2d                               1024       True      
+ReLU                                                           
+Conv2d                                    2359296    False     
+BatchNorm2d                               1024       True      
+Conv2d                                    2359296    False     
+BatchNorm2d                               1024       True      
+ReLU                                                           
+Conv2d                                    2359296    False     
+BatchNorm2d                               1024       True      
+____________________________________________________________________________
+                     64 x 512 x 1 x 1    
+AdaptiveAvgPool2d                                              
+AdaptiveMaxPool2d                                              
+____________________________________________________________________________
+                     64 x 1024           
+Flatten                                                        
+BatchNorm1d                               2048       True      
+Dropout                                                        
+____________________________________________________________________________
+                     64 x 512            
+Linear                                    524288     True      
+ReLU                                                           
+BatchNorm1d                               1024       True      
+Dropout                                                        
+____________________________________________________________________________
+                     64 x 10             
+Linear                                    5120       True      
+____________________________________________________________________________
+
+Total params: 21,817,152
+Total trainable params: 549,504
+Total non-trainable params: 21,267,648
+
+Optimizer used: &lt;function Adam at 0x7f7b7a247160&gt;
+Loss function: FlattenedLoss of CrossEntropyLoss()
+
+Model frozen up to parameter group #2
+
+Callbacks:
+  - TrainEvalCallback
+  - Recorder
+  - ProgressCallback
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Resnet Architecture</strong></p>
+<img src="https://miro.medium.com/max/1314/1*S3TlG0XpQZSIpoDIUCQ0RQ.jpeg" style="width:70%" />
+</div>
+<div class="section" id="find-the-learning-rate">
+<h3>Find the learning rate<a class="headerlink" href="#find-the-learning-rate" title="Permalink to this headline">¶</a></h3>
+<p>Please read the <a class="reference external" href="http://fast.ai">fast.ai</a> <a class="reference external" href="https://docs.fast.ai/callback.schedule#Learner.lr_find">lr_finder docs</a>. Also, Sylvain Gugger from the <a class="reference external" href="http://fast.ai">fast.ai</a> team wrote a nice <a class="reference external" href="https://sgugger.github.io/how-do-you-find-a-good-learning-rate.html">blog post</a> on how to find  good learning rate.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">lr_find</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SuggestedLRs(valley=0.0012022644514217973)
+</pre></div>
+</div>
+<img alt="_images/06_Image_Classification_57_2.png" src="_images/06_Image_Classification_57_2.png" />
+</div>
+</div>
+</div>
+<div class="section" id="fit-the-model">
+<h3>Fit the model<a class="headerlink" href="#fit-the-model" title="Permalink to this headline">¶</a></h3>
+<p>Fit the model based on selected learning rate</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">lr_max</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.589454</td>
+      <td>0.234231</td>
+      <td>0.927462</td>
+      <td>00:31</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0.339177</td>
+      <td>0.217348</td>
+      <td>0.930262</td>
+      <td>00:31</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;stage-1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Path(&#39;models/stage-1.pth&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>So far we have fitted 2 epochs and it ran pretty quickly. Why is that so? Because we used a little trick (called transfer learning).</p>
+<p>What did we do?
+We added a few extra layers at the end of architecture, and we only trained those. We left most of the early layers as they were. This is called freezing layers i.e weights of the layers.</p>
+<ul class="simple">
+<li><p>When we call fit or <code class="docutils literal notranslate"><span class="pre">fit_one_cycle()</span></code> on a create_cnn, it will just fine-tune these extra layers at the end, and run very fast.</p></li>
+<li><p>To get a better model, we have to call <code class="docutils literal notranslate"><span class="pre">unfreeze()</span></code> to train the whole model.</p></li>
+</ul>
+</div>
+<div class="section" id="unfreeze-and-train-again">
+<h3>Unfreeze and train again<a class="headerlink" href="#unfreeze-and-train-again" title="Permalink to this headline">¶</a></h3>
+<p>Since our model is working as we expect it to, we will unfreeze our model and train some more.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">unfreeze</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">lr_find</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SuggestedLRs(valley=1.3182567499825382e-06)
+</pre></div>
+</div>
+<img alt="_images/06_Image_Classification_64_2.png" src="_images/06_Image_Classification_64_2.png" />
+</div>
+</div>
+<p><strong>Learning rates after unfreezing</strong></p>
+<p>The basic rule of thumb is after you unfreeze (i.e. train the whole thing), pass a max learning rate parameter, pass it a slice, make the second part of that slice about 10 times smaller than your first stage.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">lr_max</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mf">1e-5</span><span class="p">,</span><span class="mf">1e-4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.282071</td>
+      <td>0.209121</td>
+      <td>0.934080</td>
+      <td>00:38</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0.284951</td>
+      <td>0.210578</td>
+      <td>0.931026</td>
+      <td>00:38</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>0.238042</td>
+      <td>0.212196</td>
+      <td>0.937643</td>
+      <td>00:38</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.200607</td>
+      <td>0.214671</td>
+      <td>0.936625</td>
+      <td>00:38</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>0.166986</td>
+      <td>0.222717</td>
+      <td>0.934843</td>
+      <td>00:38</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>0.148484</td>
+      <td>0.220217</td>
+      <td>0.937389</td>
+      <td>00:38</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>0.127209</td>
+      <td>0.222817</td>
+      <td>0.938152</td>
+      <td>00:38</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>0.099136</td>
+      <td>0.214321</td>
+      <td>0.937898</td>
+      <td>00:38</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>0.101125</td>
+      <td>0.217912</td>
+      <td>0.937134</td>
+      <td>00:38</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>0.087090</td>
+      <td>0.215717</td>
+      <td>0.939170</td>
+      <td>00:38</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<p>If the model overfits we can reload stage 1 and train the model again for fewer epochs or another learning rate.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">learn</span> <span class="o">=</span> <span class="n">learn</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;stage-1&#39;</span><span class="p">)</span>
+<span class="n">learn</span><span class="o">.</span><span class="n">unfreeze</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">lr_max</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="mf">1e-5</span><span class="p">,</span><span class="mf">1e-4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.304459</td>
+      <td>0.227136</td>
+      <td>0.929499</td>
+      <td>00:38</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0.256900</td>
+      <td>0.217372</td>
+      <td>0.934843</td>
+      <td>00:38</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>0.192456</td>
+      <td>0.208102</td>
+      <td>0.936880</td>
+      <td>00:38</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="results">
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<p>It’s important to see what comes out of our model. We have seen one way of what goes in, now let’s see what our model has predicted.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ClassificationInterpretation</span></code> class has methods for creating confusion matrix as well as plotting misclassified images.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">interp</span> <span class="o">=</span> <span class="n">ClassificationInterpretation</span><span class="o">.</span><span class="n">from_learner</span><span class="p">(</span><span class="n">learn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"></div></div>
+</div>
+<div class="section" id="top-losses">
+<h3>Top Losses<a class="headerlink" href="#top-losses" title="Permalink to this headline">¶</a></h3>
+<p>We will first see which were the categories that the model most confused with one another. We will try to see if what the model predicted was reasonable or not.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">interp</span><span class="o">.</span><span class="n">plot_top_losses</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="n">largest</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">18</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/06_Image_Classification_74_0.png" src="_images/06_Image_Classification_74_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="confusion-matrix">
+<h3>Confusion Matrix<a class="headerlink" href="#confusion-matrix" title="Permalink to this headline">¶</a></h3>
+<p>Furthermore, when we plot the confusion matrix. Interestingly, the model often confuses English Foxhounds with Beagles. This confirmes that our model works very well until a certain level as these two dog breeds look very similar.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">interp</span><span class="o">.</span><span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/06_Image_Classification_76_0.png" src="_images/06_Image_Classification_76_0.png" />
+</div>
+</div>
+<p><strong>Most Confused</strong></p>
+<p>Sorted descending list of largest non-diagonal entries of confusion matrix, presented as actual, predicted, number of occurrences.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">interp</span><span class="o">.</span><span class="n">most_confused</span><span class="p">(</span><span class="n">min_val</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;English_foxhound&#39;, &#39;beagle&#39;, 39),
+ (&#39;beagle&#39;, &#39;English_foxhound&#39;, 26),
+ (&#39;Border_terrier&#39;, &#39;Australian_terrier&#39;, 11),
+ (&#39;Shih-Tzu&#39;, &#39;Old_English_sheepdog&#39;, 10),
+ (&#39;Australian_terrier&#39;, &#39;Border_terrier&#39;, 9),
+ (&#39;Australian_terrier&#39;, &#39;Shih-Tzu&#39;, 9),
+ (&#39;dingo&#39;, &#39;Rhodesian_ridgeback&#39;, 9),
+ (&#39;Shih-Tzu&#39;, &#39;Australian_terrier&#39;, 7),
+ (&#39;Australian_terrier&#39;, &#39;beagle&#39;, 6),
+ (&#39;Border_terrier&#39;, &#39;Rhodesian_ridgeback&#39;, 5),
+ (&#39;Border_terrier&#39;, &#39;dingo&#39;, 5),
+ (&#39;Rhodesian_ridgeback&#39;, &#39;golden_retriever&#39;, 5),
+ (&#39;golden_retriever&#39;, &#39;Rhodesian_ridgeback&#39;, 5),
+ (&#39;Australian_terrier&#39;, &#39;dingo&#39;, 4),
+ (&#39;Border_terrier&#39;, &#39;Shih-Tzu&#39;, 4),
+ (&#39;Old_English_sheepdog&#39;, &#39;Samoyed&#39;, 4),
+ (&#39;Old_English_sheepdog&#39;, &#39;Shih-Tzu&#39;, 4),
+ (&#39;Rhodesian_ridgeback&#39;, &#39;beagle&#39;, 4),
+ (&#39;Rhodesian_ridgeback&#39;, &#39;dingo&#39;, 4),
+ (&#39;beagle&#39;, &#39;dingo&#39;, 4),
+ (&#39;Border_terrier&#39;, &#39;English_foxhound&#39;, 3),
+ (&#39;Border_terrier&#39;, &#39;beagle&#39;, 3),
+ (&#39;English_foxhound&#39;, &#39;Rhodesian_ridgeback&#39;, 3),
+ (&#39;English_foxhound&#39;, &#39;dingo&#39;, 3),
+ (&#39;Shih-Tzu&#39;, &#39;Samoyed&#39;, 3),
+ (&#39;beagle&#39;, &#39;Border_terrier&#39;, 3),
+ (&#39;dingo&#39;, &#39;English_foxhound&#39;, 3),
+ (&#39;dingo&#39;, &#39;golden_retriever&#39;, 3),
+ (&#39;golden_retriever&#39;, &#39;Samoyed&#39;, 3),
+ (&#39;Australian_terrier&#39;, &#39;golden_retriever&#39;, 2),
+ (&#39;Border_terrier&#39;, &#39;Old_English_sheepdog&#39;, 2),
+ (&#39;Border_terrier&#39;, &#39;Samoyed&#39;, 2),
+ (&#39;English_foxhound&#39;, &#39;Border_terrier&#39;, 2),
+ (&#39;English_foxhound&#39;, &#39;golden_retriever&#39;, 2),
+ (&#39;Old_English_sheepdog&#39;, &#39;golden_retriever&#39;, 2),
+ (&#39;Samoyed&#39;, &#39;golden_retriever&#39;, 2),
+ (&#39;beagle&#39;, &#39;Rhodesian_ridgeback&#39;, 2),
+ (&#39;dingo&#39;, &#39;Samoyed&#39;, 2),
+ (&#39;dingo&#39;, &#39;beagle&#39;, 2),
+ (&#39;golden_retriever&#39;, &#39;Border_terrier&#39;, 2),
+ (&#39;golden_retriever&#39;, &#39;Shih-Tzu&#39;, 2),
+ (&#39;golden_retriever&#39;, &#39;beagle&#39;, 2),
+ (&#39;golden_retriever&#39;, &#39;dingo&#39;, 2)]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "pds2122"
+        },
+        kernelOptions: {
+            kernelName: "pds2122",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'pds2122'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="05_Deep_Larning_Tabular.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Deep Learning on Tabular Data</p>
+        </div>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
