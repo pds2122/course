@@ -1,0 +1,1433 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feature Engineering &#8212; Practical Data Science 2021/2022</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/unilogo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Practical Data Science 2021/2022</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README.html">
+   Practical Data Science 2021/2022
+  </a>
+ </li>
+</ul>
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/nbs/04_Feature_Engineering.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/nbs/04_Feature_Engineering.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#loading-the-data">
+   Loading the Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#select-variables-and-split-dataset">
+   Select Variables and Split Dataset
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-engineering-on-numeric-data">
+   Feature Engineering on Numeric Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preprocessing">
+     Preprocessing
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#normalization">
+       Normalization
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#standardization">
+       Standardization
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#summary">
+       Summary
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#binarization">
+     Binarization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#binning">
+     Binning
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fixed-width-binning">
+       Fixed-Width Binning
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#adaptive-binning">
+       Adaptive Binning
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#statistical-transformations">
+     Statistical Transformations
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#evaluation">
+     Evaluation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-engineering-on-categorical-data">
+   Feature Engineering on Categorical Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#label-and-one-hot-encoding">
+     Label and One-Hot-Encoding
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#count-encodings">
+     Count Encodings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#target-encodings">
+     Target Encodings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#catboost-encoding">
+     CatBoost Encoding
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#warning">
+     Warning
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class='bar_title'></div>
+<p><em>Practical Data Science</em></p>
+<div class="tex2jax_ignore mathjax_ignore section" id="feature-engineering">
+<h1>Feature Engineering<a class="headerlink" href="#feature-engineering" title="Permalink to this headline">¶</a></h1>
+<p>Nikolai Stein<br>
+Chair of Information Systems and Management</p>
+<p>Winter Semester 21/22</p>
+<h1>Table of Contents<span class="tocSkip"></span></h1>
+<div class="toc"><ul class="toc-item"><li><span><a href="#Introduction" data-toc-modified-id="Introduction-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>Introduction</a></span></li><li><span><a href="#Loading-the-Data" data-toc-modified-id="Loading-the-Data-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>Loading the Data</a></span></li><li><span><a href="#Select-Variables-and-Split-Dataset" data-toc-modified-id="Select-Variables-and-Split-Dataset-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>Select Variables and Split Dataset</a></span></li><li><span><a href="#Feature-Engineering-on-Numeric-Data" data-toc-modified-id="Feature-Engineering-on-Numeric-Data-4"><span class="toc-item-num">4&nbsp;&nbsp;</span>Feature Engineering on Numeric Data</a></span><ul class="toc-item"><li><span><a href="#Preprocessing" data-toc-modified-id="Preprocessing-4.1"><span class="toc-item-num">4.1&nbsp;&nbsp;</span>Preprocessing</a></span><ul class="toc-item"><li><span><a href="#Normalization" data-toc-modified-id="Normalization-4.1.1"><span class="toc-item-num">4.1.1&nbsp;&nbsp;</span>Normalization</a></span></li><li><span><a href="#Standardization" data-toc-modified-id="Standardization-4.1.2"><span class="toc-item-num">4.1.2&nbsp;&nbsp;</span>Standardization</a></span></li><li><span><a href="#Summary" data-toc-modified-id="Summary-4.1.3"><span class="toc-item-num">4.1.3&nbsp;&nbsp;</span>Summary</a></span></li></ul></li><li><span><a href="#Binarization" data-toc-modified-id="Binarization-4.2"><span class="toc-item-num">4.2&nbsp;&nbsp;</span>Binarization</a></span></li><li><span><a href="#Binning" data-toc-modified-id="Binning-4.3"><span class="toc-item-num">4.3&nbsp;&nbsp;</span>Binning</a></span><ul class="toc-item"><li><span><a href="#Fixed-Width-Binning" data-toc-modified-id="Fixed-Width-Binning-4.3.1"><span class="toc-item-num">4.3.1&nbsp;&nbsp;</span>Fixed-Width Binning</a></span></li><li><span><a href="#Adaptive-Binning" data-toc-modified-id="Adaptive-Binning-4.3.2"><span class="toc-item-num">4.3.2&nbsp;&nbsp;</span>Adaptive Binning</a></span></li></ul></li><li><span><a href="#Statistical-Transformations" data-toc-modified-id="Statistical-Transformations-4.4"><span class="toc-item-num">4.4&nbsp;&nbsp;</span>Statistical Transformations</a></span></li><li><span><a href="#Evaluation" data-toc-modified-id="Evaluation-4.5"><span class="toc-item-num">4.5&nbsp;&nbsp;</span>Evaluation</a></span></li></ul></li><li><span><a href="#Feature-Engineering-on-Categorical-Data" data-toc-modified-id="Feature-Engineering-on-Categorical-Data-5"><span class="toc-item-num">5&nbsp;&nbsp;</span>Feature Engineering on Categorical Data</a></span><ul class="toc-item"><li><span><a href="#Label-and-One-Hot-Encoding" data-toc-modified-id="Label-and-One-Hot-Encoding-5.1"><span class="toc-item-num">5.1&nbsp;&nbsp;</span>Label and One-Hot-Encoding</a></span></li><li><span><a href="#Count-Encodings" data-toc-modified-id="Count-Encodings-5.2"><span class="toc-item-num">5.2&nbsp;&nbsp;</span>Count Encodings</a></span></li><li><span><a href="#Target-Encodings" data-toc-modified-id="Target-Encodings-5.3"><span class="toc-item-num">5.3&nbsp;&nbsp;</span>Target Encodings</a></span></li><li><span><a href="#CatBoost-Encoding" data-toc-modified-id="CatBoost-Encoding-5.4"><span class="toc-item-num">5.4&nbsp;&nbsp;</span>CatBoost Encoding</a></span></li><li><span><a href="#Warning" data-toc-modified-id="Warning-5.5"><span class="toc-item-num">5.5&nbsp;&nbsp;</span>Warning</a></span></li></ul></li><li><span><a href="#Conclusion" data-toc-modified-id="Conclusion-6"><span class="toc-item-num">6&nbsp;&nbsp;</span>Conclusion</a></span></li></ul></div><p><strong>Credits</strong></p>
+<p>Parts of the material of this lecture are adopted from <a class="reference external" href="http://www.kaggle.com">www.kaggle.com</a></p>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p><strong>This lecture provides an overview on different feature engineering techniques.</strong></p>
+<p>Starting with a baseline dataset, we will</p>
+<ul class="simple">
+<li><p>modify existing variables</p></li>
+<li><p>add additional features to  our dataset</p></li>
+<li><p>train a predictive model</p></li>
+</ul>
+<p><strong>Feature engineering</strong> is an essential part of building a powerful predictive model.</p>
+<p>Each problem is domain specific and better features (suited to the problem) are often the deciding factor of the performance of your system.</p>
+<p>Feature Engineering requires experience as well as creativity and this is the reason <strong>Data Scientists often spend the majority of their time</strong> in the data preparation phase before modeling.</p>
+<p><em>“Coming up with features is difficult, time-consuming, requires expert knowledge. Applied machine learning is basically feature engineering.”</em></p>
+<p>Prof. Andrew Ng.</p>
+<p><em>“Feature engineering is the process of transforming raw data into features that better represent the underlying problem to the predictive models, resulting in improved model accuracy on unseen data.”</em></p>
+<p>Dr. Jason Brownlee</p>
+<p><em>“At the end of the day, some machine learning projects succeed and some fail. What makes the difference? Easily the most important factor is the features used.”</em></p>
+<p>Prof. Pedro Domingos</p>
+</div>
+<div class="section" id="loading-the-data">
+<h2>Loading the Data<a class="headerlink" href="#loading-the-data" title="Permalink to this headline">¶</a></h2>
+<p>This week, we will work with a sample of the <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/adult">adult dataset</a> which has some census information on individuals. We’ll use it to train a model to predict whether salary is greater than $50k or not. Again, our first step is to load and familiarize ourself with the data. To this end, we can use the pandas library and load the dataset with the following commands:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">file_path</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/NikoStein/pds_data/raw/main/data/adult.csv&#39;</span>
+<span class="n">adult_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+<span class="n">adult_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>workclass</th>
+      <th>fnlwgt</th>
+      <th>education</th>
+      <th>education-num</th>
+      <th>marital-status</th>
+      <th>occupation</th>
+      <th>relationship</th>
+      <th>race</th>
+      <th>sex</th>
+      <th>capital-gain</th>
+      <th>capital-loss</th>
+      <th>hours-per-week</th>
+      <th>native-country</th>
+      <th>salary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>49</td>
+      <td>Private</td>
+      <td>101320</td>
+      <td>Assoc-acdm</td>
+      <td>12.0</td>
+      <td>Married-civ-spouse</td>
+      <td>NaN</td>
+      <td>Wife</td>
+      <td>White</td>
+      <td>Female</td>
+      <td>0</td>
+      <td>1902</td>
+      <td>40</td>
+      <td>United-States</td>
+      <td>&gt;=50k</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>44</td>
+      <td>Private</td>
+      <td>236746</td>
+      <td>Masters</td>
+      <td>14.0</td>
+      <td>Divorced</td>
+      <td>Exec-managerial</td>
+      <td>Not-in-family</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>10520</td>
+      <td>0</td>
+      <td>45</td>
+      <td>United-States</td>
+      <td>&gt;=50k</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>38</td>
+      <td>Private</td>
+      <td>96185</td>
+      <td>HS-grad</td>
+      <td>NaN</td>
+      <td>Divorced</td>
+      <td>NaN</td>
+      <td>Unmarried</td>
+      <td>Black</td>
+      <td>Female</td>
+      <td>0</td>
+      <td>0</td>
+      <td>32</td>
+      <td>United-States</td>
+      <td>&lt;50k</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>38</td>
+      <td>Self-emp-inc</td>
+      <td>112847</td>
+      <td>Prof-school</td>
+      <td>15.0</td>
+      <td>Married-civ-spouse</td>
+      <td>Prof-specialty</td>
+      <td>Husband</td>
+      <td>Asian-Pac-Islander</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>0</td>
+      <td>40</td>
+      <td>United-States</td>
+      <td>&gt;=50k</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>42</td>
+      <td>Self-emp-not-inc</td>
+      <td>82297</td>
+      <td>7th-8th</td>
+      <td>NaN</td>
+      <td>Married-civ-spouse</td>
+      <td>Other-service</td>
+      <td>Wife</td>
+      <td>Black</td>
+      <td>Female</td>
+      <td>0</td>
+      <td>0</td>
+      <td>50</td>
+      <td>United-States</td>
+      <td>&lt;50k</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="select-variables-and-split-dataset">
+<h2>Select Variables and Split Dataset<a class="headerlink" href="#select-variables-and-split-dataset" title="Permalink to this headline">¶</a></h2>
+<p>Before we start to engineer new features, we select the feature and target variables.</p>
+<p>The (binary) variable <code class="docutils literal notranslate"><span class="pre">salary</span></code> describes if a person earns more or less that \<span class="math notranslate nohighlight">\(50k. We replace the labels with numeric values (0: Salary &lt; \\\)</span>50k, 1: Salary &gt; \$50k) and subsequently select it as our target variable y.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adult_data</span> <span class="o">=</span> <span class="n">adult_data</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">salary</span><span class="o">=</span><span class="p">(</span><span class="n">adult_data</span><span class="p">[</span><span class="s1">&#39;salary&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;&gt;=50k&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">adult_data</span><span class="p">[</span><span class="s1">&#39;salary&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The remaining columns serve as our features X.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">adult_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;salary&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we perform a train-test split to train and evaluate our machine learning models for the model validation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_X</span><span class="p">,</span> <span class="n">val_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">val_y</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we are ready to start preparing and enhancing our numerical and categorical features!</p>
+</div>
+<div class="section" id="feature-engineering-on-numeric-data">
+<h2>Feature Engineering on Numeric Data<a class="headerlink" href="#feature-engineering-on-numeric-data" title="Permalink to this headline">¶</a></h2>
+<p>By Numeric data we mean continuous data and not discrete data which is typically represented as categorical data. Integers and floats are the most common and widely used numeric data types for continuous numeric data. Even though numeric data can be directly fed into machine learning models, we still have to engineer and preprocess features which are relevant to the scenario, problem, domain and machine learning model.</p>
+<p>To this end, we can distinguish between preprocessing and feature generation.</p>
+<p>To work on our numeric features, we have to identify all numeric columns in our dataset:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numCols</span> <span class="o">=</span> <span class="p">[</span><span class="n">cname</span> <span class="k">for</span> <span class="n">cname</span> <span class="ow">in</span> <span class="n">train_X</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">train_X</span><span class="p">[</span><span class="n">cname</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">!=</span> <span class="s2">&quot;object&quot;</span><span class="p">]</span>
+<span class="n">numCols</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;age&#39;,
+ &#39;fnlwgt&#39;,
+ &#39;education-num&#39;,
+ &#39;capital-gain&#39;,
+ &#39;capital-loss&#39;,
+ &#39;hours-per-week&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>To avoid problems with missing values we use a <code class="docutils literal notranslate"><span class="pre">SimpleImputer</span></code> for the numeric columns before we continue:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
+
+<span class="n">simple_imputer</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">()</span>
+
+<span class="n">train_X_num</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">simple_imputer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">train_X</span><span class="p">[</span><span class="n">numCols</span><span class="p">]),</span> <span class="n">columns</span><span class="o">=</span><span class="n">numCols</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">train_X</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">val_X_num</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">simple_imputer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">val_X</span><span class="p">[</span><span class="n">numCols</span><span class="p">]),</span> <span class="n">columns</span><span class="o">=</span><span class="n">numCols</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">val_X</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="preprocessing">
+<h3>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h3>
+<p>Our dataset may contain attributes with a mixture of scales for various quantities. However, many machine learning methods require or at least are more effective if the data attributes have the same scale.</p>
+<p>For example, <code class="docutils literal notranslate"><span class="pre">capital</span> <span class="pre">gain</span></code> and <code class="docutils literal notranslate"><span class="pre">capital</span> <span class="pre">loss</span></code> is measured in USD while age is measured in years in our dataset at hand.</p>
+<p>To avoid having numeric values from different scales we can use two popular data scaling methods: normalization and standardization.</p>
+<div class="section" id="normalization">
+<h4>Normalization<a class="headerlink" href="#normalization" title="Permalink to this headline">¶</a></h4>
+<p>Normalization refers to rescaling numeric attributes into the range 0 and 1. It is useful to scale the input attributes for a model that relies on the magnitude of values, such as distance measures used in k-nearest neighbors and in the preparation of coefficients in regression.</p>
+<p>Using Scikit-learn’s <code class="docutils literal notranslate"><span class="pre">MinMaxScaler</span></code> we can rescale an attribute according to the following formula:</p>
+<p>\begin{equation}
+X = \frac{(X - min(X))}{(max(X) - min(X))}
+\end{equation}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+
+<span class="n">train_X_num_normalized</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">train_X_num</span><span class="p">),</span> 
+                                      <span class="n">columns</span><span class="o">=</span><span class="n">train_X_num</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">train_X_num</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">val_X_num_normalized</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">val_X_num</span><span class="p">),</span> 
+                                    <span class="n">columns</span><span class="o">=</span><span class="n">train_X_num</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">val_X_num</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="n">train_X_num_normalized</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>fnlwgt</th>
+      <th>education-num</th>
+      <th>capital-gain</th>
+      <th>capital-loss</th>
+      <th>hours-per-week</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>26464</th>
+      <td>0.136986</td>
+      <td>0.215102</td>
+      <td>0.533333</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.397959</td>
+    </tr>
+    <tr>
+      <th>16134</th>
+      <td>0.054795</td>
+      <td>0.118419</td>
+      <td>0.600000</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.193878</td>
+    </tr>
+    <tr>
+      <th>4747</th>
+      <td>0.465753</td>
+      <td>0.038438</td>
+      <td>0.066667</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.346939</td>
+    </tr>
+    <tr>
+      <th>8369</th>
+      <td>0.095890</td>
+      <td>0.128628</td>
+      <td>0.533333</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.602041</td>
+    </tr>
+    <tr>
+      <th>5741</th>
+      <td>0.205479</td>
+      <td>0.064474</td>
+      <td>0.800000</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.397959</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>13123</th>
+      <td>0.041096</td>
+      <td>0.093175</td>
+      <td>0.600000</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.244898</td>
+    </tr>
+    <tr>
+      <th>19648</th>
+      <td>0.205479</td>
+      <td>0.176642</td>
+      <td>0.733333</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.397959</td>
+    </tr>
+    <tr>
+      <th>9845</th>
+      <td>0.315068</td>
+      <td>0.039635</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.193878</td>
+    </tr>
+    <tr>
+      <th>10799</th>
+      <td>0.150685</td>
+      <td>0.011654</td>
+      <td>0.533333</td>
+      <td>0.00000</td>
+      <td>0.0</td>
+      <td>0.397959</td>
+    </tr>
+    <tr>
+      <th>2732</th>
+      <td>0.109589</td>
+      <td>0.142264</td>
+      <td>0.533333</td>
+      <td>0.03325</td>
+      <td>0.0</td>
+      <td>0.448980</td>
+    </tr>
+  </tbody>
+</table>
+<p>24420 rows × 6 columns</p>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="standardization">
+<h4>Standardization<a class="headerlink" href="#standardization" title="Permalink to this headline">¶</a></h4>
+<p>In contrast to normalization, we could also use standardization for our numerical variables. In this context, standardization refers to shifting the distribution of each attribute to have a mean of zero and a standard deviation of one. It is useful to standardize attributes for a model that relies on the distribution of attributes such as Gaussian processes.</p>
+<p>Using Scikit-learn’s <code class="docutils literal notranslate"><span class="pre">StandardScaler</span></code> we can rescale an attribute according to the following formula:</p>
+<p>\begin{equation}
+X = \frac{(X - mean(X))}{\sqrt{var(X)}}
+\end{equation}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+
+<span class="n">train_X_num_standardized</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">train_X_num</span><span class="p">),</span> 
+                                        <span class="n">columns</span><span class="o">=</span><span class="n">train_X_num</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">train_X_num</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">val_X_num_standardized</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">val_X_num</span><span class="p">),</span> 
+                                      <span class="n">columns</span><span class="o">=</span><span class="n">train_X_num</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">val_X_num</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="n">train_X_num_standardized</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>fnlwgt</th>
+      <th>education-num</th>
+      <th>capital-gain</th>
+      <th>capital-loss</th>
+      <th>hours-per-week</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>26464</th>
+      <td>-0.853017</td>
+      <td>1.316410</td>
+      <td>-0.420746</td>
+      <td>-0.146391</td>
+      <td>-0.217388</td>
+      <td>-0.036400</td>
+    </tr>
+    <tr>
+      <th>16134</th>
+      <td>-1.292554</td>
+      <td>-0.027373</td>
+      <td>-0.029346</td>
+      <td>-0.146391</td>
+      <td>-0.217388</td>
+      <td>-1.652429</td>
+    </tr>
+    <tr>
+      <th>4747</th>
+      <td>0.905131</td>
+      <td>-1.139029</td>
+      <td>-3.160546</td>
+      <td>-0.146391</td>
+      <td>-0.217388</td>
+      <td>-0.440408</td>
+    </tr>
+    <tr>
+      <th>8369</th>
+      <td>-1.072786</td>
+      <td>0.114522</td>
+      <td>-0.420746</td>
+      <td>-0.146391</td>
+      <td>-0.217388</td>
+      <td>1.579628</td>
+    </tr>
+    <tr>
+      <th>5741</th>
+      <td>-0.486737</td>
+      <td>-0.777155</td>
+      <td>1.144853</td>
+      <td>-0.146391</td>
+      <td>-0.217388</td>
+      <td>-0.036400</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="summary">
+<h4>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h4>
+<p>Data rescaling is an important part of data preparation before applying machine learning algorithms. However, it is hard to know whether normalization or standardization of the data will improve the performance of a predictive model in advance.</p>
+<p>A good tip for a practical application is to create rescaled copies of your dataset and evaluate them against each other. This process can quickly show which rescaling method will improve your selected models in the problem at hand.</p>
+</div>
+</div>
+<div class="section" id="binarization">
+<h3>Binarization<a class="headerlink" href="#binarization" title="Permalink to this headline">¶</a></h3>
+<p>For some problems raw frequencies or counts may not be relevant for building a model. In these cases it is only relevant if a numeric value exceeds a specific threshold (e.g. a person is at least 40 years old). Hence we do not require the number of times the action was performed but only a binary feature.</p>
+<p>We can binarize a feature using Scikit-learn’s <code class="docutils literal notranslate"><span class="pre">Binarizer</span></code> function (Note that we use the raw dataset for this example - clearly we could normalize or standardize the dataframe afterwards):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">Binarizer</span>
+
+<span class="n">train_X_binary_age</span> <span class="o">=</span> <span class="n">train_X_num</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">val_X_binary_age</span> <span class="o">=</span> <span class="n">val_X_num</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">binarizer</span> <span class="o">=</span> <span class="n">Binarizer</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+
+<span class="n">train_X_binary_age</span><span class="p">[</span><span class="s1">&#39;40Plus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">binarizer</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="n">train_X_binary_age</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]])[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">val_X_binary_age</span><span class="p">[</span><span class="s1">&#39;40Plus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">binarizer</span><span class="o">.</span><span class="n">transform</span><span class="p">([</span><span class="n">val_X_binary_age</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]])[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">train_X_binary_age</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>fnlwgt</th>
+      <th>education-num</th>
+      <th>capital-gain</th>
+      <th>capital-loss</th>
+      <th>hours-per-week</th>
+      <th>40Plus</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>26464</th>
+      <td>27.0</td>
+      <td>329005.0</td>
+      <td>9.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>40.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>16134</th>
+      <td>21.0</td>
+      <td>186648.0</td>
+      <td>10.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>20.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4747</th>
+      <td>51.0</td>
+      <td>68882.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>35.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>8369</th>
+      <td>24.0</td>
+      <td>201680.0</td>
+      <td>9.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>60.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>5741</th>
+      <td>32.0</td>
+      <td>107218.0</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>40.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="binning">
+<h3>Binning<a class="headerlink" href="#binning" title="Permalink to this headline">¶</a></h3>
+<p>The problem of working with raw, numeric features is that often the distribution of values in these features will be skewed. This signifies that some values will occur quite frequently while some will be quite rare. Hence there are strategies to deal with this, which include binning.</p>
+<p>Binning is used for transforming continuous numeric features into discrete ones. These discrete values can be interpreted as categories or bins into which the raw values are grouped into. Each group represents a specific degree of intensity and hence a specific range of continuous numeric values fall into it.</p>
+<p>Let’s again use the age variable to perform two different types of binning.</p>
+<div class="section" id="fixed-width-binning">
+<h4>Fixed-Width Binning<a class="headerlink" href="#fixed-width-binning" title="Permalink to this headline">¶</a></h4>
+<p>In fixed-width binning, specific fixed widths for each bin are defined by the user. Each bin has a fixed range of values which should be assigned to that bin on the basis of some domain knowledge.</p>
+<p>We can use Pandas <code class="docutils literal notranslate"><span class="pre">cut</span></code> function to bin the age into predefined groups and assign labels:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_X_bin_age</span> <span class="o">=</span> <span class="n">train_X_num</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">val_X_bin_age</span> <span class="o">=</span> <span class="n">val_X_num</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">bin_ranges</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">999</span><span class="p">]</span>
+<span class="n">bin_labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+
+<span class="n">train_X_bin_age</span><span class="p">[</span><span class="s1">&#39;AgeBinned&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">train_X_bin_age</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">],</span> 
+                                      <span class="n">bins</span><span class="o">=</span><span class="n">bin_ranges</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">bin_labels</span><span class="p">)</span>
+<span class="n">val_X_bin_age</span><span class="p">[</span><span class="s1">&#39;AgeBinned&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">val_X_bin_age</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">],</span> 
+                                    <span class="n">bins</span><span class="o">=</span><span class="n">bin_ranges</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">bin_labels</span><span class="p">)</span>
+
+<span class="n">train_X_bin_age</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>fnlwgt</th>
+      <th>education-num</th>
+      <th>capital-gain</th>
+      <th>capital-loss</th>
+      <th>hours-per-week</th>
+      <th>AgeBinned</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>26464</th>
+      <td>27.0</td>
+      <td>329005.0</td>
+      <td>9.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>40.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>16134</th>
+      <td>21.0</td>
+      <td>186648.0</td>
+      <td>10.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>20.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4747</th>
+      <td>51.0</td>
+      <td>68882.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>35.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>8369</th>
+      <td>24.0</td>
+      <td>201680.0</td>
+      <td>9.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>60.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5741</th>
+      <td>32.0</td>
+      <td>107218.0</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>40.0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="adaptive-binning">
+<h4>Adaptive Binning<a class="headerlink" href="#adaptive-binning" title="Permalink to this headline">¶</a></h4>
+<p>The major drawback in using fixed-width binning is unbalanced bin sizes. As we manually decide the bin ranges, we can end up with irregular bins which are not uniform based on the number of data points. Some bins (such as “young (0)” and “old (2)”) might be sparsely populated while some (such as “medium (1)”) are densely populated.</p>
+<p>To overcome this issues we can use adaptive binning based on the distribution of the data.</p>
+<p>To cut the space into equal partitions we can use the quantiles as cut-points:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quantile_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.66</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">quantile_labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+
+<span class="n">train_X_bin_age</span><span class="p">[</span><span class="s1">&#39;AgeBinnedAdaptive&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">train_X_bin_age</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">],</span> 
+                                               <span class="n">q</span><span class="o">=</span><span class="n">quantile_list</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">quantile_labels</span><span class="p">)</span>
+<span class="n">val_X_bin_age</span><span class="p">[</span><span class="s1">&#39;AgeBinnedAdaptive&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">val_X_bin_age</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">],</span>   
+                                             <span class="n">q</span><span class="o">=</span><span class="n">quantile_list</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">quantile_labels</span><span class="p">)</span>
+
+<span class="n">train_X_bin_age</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>fnlwgt</th>
+      <th>education-num</th>
+      <th>capital-gain</th>
+      <th>capital-loss</th>
+      <th>hours-per-week</th>
+      <th>AgeBinned</th>
+      <th>AgeBinnedAdaptive</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>26464</th>
+      <td>27.0</td>
+      <td>329005.0</td>
+      <td>9.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>40.0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>16134</th>
+      <td>21.0</td>
+      <td>186648.0</td>
+      <td>10.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>20.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4747</th>
+      <td>51.0</td>
+      <td>68882.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>8369</th>
+      <td>24.0</td>
+      <td>201680.0</td>
+      <td>9.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>60.0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5741</th>
+      <td>32.0</td>
+      <td>107218.0</td>
+      <td>13.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>40.0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="statistical-transformations">
+<h3>Statistical Transformations<a class="headerlink" href="#statistical-transformations" title="Permalink to this headline">¶</a></h3>
+<p>Many variables, such as <code class="docutils literal notranslate"><span class="pre">capital-gain</span></code> or <code class="docutils literal notranslate"><span class="pre">fnlwgt</span></code> (sampling weight) span several orders of magnitude. While the vast majority of persons has very small capital-gains, a few people have very high gains. To work with such skewed variables we can use the log transformation.</p>
+<p>Log transforms are useful when applied to skewed distributions as they tend to expand the values which fall in the range of lower magnitudes and tend to compress or reduce the values which fall in the range of higher magnitudes. This tends to make the skewed distribution as normal-like as possible.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">train_X_logGains</span> <span class="o">=</span> <span class="n">train_X_num</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">val_X_logGains</span> <span class="o">=</span> <span class="n">val_X_num</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">train_X_logGains</span><span class="p">[</span><span class="s1">&#39;logfnlwgt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">train_X_logGains</span><span class="p">[</span><span class="s1">&#39;fnlwgt&#39;</span><span class="p">])</span>
+<span class="n">val_X_logGains</span><span class="p">[</span><span class="s1">&#39;logfnlwgt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">val_X_logGains</span><span class="p">[</span><span class="s1">&#39;fnlwgt&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see this effect plotting both histograms:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">train_X_logGains</span><span class="p">[[</span><span class="s1">&#39;fnlwgt&#39;</span><span class="p">,</span> <span class="s1">&#39;logfnlwgt&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">hist</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/04_Feature_Engineering_41_0.png" src="../_images/04_Feature_Engineering_41_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="evaluation">
+<h3>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">¶</a></h3>
+<p>We can train support vector machines (<code class="docutils literal notranslate"><span class="pre">SVC</span></code>) using the different datasets and feature engineering techniques to evaluate their impact on the model performance. Note that we could (and should) combine these techniques to train powerful models and apply them in real-world problems.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+
+<span class="k">def</span> <span class="nf">score_dataset</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_valid</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">gamma</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Raw Features: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span>
+      <span class="nb">format</span><span class="p">(</span><span class="n">score_dataset</span><span class="p">(</span><span class="n">train_X_num</span><span class="p">,</span> <span class="n">val_X_num</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">val_y</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Normalized Features: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span>
+      <span class="nb">format</span><span class="p">(</span><span class="n">score_dataset</span><span class="p">(</span><span class="n">train_X_num_normalized</span><span class="p">,</span> <span class="n">val_X_num_normalized</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">val_y</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Standardized Features: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span>
+      <span class="nb">format</span><span class="p">(</span><span class="n">score_dataset</span><span class="p">(</span><span class="n">train_X_num_standardized</span><span class="p">,</span> <span class="n">val_X_num_standardized</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">val_y</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Binary Age: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">score_dataset</span><span class="p">(</span><span class="n">train_X_binary_age</span><span class="p">,</span> <span class="n">val_X_binary_age</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">val_y</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Binned Age: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">score_dataset</span><span class="p">(</span><span class="n">train_X_bin_age</span><span class="p">,</span> <span class="n">val_X_bin_age</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">val_y</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Log FNLWGT: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">score_dataset</span><span class="p">(</span><span class="n">train_X_logGains</span><span class="p">,</span> <span class="n">val_X_logGains</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">val_y</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="feature-engineering-on-categorical-data">
+<h2>Feature Engineering on Categorical Data<a class="headerlink" href="#feature-engineering-on-categorical-data" title="Permalink to this headline">¶</a></h2>
+<p>In contrast to continuous numeric data we mean discrete values which belong to a specific finite set of categories or classes when we talk about categorical data. These discrete values can be text or numeric in nature and there are two major classes of categorical data, nominal and ordinal.</p>
+<p>While a lot of advancements have been made in state of the art machine learning frameworks to accept categorical data types like text labels. Typically any standard workflow in feature engineering involves some form of transformation of these categorical values into numeric labels and then applying some encoding scheme on these values.</p>
+<div class="section" id="label-and-one-hot-encoding">
+<h3>Label and One-Hot-Encoding<a class="headerlink" href="#label-and-one-hot-encoding" title="Permalink to this headline">¶</a></h3>
+<p>Last week, we already talked about label and one-hot-encoding to prepare our categorical features for machine learning models. To get started, we will impute missing values and encode all categorical features using the <code class="docutils literal notranslate"><span class="pre">OrdinalEncoder</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OrdinalEncoder</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Again, we will use a helper function to evaluate the performance of our models. This time, we will rely on a random forest model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">catCols</span> <span class="o">=</span> <span class="p">[</span><span class="n">cname</span> <span class="k">for</span> <span class="n">cname</span> <span class="ow">in</span> <span class="n">train_X</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">train_X</span><span class="p">[</span><span class="n">cname</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s2">&quot;object&quot;</span><span class="p">]</span>
+
+<span class="n">train_X_cat</span> <span class="o">=</span> <span class="n">train_X</span><span class="p">[</span><span class="n">catCols</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">val_X_cat</span> <span class="o">=</span> <span class="n">val_X</span><span class="p">[</span><span class="n">catCols</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">simple_imputer</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;most_frequent&#39;</span><span class="p">)</span>
+
+<span class="n">train_X_labelenc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">simple_imputer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">train_X_cat</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">train_X_cat</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">train_X_cat</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">val_X_labelenc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">simple_imputer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">val_X_cat</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">val_X_cat</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">val_X_cat</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="n">ordinal_encoder</span> <span class="o">=</span> <span class="n">OrdinalEncoder</span><span class="p">()</span>
+<span class="n">train_X_labelenc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ordinal_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">train_X_labelenc</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">train_X_cat</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">train_X_cat</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">val_X_labelenc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ordinal_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">val_X_labelenc</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">val_X_cat</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">val_X_cat</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="n">train_X_labelenc</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+
+<span class="k">def</span> <span class="nf">score_dataset</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_valid</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To evaluate the model we combine the raw numerical data and the encoded categorical variables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_X_label_num</span> <span class="o">=</span> <span class="n">train_X_num_standardized</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">train_X_labelenc</span><span class="o">.</span><span class="n">add_suffix</span><span class="p">(</span><span class="s2">&quot;_labelenc&quot;</span><span class="p">))</span>
+<span class="n">val_X_label_num</span> <span class="o">=</span> <span class="n">val_X_num_standardized</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">val_X_labelenc</span><span class="o">.</span><span class="n">add_suffix</span><span class="p">(</span><span class="s2">&quot;_labelenc&quot;</span><span class="p">))</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Label encoded categorical + raw numeric: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span>
+      <span class="nb">format</span><span class="p">(</span><span class="n">score_dataset</span><span class="p">(</span><span class="n">train_X_label_num</span><span class="p">,</span> <span class="n">val_X_label_num</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">val_y</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="count-encodings">
+<h3>Count Encodings<a class="headerlink" href="#count-encodings" title="Permalink to this headline">¶</a></h3>
+<p>While label and one-hot encoding often yield good results, there are also a lot of other (more complex) techniques to encode categorical variables. The package <a class="reference external" href="https://github.com/scikit-learn-contrib/categorical-encoding">categorical-encoding</a> offers implementations of many different techniques.</p>
+<p>One prominent variant is called count encoding. Count encoding replaces each categorical value with the number of times it appears in the dataset. For example, if the value “USA” occures 50 times in the country feature, then each “USA” would be replaced with the number 50.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip install category_encoders
+</pre></div>
+</div>
+</div>
+</div>
+<p>or</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>conda install -c conda-forge category_encoders -y
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">category_encoders</span> <span class="kn">import</span> <span class="n">CountEncoder</span>
+
+<span class="n">count_encoder</span> <span class="o">=</span> <span class="n">CountEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">handle_missing</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+
+<span class="n">train_X_countenc</span> <span class="o">=</span> <span class="n">count_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">train_X_cat</span><span class="p">)</span>
+<span class="n">val_X_countenc</span> <span class="o">=</span> <span class="n">count_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">val_X_cat</span><span class="p">)</span>
+
+<span class="n">train_X_count_num</span> <span class="o">=</span> <span class="n">train_X_num</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">train_X_countenc</span><span class="o">.</span><span class="n">add_suffix</span><span class="p">(</span><span class="s2">&quot;_countenc&quot;</span><span class="p">))</span>
+<span class="n">val_X_count_num</span> <span class="o">=</span> <span class="n">val_X_num</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">val_X_countenc</span><span class="o">.</span><span class="n">add_suffix</span><span class="p">(</span><span class="s2">&quot;_countenc&quot;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Count encoded categorical + raw numeric: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span>
+      <span class="nb">format</span><span class="p">(</span><span class="n">score_dataset</span><span class="p">(</span><span class="n">train_X_count_num</span><span class="p">,</span> <span class="n">val_X_count_num</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">val_y</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="target-encodings">
+<h3>Target Encodings<a class="headerlink" href="#target-encodings" title="Permalink to this headline">¶</a></h3>
+<p>Target encoding is another advanced (but sometimes dangerous) approach to encode categorical features. It replaces a categorical value with the average value of the target for that value of the feature.</p>
+<p>For example, given the country value “GER”, you’d calculate the average outcome for all the rows with country == ‘GER’. This value is often blended with the target probability over the entire dataset to reduce the variance of values with few occurences.</p>
+<p>This technique uses the targets to create new features. So including the validation or test data in the target encodings would be a form of target leakage. Instead, you should learn the target encodings from the training dataset only and apply it to the other datasets (as we did with all other encoding methods).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">category_encoders</span> <span class="kn">import</span> <span class="n">TargetEncoder</span>
+
+<span class="n">target_encoder</span> <span class="o">=</span> <span class="n">TargetEncoder</span><span class="p">()</span>
+
+<span class="n">train_X_targetenc</span> <span class="o">=</span> <span class="n">target_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">train_X_cat</span><span class="p">,</span> <span class="n">train_y</span><span class="p">)</span>
+<span class="n">val_X_targetenc</span> <span class="o">=</span> <span class="n">target_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">val_X_cat</span><span class="p">)</span>
+
+<span class="n">train_X_target_num</span> <span class="o">=</span> <span class="n">train_X_num</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">train_X_targetenc</span><span class="o">.</span><span class="n">add_suffix</span><span class="p">(</span><span class="s2">&quot;_targetenc&quot;</span><span class="p">))</span>
+<span class="n">val_X_target_num</span> <span class="o">=</span> <span class="n">val_X_num</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">val_X_targetenc</span><span class="o">.</span><span class="n">add_suffix</span><span class="p">(</span><span class="s2">&quot;_targetenc&quot;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Target encoded categorical + raw numeric: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span>
+      <span class="nb">format</span><span class="p">(</span><span class="n">score_dataset</span><span class="p">(</span><span class="n">train_X_target_num</span><span class="p">,</span> <span class="n">val_X_target_num</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">val_y</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="catboost-encoding">
+<h3>CatBoost Encoding<a class="headerlink" href="#catboost-encoding" title="Permalink to this headline">¶</a></h3>
+<p>Finally, we’ll look at CatBoost encoding. This is similar to target encoding in that it’s based on the target probablity for a given value. However with CatBoost, for each row, the target probability is calculated only from the rows before it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">category_encoders</span> <span class="kn">import</span> <span class="n">CatBoostEncoder</span>
+
+<span class="n">catboost_encoder</span> <span class="o">=</span> <span class="n">CatBoostEncoder</span><span class="p">()</span>
+
+<span class="n">train_X_catboostenc</span> <span class="o">=</span> <span class="n">catboost_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">train_X_cat</span><span class="p">,</span> <span class="n">train_y</span><span class="p">)</span>
+<span class="n">val_X_catboostenc</span> <span class="o">=</span> <span class="n">catboost_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">val_X_cat</span><span class="p">)</span>
+
+<span class="n">train_X_catboost_num</span> <span class="o">=</span> <span class="n">train_X_num</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">train_X_catboostenc</span><span class="o">.</span><span class="n">add_suffix</span><span class="p">(</span><span class="s2">&quot;_targetenc&quot;</span><span class="p">))</span>
+<span class="n">val_X_catboost_num</span> <span class="o">=</span> <span class="n">val_X_num</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">val_X_catboostenc</span><span class="o">.</span><span class="n">add_suffix</span><span class="p">(</span><span class="s2">&quot;_targetenc&quot;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CatBoost encoded categorical + raw numeric: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span>
+      <span class="nb">format</span><span class="p">(</span><span class="n">score_dataset</span><span class="p">(</span><span class="n">train_X_catboost_num</span><span class="p">,</span> <span class="n">val_X_catboost_num</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">val_y</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="warning">
+<h3>Warning<a class="headerlink" href="#warning" title="Permalink to this headline">¶</a></h3>
+<p>Target encoding is a powerful but dangerous way to improve on your machine learning methods.</p>
+<p>Advantages:</p>
+<ul class="simple">
+<li><p>Compact transformation of categorical variables</p></li>
+<li><p>Powerful basis for feature engineering</p></li>
+</ul>
+<p>Disadvantages:</p>
+<ul class="simple">
+<li><p>Careful validation is required to avoid overfitting</p></li>
+<li><p>Significant performance improvements only on some datasets</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<p>Today, we have seen a variety of ways to encode numerical and categorical features to improve the performance of our machine learning models. To try even more encoding methods you can try the implementations in the categorical-encoding package on <a class="reference external" href="https://github.com/scikit-learn-contrib/categorical-encoding">github</a>.</p>
+<p>While the approaches we have talked about today have the potential to create powerful models, they require a lot of manual tuning and testing.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./nbs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

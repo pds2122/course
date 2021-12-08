@@ -1,0 +1,1672 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deep Learning on Tabular Data &#8212; Practical Data Science 2021/2022</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/unilogo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Practical Data Science 2021/2022</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README.html">
+   Practical Data Science 2021/2022
+  </a>
+ </li>
+</ul>
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/nbs/05_Deep_Larning_Tabular.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/nbs/05_Deep_Larning_Tabular.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motivation">
+   Motivation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#categorical-embedding-examples">
+     Categorical Embedding Examples
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#artificial-neural-networks">
+   Artificial Neural Networks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-perceptron">
+     The Perceptron
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multi-layer-perceptron-aka-neural-networks">
+     Multi-layer Perceptron aka. Neural Networks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#training-neural-networks">
+     Training Neural Networks
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deep-learning-on-tabular-data-with-fast-ai">
+   Deep Learning on Tabular Data with
+   <em>
+    fast.ai
+   </em>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fast-ai-datasets">
+     <em>
+      fast.ai
+     </em>
+     Datasets
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#from-data-do-dataloaders">
+     From data do dataloaders
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#defining-a-model">
+   Defining a Model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualizing-the-model-graph-with-tensorboard">
+     Visualizing the model graph with TensorBoard
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#train-the-model">
+     Train the model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-evaluation">
+   Model Evaluation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#embeddings-for-categorical-variables">
+   Embeddings for Categorical Variables
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#applying-embeddings-for-categorical-variables">
+     Applying Embeddings for Categorical Variables
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualizing-embeddings-with-tensorboard">
+     Visualizing Embeddings with Tensorboard
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#conclusion">
+     Conclusion
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class='bar_title'></div>
+<p><em>Practical Data Science</em></p>
+<div class="tex2jax_ignore mathjax_ignore section" id="deep-learning-on-tabular-data">
+<h1>Deep Learning on Tabular Data<a class="headerlink" href="#deep-learning-on-tabular-data" title="Permalink to this headline">¶</a></h1>
+<p>Matthias Griebel<br>
+Chair of Information Systems and Business Analytics</p>
+<p>Winter Semester 21/22</p>
+<h1>Table of Contents<span class="tocSkip"></span></h1>
+<div class="toc"><ul class="toc-item"><li><span><a href="#Motivation" data-toc-modified-id="Motivation-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>Motivation</a></span><ul class="toc-item"><li><span><a href="#Categorical-Embedding-Examples" data-toc-modified-id="Categorical-Embedding-Examples-1.1"><span class="toc-item-num">1.1&nbsp;&nbsp;</span>Categorical Embedding Examples</a></span></li></ul></li><li><span><a href="#Artificial-Neural-Networks" data-toc-modified-id="Artificial-Neural-Networks-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>Artificial Neural Networks</a></span><ul class="toc-item"><li><span><a href="#The-Perceptron" data-toc-modified-id="The-Perceptron-2.1"><span class="toc-item-num">2.1&nbsp;&nbsp;</span>The Perceptron</a></span></li><li><span><a href="#Multi-layer-Perceptron-aka.-Neural-Networks" data-toc-modified-id="Multi-layer-Perceptron-aka.-Neural-Networks-2.2"><span class="toc-item-num">2.2&nbsp;&nbsp;</span>Multi-layer Perceptron aka. Neural Networks</a></span></li><li><span><a href="#Training-Neural-Networks" data-toc-modified-id="Training-Neural-Networks-2.3"><span class="toc-item-num">2.3&nbsp;&nbsp;</span>Training Neural Networks</a></span></li></ul></li><li><span><a href="#Deep-Learning-on-Tabular-Data-with-fast.ai" data-toc-modified-id="Deep-Learning-on-Tabular-Data-with-fast.ai-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>Deep Learning on Tabular Data with <em>fast.ai</em></a></span><ul class="toc-item"><li><span><a href="#fast.ai-Datasets" data-toc-modified-id="fast.ai-Datasets-3.1"><span class="toc-item-num">3.1&nbsp;&nbsp;</span><em>fast.ai</em> Datasets</a></span></li><li><span><a href="#From-data-do-dataloaders" data-toc-modified-id="From-data-do-dataloaders-3.2"><span class="toc-item-num">3.2&nbsp;&nbsp;</span>From data do dataloaders</a></span></li></ul></li><li><span><a href="#Defining-a-Model" data-toc-modified-id="Defining-a-Model-4"><span class="toc-item-num">4&nbsp;&nbsp;</span>Defining a Model</a></span><ul class="toc-item"><li><span><a href="#Visualizing-the-model-graph-with-TensorBoard" data-toc-modified-id="Visualizing-the-model-graph-with-TensorBoard-4.1"><span class="toc-item-num">4.1&nbsp;&nbsp;</span>Visualizing the model graph with TensorBoard</a></span></li><li><span><a href="#Train-the-model" data-toc-modified-id="Train-the-model-4.2"><span class="toc-item-num">4.2&nbsp;&nbsp;</span>Train the model</a></span></li></ul></li><li><span><a href="#Model-Evaluation" data-toc-modified-id="Model-Evaluation-5"><span class="toc-item-num">5&nbsp;&nbsp;</span>Model Evaluation</a></span></li><li><span><a href="#Embeddings-for-Categorical-Variables" data-toc-modified-id="Embeddings-for-Categorical-Variables-6"><span class="toc-item-num">6&nbsp;&nbsp;</span>Embeddings for Categorical Variables</a></span><ul class="toc-item"><li><span><a href="#Applying-Embeddings-for-Categorical-Variables" data-toc-modified-id="Applying-Embeddings-for-Categorical-Variables-6.1"><span class="toc-item-num">6.1&nbsp;&nbsp;</span>Applying Embeddings for Categorical Variables</a></span></li><li><span><a href="#Visualizing-Embeddings-with-Tensorboard" data-toc-modified-id="Visualizing-Embeddings-with-Tensorboard-6.2"><span class="toc-item-num">6.2&nbsp;&nbsp;</span>Visualizing Embeddings with Tensorboard</a></span></li><li><span><a href="#Conclusion" data-toc-modified-id="Conclusion-6.3"><span class="toc-item-num">6.3&nbsp;&nbsp;</span>Conclusion</a></span></li></ul></li></ul></div><p><strong>Credits</strong></p>
+<img src="https://images-na.ssl-images-amazon.com/images/I/516YvsJCS9L._SX379_BO1,204,203,200_.jpg" width="500" align="right"/>
+<p>In the next lectures we will dive into Deep Learning using ressources from the book of
+<strong>Jeremy Howard and Sylvian Gugger: “Deep Learning for Coders with Fastai and PyTorch: AI Applications without a PhD.” (2020).</strong></p>
+<p>It’s freely available as interactive <a class="reference external" href="https://github.com/fastai/fastbook">Jupyter Notebook</a></p>
+<p>Materials also taken from:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/fastai/fastbook/blob/master/09_tabular.ipynb">https://github.com/fastai/fastbook/blob/master/09_tabular.ipynb</a></p></li>
+<li><p><a class="reference external" href="https://www.fast.ai/2018/04/29/categorical-embeddings/">https://www.fast.ai/2018/04/29/categorical-embeddings/</a></p></li>
+<li><p><a class="reference external" href="https://confusedcoders.com/data-science/deep-learning/how-to-apply-deep-learning-on-tabular-data-with-fastai">https://confusedcoders.com/data-science/deep-learning/how-to-apply-deep-learning-on-tabular-data-with-fastai</a></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Uninstall tensorflow if you want to export embeddings later</span>
+<span class="c1">#Tensorboard won&#39;t work in this session!</span>
+<span class="c1">#!pip uninstall -y tensorflow </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
+<p>At the end of 2015, the <a class="reference external" href="https://www.kaggle.com/c/rossmann-store-sales">Rossmann sales competition</a> ran on Kaggle. Competitors were given a wide range of information about various stores in Germany, and were tasked with trying to predict sales on a number of days. The goal was to help the company to manage stock properly and be able to satisfy demand without holding unnecessary inventory. The official training set provided a lot of information about the stores. It was also permitted for competitors to use additional data, as long as that data was made public and available to all participants.</p>
+<p>One of the gold medalists used deep learning, in one of the earliest known examples of a state-of-the-art deep learning tabular model. Their method involved far less feature engineering, based on domain knowledge, than those of the other gold medalists. The paper, <a class="reference external" href="https://arxiv.org/abs/1604.06737">“Entity Embeddings of Categorical Variables”</a> describes their approach. The authors state:</p>
+<blockquote>
+<div><p>Entity embedding not only <strong>reduces memory usage</strong> and <strong>speeds up neural networks compared with one-hot encoding</strong>, but more importantly by <strong>mapping similar values close to each other in the embedding space</strong> it reveals the intrinsic properties of the categorical variables…</p>
+</div></blockquote>
+<blockquote>
+<div><p>[It] is especially useful for datasets with lots of <strong>high cardinality features</strong>, where other methods tend to overfit… As entity embedding defines a distance measure for categorical variables it can be used for visualizing categorical data and for data clustering.</p>
+</div></blockquote>
+<div class="section" id="categorical-embedding-examples">
+<h3>Categorical Embedding Examples<a class="headerlink" href="#categorical-embedding-examples" title="Permalink to this headline">¶</a></h3>
+<p>We will have a look at the examples from the paper <a class="reference external" href="https://arxiv.org/abs/1604.06737">“Entity Embeddings of Categorical Variables”</a></p>
+<p><strong>State embeddings and map</strong></p>
+<img alt="State embeddings and map" width="50%" caption="State embeddings and map (courtesy of Cheng Guo and Felix Berkhahn)" id="state_emb" src="https://raw.githubusercontent.com/fastai/fastbook/master/images/att_00015.png"><p>On the left is a plot of the embedding matrix for the possible values of the <code class="docutils literal notranslate"><span class="pre">State</span></code> category. For a categorical variable we call the possible values of the variable its “levels” (or “categories” or “classes”), so here one level is “Berlin,” another is “Hamburg,” etc. On the right is a map of Germany. The actual physical locations of the German states were not part of the provided data, yet the model itself learned where they must be, based only on the behavior of store sales!</p>
+<p><strong>Store Distances</strong></p>
+<p>The distance between store embeddings against the actual geographic distance between the stores - they match very closely!</p>
+<img alt="Store distances" width="50%" caption="Store distances (courtesy of Cheng Guo and Felix Berkhahn)" id="store_emb" src="https://raw.githubusercontent.com/fastai/fastbook/master/images/att_00016.png"><p><strong>Date Embedding</strong></p>
+<p>Days and months that are near each other on the calendar ended up close as embeddings too.</p>
+<img alt="Date embeddings" width="50%" caption="Date embeddings" id="date_emb" src="https://raw.githubusercontent.com/fastai/fastbook/master/images/att_00017.png"><p>How can we train such embeddings?</p>
+</div>
+</div>
+<div class="section" id="artificial-neural-networks">
+<h2>Artificial Neural Networks<a class="headerlink" href="#artificial-neural-networks" title="Permalink to this headline">¶</a></h2>
+<p><strong>What are neural networks?</strong></p>
+<ul class="simple">
+<li><p>Biological neural networks have interconnected neurons with dendrites that receive inputs, then based on these inputs they produce an output signal through an axon to another neuron</p></li>
+<li><p>Artificial Neural Networks (ANN) are a machine learning framework that attempts to mimic the learning pattern of natural biological neural networks</p></li>
+<li><p>The creation of ANN begins with the most basic form, a single perceptron</p></li>
+</ul>
+<img src="https://www.extremetech.com/wp-content/uploads/2013/09/340-640x426.jpg" width="30%"/>
+<div class="section" id="the-perceptron">
+<h3>The Perceptron<a class="headerlink" href="#the-perceptron" title="Permalink to this headline">¶</a></h3>
+<p>Developed by Frank Rosenblatt in 1957</p>
+<ul class="simple">
+<li><p>Perceptrons have one or more weighted inputs, a bias, an activation function, and a single output</p></li>
+<li><p>A perceptron receives inputs, multiplies them by some weight, and then passes them into an activation function to produce an output</p></li>
+<li><p>The key idea is to “fire” / activate the neuron only if a sufficiently strong input signal is detected</p></li>
+</ul>
+<img src="https://miro.medium.com/max/2870/1*n6sJ4yZQzwKL9wnF5wnVNg.png" width="50%"/>
+<p><strong>Different Activation Functions and their Graphs</strong></p>
+<img src="https://miro.medium.com/max/1200/1*ZafDv3VUm60Eh10OeJu1vw.png" width="50%"/>
+<p><a class="reference external" href="https://medium.com/&#64;shrutijadon10104776/survey-on-activation-functions-for-deep-learning-9689331ba092">Image Source</a></p>
+<p>ReLU is the most commonly used Activation Functions, because of its simplicity during backpropagation and its not computationally expensive</p>
+</div>
+<div class="section" id="multi-layer-perceptron-aka-neural-networks">
+<h3>Multi-layer Perceptron aka. Neural Networks<a class="headerlink" href="#multi-layer-perceptron-aka-neural-networks" title="Permalink to this headline">¶</a></h3>
+<p>A MLP is composed of multiple layers of perceptrons</p>
+<img src="https://camo.githubusercontent.com/d95fb90b396fc77c614cc6b176dd049066273f96/68747470733a2f2f7777772e64726f70626f782e636f6d2f732f717334746f6a763575356834386c662f6d756c74696c617965725f70657263657074726f6e2e706e673f7261773d31" style="width:80%" />
+<p><a class="reference external" href="https://github.com/PetarV-/TikZ/tree/master/Multilayer%20perceptron">Image Source</a></p>
+<p><strong>Layers of a MLP</strong></p>
+<ul class="simple">
+<li><p>Initial layer = input layer which is fed by the feature inputs</p></li>
+<li><p>Last layer = output layer which creates the resulting outputs</p></li>
+<li><p>Any layers in between are known as hidden layers because they do not directly “observe” the feature inputs or outputs</p></li>
+</ul>
+<p><strong>Universal approximation theorem</strong></p>
+<p>From Wikipedia:</p>
+<p><em>“In the mathematical theory of artificial neural networks, the universal approximation theorem states that a feed-forward network with <strong>a single hidden layer</strong> containing a finite number of neurons can approximate continuous functions […] when given appropriate parameters; however, it does not touch upon <strong>the algorithmic learnability of those parameters</strong>.”</em></p>
+</div>
+<div class="section" id="training-neural-networks">
+<h3>Training Neural Networks<a class="headerlink" href="#training-neural-networks" title="Permalink to this headline">¶</a></h3>
+<p>Learning is adjustment of the weights of the connections between perceptrons according to some modification rule.</p>
+<ul class="simple">
+<li><p>The Backpropagation algorithm searches for weight values that minimize the total error of the network over the set of training examples</p></li>
+</ul>
+<p>It consists of the repeated application of the following two passes.</p>
+<ul class="simple">
+<li><p><strong>Forward pass</strong>: in this step the network is activated on one example and the error of (each neuron of) the output layer is computed</p></li>
+<li><p><strong>Backward pass</strong>: in this step the network error is used for updating the weights</p></li>
+</ul>
+<p><strong>Forward and Backward paths</strong></p>
+<img src="https://miro.medium.com/max/3108/1*6q2Rgd8W9DoCN9Wfwc_9gw.png" style="width:60%" />
+<p><a class="reference external" href="https://medium.com/datathings/neural-networks-and-backpropagation-explained-in-a-simple-way-f540a3611f5e">Image Source</a></p>
+<p><strong>MLP Example</strong></p>
+<p>We will work with the same dataset as in the last lecture, a sample of the adult dataset which has some census information on individuals. Again, we’ll use it to train a model to predict whether salary is greater than $50k or not.</p>
+<p>Load packages</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.neural_network</span> <span class="kn">import</span> <span class="n">MLPClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Load data set</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">file_path</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/NikoStein/pds_data/main/data/adult.csv&#39;</span>
+<span class="n">adult_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+<span class="n">adult_data</span> <span class="o">=</span> <span class="n">adult_data</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">salary</span><span class="o">=</span><span class="p">(</span><span class="n">adult_data</span><span class="p">[</span><span class="s1">&#39;salary&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;&gt;=50k&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">adult_data</span><span class="p">[</span><span class="s1">&#39;salary&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">adult_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;salary&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Split data set</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_X</span><span class="p">,</span> <span class="n">val_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">val_y</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Impute missing values (we will omit the categorical features here)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simple_imputer</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">()</span>
+<span class="n">numCols</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">([</span><span class="s1">&#39;int&#39;</span><span class="p">,</span> <span class="s1">&#39;float&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="n">train_X_num</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">simple_imputer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">train_X</span><span class="p">[</span><span class="n">numCols</span><span class="p">]),</span> <span class="n">columns</span><span class="o">=</span><span class="n">numCols</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">train_X</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">val_X_num</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">simple_imputer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">val_X</span><span class="p">[</span><span class="n">numCols</span><span class="p">]),</span> <span class="n">columns</span><span class="o">=</span><span class="n">numCols</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">val_X</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Standardize numeric features</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">train_X_num_standardized</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">train_X_num</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">numCols</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">train_X</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">val_X_num_standardized</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">val_X_num</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">numCols</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">val_X</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Train model</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">MLPClassifier</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_X_num_standardized</span><span class="p">,</span> <span class="n">train_y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/media/data/home/mag01ud/.local/lib/python3.8/site-packages/sklearn/neural_network/_multilayer_perceptron.py:614: ConvergenceWarning: Stochastic Optimizer: Maximum iterations (200) reached and the optimization hasn&#39;t converged yet.
+  warnings.warn(
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MLPClassifier()
+</pre></div>
+</div>
+</div>
+</div>
+<p>Evaluate predictions</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preds</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">val_X_num_standardized</span><span class="p">)</span>
+<span class="n">accuracy_score</span><span class="p">(</span><span class="n">val_y</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8244687384842156
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Advantages of Multi-layer Perceptrons</strong></p>
+<ul class="simple">
+<li><p>Capability to learn non-linear models.</p></li>
+<li><p>Capability to learn models in real-time (on-line learning) using <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code></p></li>
+</ul>
+<p><strong>The disadvantages of Multi-layer Perceptrons</strong></p>
+<ul class="simple">
+<li><p>MLP with hidden layers have a non-convex loss function where there exists more than one local minimum. Therefore different random weight initializations can lead to different validation accuracy.</p></li>
+<li><p>MLP requires tuning a number of hyperparameters such as the number of hidden neurons, layers, and iterations.</p></li>
+<li><p>MLP is sensitive to feature scaling.</p></li>
+</ul>
+<p><a class="reference external" href="https://scikit-learn.org/stable/modules/neural_networks_supervised.html">from scikit-learn</a></p>
+<p><strong>Is this already deep learning?</strong></p>
+<p>From Wikipedia:</p>
+<p><em>“Deep learning […] uses multiple layers to progressively extract higher level features from the raw input. For example, in image processing, lower layers may identify edges, while higher layers may identify the concepts relevant to a human such as digits or letters or faces.”</em></p>
+</div>
+</div>
+<div class="section" id="deep-learning-on-tabular-data-with-fast-ai">
+<h2>Deep Learning on Tabular Data with <em><a class="reference external" href="http://fast.ai">fast.ai</a></em><a class="headerlink" href="#deep-learning-on-tabular-data-with-fast-ai" title="Permalink to this headline">¶</a></h2>
+<p><strong>The Mission of <a class="reference external" href="http://fast.ai">fast.ai</a>: Making neural nets uncool again</strong></p>
+<p>Deep learning is transforming the world. We are making deep learning easier to use and getting more people from all backgrounds involved through our:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://course.fast.ai/">free courses for coders</a></p></li>
+<li><p>software library: <a class="reference external" href="http://docs.fast.ai/">fastai for PyTorch</a></p></li>
+<li><p>cutting-edge research</p></li>
+<li><p>community</p></li>
+</ul>
+<p>The world needs everyone involved with AI, no matter how unlikely your background.</p>
+<p>from <a class="reference external" href="https://www.fast.ai/about/">fast.ai</a></p>
+<p>First, let’s import everything we need for the tabular application.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install -Uqq fastai  # upgrade fastai on colab</span>
+<span class="kn">from</span> <span class="nn">fastai.tabular.all</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">&lt;module&gt;</span> <span class="pre">import</span> <span class="pre">*</span></code> means “I want access to all the names in <module> that I’m meant to have access to”</p>
+<div class="section" id="fast-ai-datasets">
+<h3><em><a class="reference external" href="http://fast.ai">fast.ai</a></em> Datasets<a class="headerlink" href="#fast-ai-datasets" title="Permalink to this headline">¶</a></h3>
+<p>Tabular data usually comes in the form of a delimited file (such as .csv) containing variables of different kinds: text/category, numbers, and perhaps some missing values.</p>
+<p><em><a class="reference external" href="http://Fast.ai">Fast.ai</a>’s</em> <a class="reference external" href="https://docs.fast.ai/data.external.html">external data functions</a> provides several useful <a class="reference external" href="https://course.fast.ai/datasets">datasets</a> that we might be interested in using in our models.</p>
+<p>We will work with the same dataset as in the last lecture, a sample of the <strong>adult dataset</strong> which has some census information on individuals. Again, we’ll use it to train a model to predict whether salary is greater than $50k or not.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="n">untar_data</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">URLs</span><span class="o">.</span><span class="n">ADULT_SAMPLE</span><span class="p">)</span>
+<span class="n">path</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(#3) [Path(&#39;/media/data/home/mag01ud/.fastai/data/adult_sample/models&#39;),Path(&#39;/media/data/home/mag01ud/.fastai/data/adult_sample/export.pkl&#39;),Path(&#39;/media/data/home/mag01ud/.fastai/data/adult_sample/adult.csv&#39;)]
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">untar_data()</span></code>downloads a dataset from <code class="docutils literal notranslate"><span class="pre">url</span></code> and unpacks it to <code class="docutils literal notranslate"><span class="pre">path</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span><span class="o">/</span><span class="s1">&#39;adult.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>workclass</th>
+      <th>fnlwgt</th>
+      <th>education</th>
+      <th>education-num</th>
+      <th>marital-status</th>
+      <th>occupation</th>
+      <th>relationship</th>
+      <th>race</th>
+      <th>sex</th>
+      <th>capital-gain</th>
+      <th>capital-loss</th>
+      <th>hours-per-week</th>
+      <th>native-country</th>
+      <th>salary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>49</td>
+      <td>Private</td>
+      <td>101320</td>
+      <td>Assoc-acdm</td>
+      <td>12.0</td>
+      <td>Married-civ-spouse</td>
+      <td>NaN</td>
+      <td>Wife</td>
+      <td>White</td>
+      <td>Female</td>
+      <td>0</td>
+      <td>1902</td>
+      <td>40</td>
+      <td>United-States</td>
+      <td>&gt;=50k</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>44</td>
+      <td>Private</td>
+      <td>236746</td>
+      <td>Masters</td>
+      <td>14.0</td>
+      <td>Divorced</td>
+      <td>Exec-managerial</td>
+      <td>Not-in-family</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>10520</td>
+      <td>0</td>
+      <td>45</td>
+      <td>United-States</td>
+      <td>&gt;=50k</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>38</td>
+      <td>Private</td>
+      <td>96185</td>
+      <td>HS-grad</td>
+      <td>NaN</td>
+      <td>Divorced</td>
+      <td>NaN</td>
+      <td>Unmarried</td>
+      <td>Black</td>
+      <td>Female</td>
+      <td>0</td>
+      <td>0</td>
+      <td>32</td>
+      <td>United-States</td>
+      <td>&lt;50k</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>38</td>
+      <td>Self-emp-inc</td>
+      <td>112847</td>
+      <td>Prof-school</td>
+      <td>15.0</td>
+      <td>Married-civ-spouse</td>
+      <td>Prof-specialty</td>
+      <td>Husband</td>
+      <td>Asian-Pac-Islander</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>0</td>
+      <td>40</td>
+      <td>United-States</td>
+      <td>&gt;=50k</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>42</td>
+      <td>Self-emp-not-inc</td>
+      <td>82297</td>
+      <td>7th-8th</td>
+      <td>NaN</td>
+      <td>Married-civ-spouse</td>
+      <td>Other-service</td>
+      <td>Wife</td>
+      <td>Black</td>
+      <td>Female</td>
+      <td>0</td>
+      <td>0</td>
+      <td>50</td>
+      <td>United-States</td>
+      <td>&lt;50k</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Here all the information that will form our input is in the 14 first columns, and the dependent variable is the last column. We will split our input between two types of variables: categorical and continuous.</p>
+</div>
+<div class="section" id="from-data-do-dataloaders">
+<h3>From data do dataloaders<a class="headerlink" href="#from-data-do-dataloaders" title="Permalink to this headline">¶</a></h3>
+<p>fastai uses <a class="reference external" href="https://docs.fast.ai/data.load.html">data loaders</a> to get the data ready for training.</p>
+<p>A data loader usually combines a dataset and a sampler, and provides an iterable over the given dataset. <a class="reference external" href="https://docs.fast.ai/data.load.html">fastai</a> includes a replacement for <a class="reference external" href="https://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader">Pytorch’s DataLoader</a> which is largely API-compatible, and adds a lot of useful functionality and flexibility.</p>
+<p>How do we create a data loader?</p>
+<p><strong>Categorical and continuous variables</strong></p>
+<ul class="simple">
+<li><p><strong>Categorical variables</strong> (like workclass or education) will be replaced by a category - a unique id that identifies them - before they are passed through an embedding layer.</p></li>
+<li><p><strong>Continuous variables</strong> (like age) will be normalized and then directly fed to the model.</p></li>
+</ul>
+<p>We can specify our categorical and continuous column names, as well as the name of the dependent variable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_names</span> <span class="o">=</span> <span class="s1">&#39;salary&#39;</span>
+<span class="n">cat_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;workclass&#39;</span><span class="p">,</span> <span class="s1">&#39;education&#39;</span><span class="p">,</span> <span class="s1">&#39;marital-status&#39;</span><span class="p">,</span> <span class="s1">&#39;occupation&#39;</span><span class="p">,</span> <span class="s1">&#39;relationship&#39;</span><span class="p">,</span> <span class="s1">&#39;race&#39;</span><span class="p">]</span>
+<span class="n">cont_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;fnlwgt&#39;</span><span class="p">,</span> <span class="s1">&#39;education-num&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Tabular data preprocessing</strong></p>
+<p><a class="reference external" href="http://fast.ai">fast.ai</a> contains classes that define <a class="reference external" href="https://docs.fast.ai/tabular.core.html#TabularProc">transformations</a> for preprocessing dataframes of tabular data. Preprocessing includes things like</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Categorify</span></code>: replacing non-numerical variables by categories, i.e, their unique category id</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FillMissing</span></code>: filling missing values (default fill strategy: median)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Normalize:</span></code> normalizing continuous variables</p></li>
+</ul>
+<p>We can define a list of Transforms that will be applied to our variables. Here we transform all categorical variables into categories. We also replace missing values for continuous variables by the median column value and normalize those.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">procs</span> <span class="o">=</span> <span class="p">[</span><span class="n">FillMissing</span><span class="p">,</span> <span class="n">Categorify</span><span class="p">,</span> <span class="n">Normalize</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Training and validation sets</strong></p>
+<p>To split our data into training and validation sets, we use valid indexes</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">train_idx</span><span class="p">,</span> <span class="n">valid_idx</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)),</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">train_idx</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[26464, 16134, 4747, 8369, 5741]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Creating the DataLoader</strong></p>
+<p>Now we’re ready to pass this information to a <a class="reference external" href="https://docs.fast.ai/tabular.data.html#TabularDataLoaders">TabularDataLoader</a> to create the DataLoaders that we’ll use for training. We will learn the details of <code class="docutils literal notranslate"><span class="pre">DataLoaders</span></code> class in the next lecture.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dls</span> <span class="o">=</span> <span class="n">TabularDataLoaders</span><span class="o">.</span><span class="n">from_csv</span><span class="p">(</span><span class="n">path</span><span class="o">/</span><span class="s1">&#39;adult.csv&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> 
+                                  <span class="n">y_names</span><span class="o">=</span><span class="n">y_names</span><span class="p">,</span>
+                                  <span class="n">cat_names</span> <span class="o">=</span> <span class="n">cat_names</span><span class="p">,</span>
+                                  <span class="n">cont_names</span> <span class="o">=</span> <span class="n">cont_names</span><span class="p">,</span>
+                                  <span class="n">valid_idx</span><span class="o">=</span><span class="n">valid_idx</span><span class="p">,</span>
+                                  <span class="n">procs</span> <span class="o">=</span> <span class="n">procs</span><span class="p">,</span>
+                                 <span class="n">bs</span><span class="o">=</span><span class="mi">64</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dls</span><span class="o">.</span><span class="n">cont_names</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(#3) [&#39;age&#39;,&#39;fnlwgt&#39;,&#39;education-num&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can grab a mini-batch of data and take a look. <code class="docutils literal notranslate"><span class="pre">show_batch</span></code> shows a batch of data in a convenient way:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dls</span><span class="o">.</span><span class="n">show_batch</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>workclass</th>
+      <th>education</th>
+      <th>marital-status</th>
+      <th>occupation</th>
+      <th>relationship</th>
+      <th>race</th>
+      <th>education-num_na</th>
+      <th>age</th>
+      <th>fnlwgt</th>
+      <th>education-num</th>
+      <th>salary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>State-gov</td>
+      <td>HS-grad</td>
+      <td>Widowed</td>
+      <td>Tech-support</td>
+      <td>Unmarried</td>
+      <td>Black</td>
+      <td>False</td>
+      <td>50.0</td>
+      <td>161075.000668</td>
+      <td>9.0</td>
+      <td>&lt;50k</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Private</td>
+      <td>HS-grad</td>
+      <td>Never-married</td>
+      <td>Adm-clerical</td>
+      <td>Unmarried</td>
+      <td>White</td>
+      <td>False</td>
+      <td>22.0</td>
+      <td>192455.000082</td>
+      <td>9.0</td>
+      <td>&lt;50k</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Self-emp-not-inc</td>
+      <td>Prof-school</td>
+      <td>Divorced</td>
+      <td>Prof-specialty</td>
+      <td>Unmarried</td>
+      <td>White</td>
+      <td>False</td>
+      <td>36.0</td>
+      <td>112496.997637</td>
+      <td>15.0</td>
+      <td>&gt;=50k</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Private</td>
+      <td>Bachelors</td>
+      <td>Married-civ-spouse</td>
+      <td>Other-service</td>
+      <td>Husband</td>
+      <td>White</td>
+      <td>False</td>
+      <td>38.0</td>
+      <td>472604.007946</td>
+      <td>13.0</td>
+      <td>&lt;50k</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Self-emp-not-inc</td>
+      <td>Bachelors</td>
+      <td>Married-civ-spouse</td>
+      <td>Prof-specialty</td>
+      <td>Husband</td>
+      <td>White</td>
+      <td>False</td>
+      <td>37.0</td>
+      <td>241998.000779</td>
+      <td>13.0</td>
+      <td>&gt;=50k</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Private</td>
+      <td>Bachelors</td>
+      <td>Never-married</td>
+      <td>Exec-managerial</td>
+      <td>Not-in-family</td>
+      <td>White</td>
+      <td>False</td>
+      <td>29.0</td>
+      <td>175737.999584</td>
+      <td>13.0</td>
+      <td>&gt;=50k</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Private</td>
+      <td>Bachelors</td>
+      <td>Married-civ-spouse</td>
+      <td>Exec-managerial</td>
+      <td>Wife</td>
+      <td>Black</td>
+      <td>False</td>
+      <td>47.0</td>
+      <td>169323.999555</td>
+      <td>13.0</td>
+      <td>&gt;=50k</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Private</td>
+      <td>Some-college</td>
+      <td>Divorced</td>
+      <td>Exec-managerial</td>
+      <td>Unmarried</td>
+      <td>White</td>
+      <td>False</td>
+      <td>48.0</td>
+      <td>141482.998451</td>
+      <td>10.0</td>
+      <td>&lt;50k</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Private</td>
+      <td>Masters</td>
+      <td>Never-married</td>
+      <td>Prof-specialty</td>
+      <td>Not-in-family</td>
+      <td>White</td>
+      <td>False</td>
+      <td>26.0</td>
+      <td>68001.001527</td>
+      <td>14.0</td>
+      <td>&lt;50k</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Federal-gov</td>
+      <td>Some-college</td>
+      <td>Married-AF-spouse</td>
+      <td>Adm-clerical</td>
+      <td>Wife</td>
+      <td>White</td>
+      <td>False</td>
+      <td>34.0</td>
+      <td>436341.010121</td>
+      <td>10.0</td>
+      <td>&gt;=50k</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<p>After being processed, the categorical variables are replaced by ids and the continuous variables are normalized. The codes corresponding to categorical variables are all put together, as are all the continuous variables.</p>
+<p>But how does the data exactly look like for our model? Let’s have a look:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">batch</span> <span class="o">=</span> <span class="n">dls</span><span class="o">.</span><span class="n">one_batch</span><span class="p">()</span>
+<span class="n">batch</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[ 5, 16,  3,  5,  1,  5,  1],
+        [ 6, 12,  3,  4,  1,  5,  1],
+        [ 5, 16,  3, 13,  1,  5,  1],
+        [ 5, 12,  5, 15,  3,  5,  1],
+        [ 3, 11,  5, 11,  2,  5,  1],
+        [ 5, 12,  3, 13,  1,  3,  1],
+        [ 5, 16,  3, 13,  1,  5,  1],
+        [ 5, 12,  5, 13,  5,  3,  1],
+        [ 8, 12,  6,  2,  5,  5,  1],
+        [ 5, 16,  5,  8,  2,  5,  1],
+        [ 5, 10,  5,  4,  4,  5,  1],
+        [ 5,  2,  5,  7,  2,  5,  1],
+        [ 5, 12,  7, 13,  5,  5,  1],
+        [ 3, 15,  7, 11,  2,  5,  1],
+        [ 5, 12,  6, 13,  2,  5,  1],
+        [ 5, 10,  3,  5,  6,  5,  1],
+        [ 5, 16,  3,  5,  1,  5,  1],
+        [ 5, 16,  5,  8,  2,  5,  1],
+        [ 6,  9,  3, 13,  1,  5,  1],
+        [ 5,  2,  1,  5,  2,  5,  1],
+        [ 5, 12,  3,  7,  1,  5,  1],
+        [ 5, 12,  7,  4,  5,  2,  1],
+        [ 5, 10,  1,  5,  2,  5,  1],
+        [ 5, 16,  5,  2,  2,  5,  1],
+        [ 5, 13,  1, 11,  5,  5,  1],
+        [ 5, 13,  3, 11,  1,  5,  1],
+        [ 5,  5,  3,  9,  1,  5,  1],
+        [ 5, 12,  1,  4,  2,  5,  1],
+        [ 5, 10,  3, 11,  6,  3,  1],
+        [ 5,  6,  1,  9,  3,  5,  1],
+        [ 5, 16,  3,  9,  1,  5,  1],
+        [ 5, 12,  5,  5,  3,  5,  1],
+        [ 5, 12,  5,  4,  4,  5,  1],
+        [ 2, 12,  5,  2,  5,  5,  1],
+        [ 5,  5,  3,  8,  1,  2,  1],
+        [ 5,  8,  5, 15,  2,  3,  1],
+        [ 5, 16,  1, 13,  2,  5,  1],
+        [ 7, 10,  3, 11,  1,  5,  1],
+        [ 1, 12,  7,  1,  5,  5,  1],
+        [ 2, 16,  5,  2,  2,  5,  1],
+        [ 5, 12,  5,  7,  2,  5,  1],
+        [ 5, 12,  3,  4,  1,  5,  1],
+        [ 5, 16,  5,  0,  4,  3,  1],
+        [ 5,  1,  3,  4,  1,  5,  1],
+        [ 3, 13,  1,  9,  5,  3,  1],
+        [ 5, 10,  7, 10,  5,  5,  1],
+        [ 1,  5,  3,  1,  1,  5,  1],
+        [ 5, 10,  5, 11,  2,  5,  1],
+        [ 5, 10,  3,  7,  1,  5,  1],
+        [ 7, 12,  3,  8,  1,  5,  1],
+        [ 3, 12,  3, 15,  1,  5,  1],
+        [ 5, 12,  3,  4,  1,  5,  1],
+        [ 5,  7,  6,  8,  2,  5,  1],
+        [ 5, 14,  3,  6,  1,  5,  1],
+        [ 5, 15,  3, 11,  1,  5,  1],
+        [ 5, 16,  1,  7,  2,  5,  1],
+        [ 1, 12,  7,  1,  2,  5,  1],
+        [ 3, 10,  5, 11,  4,  3,  1],
+        [ 5, 16,  4,  5,  5,  5,  1],
+        [ 8, 10,  3,  5,  1,  5,  1],
+        [ 5, 16,  5, 15,  4,  5,  1],
+        [ 5, 16,  3,  4,  1,  5,  1],
+        [ 8, 13,  3, 11,  1,  2,  1],
+        [ 7, 15,  3,  0,  1,  5,  1]])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Note</strong>: As we pick out batches randomly, the output of <code class="docutils literal notranslate"><span class="pre">show_batch</span></code> may not correspond to the output below.</p>
+</div>
+</div>
+<div class="section" id="defining-a-model">
+<h2>Defining a Model<a class="headerlink" href="#defining-a-model" title="Permalink to this headline">¶</a></h2>
+<p>Once we have our data ready in <code class="docutils literal notranslate"><span class="pre">DataLoaders</span></code>, we just need to create a model to then define a Learner and start training.</p>
+<p>This is typically composed of following steps :</p>
+<ol class="simple">
+<li><p><strong>Create Learner</strong>: Create an appropriate learner for data. A learner creates a neural network for us.</p></li>
+<li><p><strong>Find the learning rate</strong>: We need to find a suitable learning rate for our training</p></li>
+<li><p><strong>Fit the model</strong></p></li>
+</ol>
+<p><strong>Create Learner</strong></p>
+<p>The fastai library has a flexible and powerful <code class="docutils literal notranslate"><span class="pre">TabularModel</span></code>. The <code class="docutils literal notranslate"><span class="pre">tabular_learner</span></code> will automatically create a <code class="docutils literal notranslate"><span class="pre">TabularModel</span></code> suitable for your data and infer the right loss function. See the tabular <a class="reference external" href="https://docs.fast.ai/tutorial.tabular">tutorial</a> for an example of use in context.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">learn</span> <span class="o">=</span> <span class="n">tabular_learner</span><span class="p">(</span><span class="n">dls</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">accuracy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s print a summary of the model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TabularModel (Input shape: 64 x torch.Size([64, 3]))
+============================================================================
+Layer (type)         Output Shape         Param #    Trainable 
+============================================================================
+                     64 x 6              
+Embedding                                 60         True      
+____________________________________________________________________________
+                     64 x 8              
+Embedding                                 136        True      
+____________________________________________________________________________
+                     64 x 5              
+Embedding                                 40         True      
+____________________________________________________________________________
+                     64 x 8              
+Embedding                                 128        True      
+____________________________________________________________________________
+                     64 x 5              
+Embedding                                 35         True      
+____________________________________________________________________________
+                     64 x 4              
+Embedding                                 24         True      
+____________________________________________________________________________
+                     64 x 3              
+Embedding                                 9          True      
+Dropout                                                        
+BatchNorm1d                               6          True      
+____________________________________________________________________________
+                     64 x 200            
+Linear                                    8400       True      
+ReLU                                                           
+BatchNorm1d                               400        True      
+____________________________________________________________________________
+                     64 x 100            
+Linear                                    20000      True      
+ReLU                                                           
+BatchNorm1d                               200        True      
+____________________________________________________________________________
+                     64 x 2              
+Linear                                    202        True      
+____________________________________________________________________________
+
+Total params: 29,640
+Total trainable params: 29,640
+Total non-trainable params: 0
+
+Optimizer used: &lt;function Adam at 0x7fde28370280&gt;
+Loss function: FlattenedLoss of CrossEntropyLoss()
+
+Callbacks:
+  - TrainEvalCallback
+  - Recorder
+  - ProgressCallback
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="visualizing-the-model-graph-with-tensorboard">
+<h3>Visualizing the model graph with TensorBoard<a class="headerlink" href="#visualizing-the-model-graph-with-tensorboard" title="Permalink to this headline">¶</a></h3>
+<p>TensorBoard is a tool for providing the measurements and visualizations needed during the machine learning workflow. It enables</p>
+<ul class="simple">
+<li><p>tracking experiment metrics like loss and accuracy,</p></li>
+<li><p>visualizing the model graph,</p></li>
+<li><p>projecting embeddings to a lower dimensional space,</p></li>
+<li><p>and much more.</p></li>
+</ul>
+<p>Let’s the TensorBoard notebook extension</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> tensorboard
+</pre></div>
+</div>
+</div>
+</div>
+<p>The SummaryWriter class is your main entry to log data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torch.utils.tensorboard</span> <span class="kn">import</span> <span class="n">SummaryWriter</span>
+<span class="n">writer</span> <span class="o">=</span> <span class="n">SummaryWriter</span><span class="p">(</span><span class="s1">&#39;tb-tabular&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Write model architecture:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">batch</span> <span class="o">=</span> <span class="n">dls</span><span class="o">.</span><span class="n">one_batch</span><span class="p">()</span><span class="c1">#next(iter(dls.train))</span>
+<span class="n">writer</span><span class="o">.</span><span class="n">add_graph</span><span class="p">(</span><span class="n">learn</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">cpu</span><span class="p">(),</span> <span class="n">batch</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Start TensorBoard</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">tensorboard</span> --logdir tb-tabular --host 132.187.102.100
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Reusing TensorBoard on port 6006 (pid 154887), started 6 days, 2:26:15 ago. (Use &#39;!kill 154887&#39; to kill it.)
+</pre></div>
+</div>
+<div class="output text_html">
+<iframe id="tensorboard-frame-a98e14d9702a7e1c" width="100%" height="800" frameborder="0">
+</iframe>
+<script>
+  (function() {
+    const frame = document.getElementById("tensorboard-frame-a98e14d9702a7e1c");
+    const url = new URL("/", window.location);
+    const port = 6006;
+    if (port) {
+      url.port = port;
+    }
+    frame.src = url;
+  })();
+</script>
+</div></div>
+</div>
+</div>
+<div class="section" id="train-the-model">
+<h3>Train the model<a class="headerlink" href="#train-the-model" title="Permalink to this headline">¶</a></h3>
+<p><strong>Find the learning rate</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">lr_find</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SuggestedLRs(lr_min=0.04365158379077912, lr_steep=0.02754228748381138)
+</pre></div>
+</div>
+<img alt="../_images/05_Deep_Larning_Tabular_92_2.png" src="../_images/05_Deep_Larning_Tabular_92_2.png" />
+</div>
+</div>
+<p>We typically find the point where the slope is steepest.</p>
+<p>We will learn more about the <a class="reference external" href="https://fastai1.fast.ai/callbacks.one_cycle.html">Learning Rate finder and 1cycle policy</a> in the upcoming lectures.</p>
+<p><strong>Fit the model</strong> based on selected learning rate</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">lr_max</span><span class="o">=</span><span class="mf">0.001</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.385513</td>
+      <td>0.363149</td>
+      <td>0.833313</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0.376578</td>
+      <td>0.353655</td>
+      <td>0.833559</td>
+      <td>00:02</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>0.359698</td>
+      <td>0.348244</td>
+      <td>0.837612</td>
+      <td>00:02</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="model-evaluation">
+<h2>Model Evaluation<a class="headerlink" href="#model-evaluation" title="Permalink to this headline">¶</a></h2>
+<p>We can then have a look at some predictions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">show_results</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"></div><div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>workclass</th>
+      <th>education</th>
+      <th>marital-status</th>
+      <th>occupation</th>
+      <th>relationship</th>
+      <th>race</th>
+      <th>education-num_na</th>
+      <th>age</th>
+      <th>fnlwgt</th>
+      <th>education-num</th>
+      <th>salary</th>
+      <th>salary_pred</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3.0</td>
+      <td>8.0</td>
+      <td>3.0</td>
+      <td>12.0</td>
+      <td>1.0</td>
+      <td>5.0</td>
+      <td>1.0</td>
+      <td>0.685362</td>
+      <td>2.057319</td>
+      <td>0.753897</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>8.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>0.758618</td>
+      <td>2.092982</td>
+      <td>-1.594487</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>5.0</td>
+      <td>12.0</td>
+      <td>3.0</td>
+      <td>15.0</td>
+      <td>1.0</td>
+      <td>5.0</td>
+      <td>1.0</td>
+      <td>0.612106</td>
+      <td>0.805524</td>
+      <td>-0.420295</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>5.0</td>
+      <td>16.0</td>
+      <td>5.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>5.0</td>
+      <td>1.0</td>
+      <td>-0.999530</td>
+      <td>1.291537</td>
+      <td>-0.028898</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>13.0</td>
+      <td>3.0</td>
+      <td>12.0</td>
+      <td>1.0</td>
+      <td>5.0</td>
+      <td>1.0</td>
+      <td>0.905131</td>
+      <td>-0.820605</td>
+      <td>1.536692</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5.0</td>
+      <td>16.0</td>
+      <td>5.0</td>
+      <td>13.0</td>
+      <td>4.0</td>
+      <td>5.0</td>
+      <td>1.0</td>
+      <td>-1.146042</td>
+      <td>-0.244322</td>
+      <td>-0.028898</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7.0</td>
+      <td>13.0</td>
+      <td>3.0</td>
+      <td>4.0</td>
+      <td>1.0</td>
+      <td>5.0</td>
+      <td>1.0</td>
+      <td>1.637692</td>
+      <td>-0.703479</td>
+      <td>1.536692</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8.0</td>
+      <td>12.0</td>
+      <td>3.0</td>
+      <td>4.0</td>
+      <td>1.0</td>
+      <td>5.0</td>
+      <td>1.0</td>
+      <td>-0.266968</td>
+      <td>-0.046148</td>
+      <td>-0.420295</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>7.0</td>
+      <td>11.0</td>
+      <td>5.0</td>
+      <td>11.0</td>
+      <td>2.0</td>
+      <td>5.0</td>
+      <td>1.0</td>
+      <td>-0.193712</td>
+      <td>-0.109884</td>
+      <td>2.319487</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<p><strong>Get predictions</strong></p>
+<p>We can use the <code class="docutils literal notranslate"><span class="pre">Learner.predict</span></code> method to get predictions. In this case, we need to pass the row of a dataframe that has the same names of categorical and continuous variables as our training or validation dataframe.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">row</span><span class="p">,</span> <span class="n">clas</span><span class="p">,</span> <span class="n">probs</span> <span class="o">=</span> <span class="n">learn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">row</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>workclass</th>
+      <th>education</th>
+      <th>marital-status</th>
+      <th>occupation</th>
+      <th>relationship</th>
+      <th>race</th>
+      <th>education-num_na</th>
+      <th>age</th>
+      <th>fnlwgt</th>
+      <th>education-num</th>
+      <th>salary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>#na#</td>
+      <td>#na#</td>
+      <td>#na#</td>
+      <td>#na#</td>
+      <td>#na#</td>
+      <td>#na#</td>
+      <td>False</td>
+      <td>49.0</td>
+      <td>101320.002139</td>
+      <td>12.0</td>
+      <td>&lt;50k</td>
+    </tr>
+  </tbody>
+</table></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>age                                49
+workclass                     Private
+fnlwgt                         101320
+education                  Assoc-acdm
+education-num                    12.0
+marital-status     Married-civ-spouse
+occupation                        NaN
+relationship                     Wife
+race                            White
+sex                            Female
+capital-gain                        0
+capital-loss                     1902
+hours-per-week                     40
+native-country          United-States
+salary                          &gt;=50k
+Name: 0, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clas</span><span class="p">,</span> <span class="n">probs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(tensor(0), tensor([0.7648, 0.2352]))
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Calculate performance metrics</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">validate</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(#2) [0.34824350476264954,0.8376120924949646]
+</pre></div>
+</div>
+</div>
+</div>
+<p>… shows the validation loss and the validation metric (accuracy).
+We can manually compute this as:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">probs</span><span class="p">,</span> <span class="n">val_y</span> <span class="o">=</span> <span class="n">learn</span><span class="o">.</span><span class="n">get_preds</span><span class="p">(</span><span class="n">ds_idx</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">preds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">accuracy_score</span><span class="p">(</span><span class="n">val_y</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.837612086967203
+</pre></div>
+</div>
+</div>
+</div>
+<p>To get prediction on a new dataframe, you can use the <code class="docutils literal notranslate"><span class="pre">test_dl</span></code> method of the DataLoaders. That dataframe does not need to have the dependent variable in its column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">test_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;salary&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">dl</span> <span class="o">=</span> <span class="n">learn</span><span class="o">.</span><span class="n">dls</span><span class="o">.</span><span class="n">test_dl</span><span class="p">(</span><span class="n">test_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Show rows result of predictions on the dataset</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">get_preds</span><span class="p">(</span><span class="n">dl</span><span class="o">=</span><span class="n">dl</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(tensor([[0.7648, 0.2352],
+         [0.6397, 0.3603],
+         [0.8339, 0.1661],
+         ...,
+         [0.7755, 0.2245],
+         [0.9020, 0.0980],
+         [0.9446, 0.0554]]),
+ None)
+</pre></div>
+</div>
+</div>
+</div>
+<p>So there is a scope of improving the deep learning model here. However this is not bad at all, without any feature engineering and network tuning.</p>
+</div>
+<div class="section" id="embeddings-for-categorical-variables">
+<h2>Embeddings for Categorical Variables<a class="headerlink" href="#embeddings-for-categorical-variables" title="Permalink to this headline">¶</a></h2>
+<p>A key technique to making the most of deep learning for tabular data is to use embeddings for your categorical variables. This approach allows for <strong>relationships between categories</strong> to be captured.</p>
+<p>Examples:</p>
+<ul class="simple">
+<li><p>Saturday and Sunday may have similar behavior, and maybe Friday behaves like an average of a weekend and a weekday.</p></li>
+<li><p>Similarly, for zip codes, there may be patterns for zip codes that are geographically near each other, and for zip codes that are of similar socio-economic status.</p></li>
+</ul>
+<div class="section" id="applying-embeddings-for-categorical-variables">
+<h3>Applying Embeddings for Categorical Variables<a class="headerlink" href="#applying-embeddings-for-categorical-variables" title="Permalink to this headline">¶</a></h3>
+<p>When working with categorical variables, we will represent each category by a vector of floating point numbers (the values of this representation are learned as the network is trained).</p>
+<p>For instance, a 4-dimensional version of an embedding for day of week could look like:</p>
+<p><strong>Sunday	 [.8, .2, .1, .1]</strong><br>
+<strong>Monday	[.1, .2, .9, .9]</strong><br>
+<strong>Tuesday	[.2, .1, .9, .8]</strong></p>
+<p>Here, Monday and Tuesday are fairly similar, yet they are both quite different from Sunday.</p>
+<p>Again, this is a toy example. In practice, our neural network would learn the best representations for each category while it is training, and each dimension (or direction, which doesn’t necessarily line up with ordinal dimensions) could have multiple meanings. Rich relationships can be captured in these distributed representations.</p>
+</div>
+<div class="section" id="visualizing-embeddings-with-tensorboard">
+<h3>Visualizing Embeddings with Tensorboard<a class="headerlink" href="#visualizing-embeddings-with-tensorboard" title="Permalink to this headline">¶</a></h3>
+<p>Export embeddings:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">emb</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">learn</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">embeds</span><span class="p">):</span>
+    <span class="n">emb_name</span> <span class="o">=</span> <span class="n">learn</span><span class="o">.</span><span class="n">dls</span><span class="o">.</span><span class="n">cat_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">writer</span><span class="o">.</span><span class="n">add_embedding</span><span class="p">(</span><span class="n">emb</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">learn</span><span class="o">.</span><span class="n">dls</span><span class="o">.</span><span class="n">classes</span><span class="p">[</span><span class="n">emb_name</span><span class="p">],</span>
+                         <span class="n">global_step</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="n">emb_name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>warning: Embedding dir exists, did you set global_step for add_embedding()?
+warning: Embedding dir exists, did you set global_step for add_embedding()?
+warning: Embedding dir exists, did you set global_step for add_embedding()?
+warning: Embedding dir exists, did you set global_step for add_embedding()?
+warning: Embedding dir exists, did you set global_step for add_embedding()?
+warning: Embedding dir exists, did you set global_step for add_embedding()?
+warning: Embedding dir exists, did you set global_step for add_embedding()?
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, start tensorboard</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">tensorboard</span> --logdir tb-tabular/
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Reusing TensorBoard on port 6006 (pid 154915), started 6 days, 2:26:14 ago. (Use &#39;!kill 154915&#39; to kill it.)
+</pre></div>
+</div>
+<div class="output text_html">
+<iframe id="tensorboard-frame-5bcdfcdbf76de90b" width="100%" height="800" frameborder="0">
+</iframe>
+<script>
+  (function() {
+    const frame = document.getElementById("tensorboard-frame-5bcdfcdbf76de90b");
+    const url = new URL("/", window.location);
+    const port = 6006;
+    if (port) {
+      url.port = port;
+    }
+    frame.src = url;
+  })();
+</script>
+</div></div>
+</div>
+<p><em><strong>Colab Workaround</strong></em></p>
+<p>In Colab the dynamic tensorborad plugin isn’t supported yet, but you can still access the data and visualize the embeddings somewhere else:</p>
+<ol class="simple">
+<li><p>Download the desired embedding file (<em>tensors.tsv</em>) and metadata</p></li>
+<li><p>Upload the files on the official Tensorflow <a class="reference external" href="https://projector.tensorflow.org/">Embedding Projector</a></p></li>
+</ol>
+</div>
+<div class="section" id="conclusion">
+<h3>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h3>
+<p>For analyzing time series and tabular data, deep learning has recently been making great strides. However, deep learning is generally used as part of an <strong>ensemble of multiple types</strong> of model.</p>
+<ul class="simple">
+<li><p>If you already have a system that is using random forests or gradient boosting machines, then switching to or adding deep learning may not result in any dramatic improvement.</p></li>
+<li><p>Deep learning does greatly increase the variety of columns that you can include</p>
+<ul>
+<li><p>columns containing natural language (book titles, reviews, etc.),</p></li>
+<li><p>high-cardinality categorical columns (i.e., something that contains a large number of discrete choices, such as zip code or product ID).</p></li>
+</ul>
+</li>
+<li><p>Deep learning models generally take longer to train than random forests or gradient boosting machines, although this is changing thanks to libraries such as <a class="reference external" href="https://rapids.ai/">RAPIDS</a>, which provides GPU acceleration for the whole modeling pipeline.</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "fastai"
+        },
+        kernelOptions: {
+            kernelName: "fastai",
+            path: "./nbs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'fastai'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

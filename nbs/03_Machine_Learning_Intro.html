@@ -1,0 +1,1713 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Machine Learning Introduction &#8212; Practical Data Science 2021/2022</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/unilogo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Practical Data Science 2021/2022</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README.html">
+   Practical Data Science 2021/2022
+  </a>
+ </li>
+</ul>
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/nbs/03_Machine_Learning_Intro.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/nbs/03_Machine_Learning_Intro.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction-and-data-set">
+   Introduction and Data Set
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#loading-the-data">
+   Loading the Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#select-data-for-modeling">
+   Select data for modeling
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#selecting-the-prediction-target">
+     Selecting the prediction target
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#choosing-features">
+     Choosing “Features”
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building-models-in-scikit-learn">
+   Building Models in Scikit-learn
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#our-first-decision-tree">
+     Our first Decision Tree
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-validation">
+   Model Validation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#metrics">
+     Metrics
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#in-sample-vs-out-of-sample-scores">
+   In-Sample vs. Out-of-Sample Scores
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-tuning">
+   Model Tuning
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-a-random-forest">
+   Training a Random Forest
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#missing-value-imputation">
+   Missing Value Imputation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simple-imputation">
+     Simple Imputation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#advanced-imputation">
+     Advanced Imputation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#encoding-categorical-variables">
+   Encoding Categorical Variables
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#label-encoding">
+     Label Encoding
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#one-hot-encoding">
+     One-hot Encoding
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-model-pipelines">
+   Creating Model Pipelines
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-preprocessing-steps">
+     Define Preprocessing steps
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-the-model">
+     Define the Model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-and-evaluate-the-pipeline">
+     Create and Evaluate the Pipeline
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wrapping-up">
+   Wrapping up
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class='bar_title'></div>
+<p><em>Practical Data Science</em></p>
+<div class="tex2jax_ignore mathjax_ignore section" id="machine-learning-introduction">
+<h1>Machine Learning Introduction<a class="headerlink" href="#machine-learning-introduction" title="Permalink to this headline">¶</a></h1>
+<p>Nikolai Stein<br>
+Chair of Information Systems and Business Analytics</p>
+<p>Winter Semester 21/22</p>
+<h1>Table of Contents<span class="tocSkip"></span></h1>
+<div class="toc"><ul class="toc-item"><li><span><a href="#Introduction-and-Data-Set" data-toc-modified-id="Introduction-and-Data-Set-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>Introduction and Data Set</a></span></li><li><span><a href="#Loading-the-Data" data-toc-modified-id="Loading-the-Data-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>Loading the Data</a></span></li><li><span><a href="#Select-data-for-modeling" data-toc-modified-id="Select-data-for-modeling-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>Select data for modeling</a></span><ul class="toc-item"><li><span><a href="#Selecting-the-prediction-target" data-toc-modified-id="Selecting-the-prediction-target-3.1"><span class="toc-item-num">3.1&nbsp;&nbsp;</span>Selecting the prediction target</a></span></li><li><span><a href="#Choosing-&quot;Features&quot;" data-toc-modified-id="Choosing-&quot;Features&quot;-3.2"><span class="toc-item-num">3.2&nbsp;&nbsp;</span>Choosing "Features"</a></span></li></ul></li><li><span><a href="#Building-Models-in-Scikit-learn" data-toc-modified-id="Building-Models-in-Scikit-learn-4"><span class="toc-item-num">4&nbsp;&nbsp;</span>Building Models in Scikit-learn</a></span><ul class="toc-item"><li><span><a href="#Our-first-Decision-Tree" data-toc-modified-id="Our-first-Decision-Tree-4.1"><span class="toc-item-num">4.1&nbsp;&nbsp;</span>Our first Decision Tree</a></span></li></ul></li><li><span><a href="#Model-Validation" data-toc-modified-id="Model-Validation-5"><span class="toc-item-num">5&nbsp;&nbsp;</span>Model Validation</a></span><ul class="toc-item"><li><span><a href="#Metrics" data-toc-modified-id="Metrics-5.1"><span class="toc-item-num">5.1&nbsp;&nbsp;</span>Metrics</a></span></li></ul></li><li><span><a href="#In-Sample-vs.-Out-of-Sample-Scores" data-toc-modified-id="In-Sample-vs.-Out-of-Sample-Scores-6"><span class="toc-item-num">6&nbsp;&nbsp;</span>In-Sample vs. Out-of-Sample Scores</a></span></li><li><span><a href="#Model-Tuning" data-toc-modified-id="Model-Tuning-7"><span class="toc-item-num">7&nbsp;&nbsp;</span>Model Tuning</a></span></li><li><span><a href="#Training-a-Random-Forest" data-toc-modified-id="Training-a-Random-Forest-8"><span class="toc-item-num">8&nbsp;&nbsp;</span>Training a Random Forest</a></span></li><li><span><a href="#Missing-Value-Imputation" data-toc-modified-id="Missing-Value-Imputation-9"><span class="toc-item-num">9&nbsp;&nbsp;</span>Missing Value Imputation</a></span><ul class="toc-item"><li><span><a href="#Simple-Imputation" data-toc-modified-id="Simple-Imputation-9.1"><span class="toc-item-num">9.1&nbsp;&nbsp;</span>Simple Imputation</a></span></li><li><span><a href="#Advanced-Imputation" data-toc-modified-id="Advanced-Imputation-9.2"><span class="toc-item-num">9.2&nbsp;&nbsp;</span>Advanced Imputation</a></span></li></ul></li><li><span><a href="#Encoding-Categorical-Variables" data-toc-modified-id="Encoding-Categorical-Variables-10"><span class="toc-item-num">10&nbsp;&nbsp;</span>Encoding Categorical Variables</a></span><ul class="toc-item"><li><span><a href="#Label-Encoding" data-toc-modified-id="Label-Encoding-10.1"><span class="toc-item-num">10.1&nbsp;&nbsp;</span>Label Encoding</a></span></li><li><span><a href="#One-hot-Encoding" data-toc-modified-id="One-hot-Encoding-10.2"><span class="toc-item-num">10.2&nbsp;&nbsp;</span>One-hot Encoding</a></span></li></ul></li><li><span><a href="#Creating-Model-Pipelines" data-toc-modified-id="Creating-Model-Pipelines-11"><span class="toc-item-num">11&nbsp;&nbsp;</span>Creating Model Pipelines</a></span><ul class="toc-item"><li><span><a href="#Define-Preprocessing-steps" data-toc-modified-id="Define-Preprocessing-steps-11.1"><span class="toc-item-num">11.1&nbsp;&nbsp;</span>Define Preprocessing steps</a></span></li><li><span><a href="#Define-the-Model" data-toc-modified-id="Define-the-Model-11.2"><span class="toc-item-num">11.2&nbsp;&nbsp;</span>Define the Model</a></span></li><li><span><a href="#Create-and-Evaluate-the-Pipeline" data-toc-modified-id="Create-and-Evaluate-the-Pipeline-11.3"><span class="toc-item-num">11.3&nbsp;&nbsp;</span>Create and Evaluate the Pipeline</a></span></li></ul></li><li><span><a href="#Wrapping-up" data-toc-modified-id="Wrapping-up-12"><span class="toc-item-num">12&nbsp;&nbsp;</span>Wrapping up</a></span></li></ul></div><div class="section" id="introduction-and-data-set">
+<h2>Introduction and Data Set<a class="headerlink" href="#introduction-and-data-set" title="Permalink to this headline">¶</a></h2>
+<p>Credits: Most of the material of this lecture is adopted from <a class="reference external" href="http://www.kaggle.com">www.kaggle.com</a></p>
+<p>This lecture provides an overview of how machine learning models can be used for real problems. We will build models as well as a machine learning pipeline based on the following scenario:</p>
+<p>Your cousin has made millions of dollars speculating on real estate. He’s offered to become business partners with you because of your interest in data science. He’ll supply the money, and you’ll supply models that predict how much various houses are worth.</p>
+<p>You ask your cousin how he’s predicted real estate values in the past and he says it is just intuition. But more questioning reveals that he’s identified price patterns from houses he has seen in the past, and he uses those patterns to make predictions for new houses he is considering.</p>
+<p>Instead of using intuition to make good decision, we want to train a machine learning model to predict the value of new houses.</p>
+</div>
+<div class="section" id="loading-the-data">
+<h2>Loading the Data<a class="headerlink" href="#loading-the-data" title="Permalink to this headline">¶</a></h2>
+<p>The first step in any machine learning project is to load and familiarize yourself with the data. To this end, we can use the pandas library from last week and load the dataset with the following commands:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">melbourne_file_path</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/NikoStein/pds_data/raw/main/data/melb_data.csv&quot;</span>
+<span class="n">melbourne_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">melbourne_file_path</span><span class="p">)</span>
+
+<span class="n">melbourne_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Suburb</th>
+      <th>Address</th>
+      <th>Rooms</th>
+      <th>Type</th>
+      <th>Price</th>
+      <th>Method</th>
+      <th>SellerG</th>
+      <th>Date</th>
+      <th>Distance</th>
+      <th>Postcode</th>
+      <th>...</th>
+      <th>Bathroom</th>
+      <th>Car</th>
+      <th>Landsize</th>
+      <th>BuildingArea</th>
+      <th>YearBuilt</th>
+      <th>CouncilArea</th>
+      <th>Lattitude</th>
+      <th>Longtitude</th>
+      <th>Regionname</th>
+      <th>Propertycount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Abbotsford</td>
+      <td>85 Turner St</td>
+      <td>2</td>
+      <td>h</td>
+      <td>1480000.0</td>
+      <td>S</td>
+      <td>Biggin</td>
+      <td>3/12/2016</td>
+      <td>2.5</td>
+      <td>3067.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>202.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yarra</td>
+      <td>-37.7996</td>
+      <td>144.9984</td>
+      <td>Northern Metropolitan</td>
+      <td>4019.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Abbotsford</td>
+      <td>25 Bloomburg St</td>
+      <td>2</td>
+      <td>h</td>
+      <td>1035000.0</td>
+      <td>S</td>
+      <td>Biggin</td>
+      <td>4/02/2016</td>
+      <td>2.5</td>
+      <td>3067.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>156.0</td>
+      <td>79.0</td>
+      <td>1900.0</td>
+      <td>Yarra</td>
+      <td>-37.8079</td>
+      <td>144.9934</td>
+      <td>Northern Metropolitan</td>
+      <td>4019.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Abbotsford</td>
+      <td>5 Charles St</td>
+      <td>3</td>
+      <td>h</td>
+      <td>1465000.0</td>
+      <td>SP</td>
+      <td>Biggin</td>
+      <td>4/03/2017</td>
+      <td>2.5</td>
+      <td>3067.0</td>
+      <td>...</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>134.0</td>
+      <td>150.0</td>
+      <td>1900.0</td>
+      <td>Yarra</td>
+      <td>-37.8093</td>
+      <td>144.9944</td>
+      <td>Northern Metropolitan</td>
+      <td>4019.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Abbotsford</td>
+      <td>40 Federation La</td>
+      <td>3</td>
+      <td>h</td>
+      <td>850000.0</td>
+      <td>PI</td>
+      <td>Biggin</td>
+      <td>4/03/2017</td>
+      <td>2.5</td>
+      <td>3067.0</td>
+      <td>...</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>94.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Yarra</td>
+      <td>-37.7969</td>
+      <td>144.9969</td>
+      <td>Northern Metropolitan</td>
+      <td>4019.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Abbotsford</td>
+      <td>55a Park St</td>
+      <td>4</td>
+      <td>h</td>
+      <td>1600000.0</td>
+      <td>VB</td>
+      <td>Nelson</td>
+      <td>4/06/2016</td>
+      <td>2.5</td>
+      <td>3067.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>120.0</td>
+      <td>142.0</td>
+      <td>2014.0</td>
+      <td>Yarra</td>
+      <td>-37.8072</td>
+      <td>144.9941</td>
+      <td>Northern Metropolitan</td>
+      <td>4019.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 21 columns</p>
+</div></div></div>
+</div>
+<p>For simplicity we remove rows with missing values for this example. Note that a missing value can sometimes be a valuable information.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">melbourne_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">melbourne_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">melbourne_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(13580, 21)
+(6196, 21)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="select-data-for-modeling">
+<h2>Select data for modeling<a class="headerlink" href="#select-data-for-modeling" title="Permalink to this headline">¶</a></h2>
+<p>On a first glimpse, we see that our dataset has too many variables to wrap our heads around. How can we pare down this overwhelming amount of data to something we can understand?</p>
+<p>We’ll start by picking a few variables using our intuition. To choose variables, we’ll need to see a list of all columns in the dataset. That is done with the columns property of the DataFrame:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">melbourne_data</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Suburb&#39;, &#39;Address&#39;, &#39;Rooms&#39;, &#39;Type&#39;, &#39;Price&#39;, &#39;Method&#39;, &#39;SellerG&#39;,
+       &#39;Date&#39;, &#39;Distance&#39;, &#39;Postcode&#39;, &#39;Bedroom2&#39;, &#39;Bathroom&#39;, &#39;Car&#39;,
+       &#39;Landsize&#39;, &#39;BuildingArea&#39;, &#39;YearBuilt&#39;, &#39;CouncilArea&#39;, &#39;Lattitude&#39;,
+       &#39;Longtitude&#39;, &#39;Regionname&#39;, &#39;Propertycount&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="selecting-the-prediction-target">
+<h3>Selecting the prediction target<a class="headerlink" href="#selecting-the-prediction-target" title="Permalink to this headline">¶</a></h3>
+<p>To train a predictive model using supervised machine learning techniques, we have to identify the target variable. In the problem at hand, we want to predict the house prices. This information is encoded in the column Price.</p>
+<p>By convention, the target variable is called <strong>y</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">melbourne_data</span><span class="p">[</span><span class="s1">&#39;Price&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="choosing-features">
+<h3>Choosing “Features”<a class="headerlink" href="#choosing-features" title="Permalink to this headline">¶</a></h3>
+<p>The columns that serve as input for our model (and are later used to make predictions) are called “features.” Sometimes, you will use all columns except the target as features. Other times you’ll be better off with fewer features.</p>
+<p>For now, we’ll build a model with only a few features.</p>
+<p>We select multiple features by providing a list of column names inside brackets. Each item in that list should be a string (with quotes).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">melbourne_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Rooms&#39;</span><span class="p">,</span> <span class="s1">&#39;Bathroom&#39;</span><span class="p">,</span> <span class="s1">&#39;Landsize&#39;</span><span class="p">,</span> <span class="s1">&#39;BuildingArea&#39;</span><span class="p">,</span> 
+                        <span class="s1">&#39;YearBuilt&#39;</span><span class="p">,</span> <span class="s1">&#39;Lattitude&#39;</span><span class="p">,</span> <span class="s1">&#39;Longtitude&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>By convention, this data is called <strong>X</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">melbourne_data</span><span class="p">[</span><span class="n">melbourne_features</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s quickly review the data we’ll be using to predict house prices using the describe method and the head method, which shows the top few rows. Visually checking your data with these commands is an important part of a data scientist’s job. You’ll frequently find surprises in the dataset that deserve further inspection.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Rooms</th>
+      <th>Bathroom</th>
+      <th>Landsize</th>
+      <th>BuildingArea</th>
+      <th>YearBuilt</th>
+      <th>Lattitude</th>
+      <th>Longtitude</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1.0</td>
+      <td>156.0</td>
+      <td>79.0</td>
+      <td>1900.0</td>
+      <td>-37.8079</td>
+      <td>144.9934</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>2.0</td>
+      <td>134.0</td>
+      <td>150.0</td>
+      <td>1900.0</td>
+      <td>-37.8093</td>
+      <td>144.9944</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>1.0</td>
+      <td>120.0</td>
+      <td>142.0</td>
+      <td>2014.0</td>
+      <td>-37.8072</td>
+      <td>144.9941</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>3</td>
+      <td>2.0</td>
+      <td>245.0</td>
+      <td>210.0</td>
+      <td>1910.0</td>
+      <td>-37.8024</td>
+      <td>144.9993</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2</td>
+      <td>1.0</td>
+      <td>256.0</td>
+      <td>107.0</td>
+      <td>1890.0</td>
+      <td>-37.8060</td>
+      <td>144.9954</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Rooms</th>
+      <th>Bathroom</th>
+      <th>Landsize</th>
+      <th>BuildingArea</th>
+      <th>YearBuilt</th>
+      <th>Lattitude</th>
+      <th>Longtitude</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>6196.000000</td>
+      <td>6196.000000</td>
+      <td>6196.000000</td>
+      <td>6196.000000</td>
+      <td>6196.000000</td>
+      <td>6196.000000</td>
+      <td>6196.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>2.931407</td>
+      <td>1.576340</td>
+      <td>471.006940</td>
+      <td>141.568645</td>
+      <td>1964.081988</td>
+      <td>-37.807904</td>
+      <td>144.990201</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.971079</td>
+      <td>0.711362</td>
+      <td>897.449881</td>
+      <td>90.834824</td>
+      <td>38.105673</td>
+      <td>0.075850</td>
+      <td>0.099165</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1196.000000</td>
+      <td>-38.164920</td>
+      <td>144.542370</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>2.000000</td>
+      <td>1.000000</td>
+      <td>152.000000</td>
+      <td>91.000000</td>
+      <td>1940.000000</td>
+      <td>-37.855438</td>
+      <td>144.926198</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>3.000000</td>
+      <td>1.000000</td>
+      <td>373.000000</td>
+      <td>124.000000</td>
+      <td>1970.000000</td>
+      <td>-37.802250</td>
+      <td>144.995800</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>4.000000</td>
+      <td>2.000000</td>
+      <td>628.000000</td>
+      <td>170.000000</td>
+      <td>2000.000000</td>
+      <td>-37.758200</td>
+      <td>145.052700</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>8.000000</td>
+      <td>8.000000</td>
+      <td>37000.000000</td>
+      <td>3112.000000</td>
+      <td>2018.000000</td>
+      <td>-37.457090</td>
+      <td>145.526350</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="building-models-in-scikit-learn">
+<h2>Building Models in Scikit-learn<a class="headerlink" href="#building-models-in-scikit-learn" title="Permalink to this headline">¶</a></h2>
+<p>For now, we will use the scikit-learn library to create our models. As you will see in the upcoming section, this library is written as sklearn in the code. Scikit-learn offers a lot of powerful features and is easily the most popular library for modeling tabular data.</p>
+<p>The steps to building and using a model in Scikit-learn are:</p>
+<ul class="simple">
+<li><p>Define:  What type of model will it be? A decision tree? Some other type of model? Some other parameters of the model type are specified too.</p></li>
+<li><p>Fit: Capture patterns from our input data.</p></li>
+<li><p>Predict: Make predictions using input variables and the trained model.</p></li>
+<li><p>Evaluate: Determine how accurate the model’s predictions are.</p></li>
+</ul>
+<div class="section" id="our-first-decision-tree">
+<h3>Our first Decision Tree<a class="headerlink" href="#our-first-decision-tree" title="Permalink to this headline">¶</a></h3>
+<p>Here is a simple example of defining a decision tree model with scikit-learn and fitting it with the features and target variable selected above:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeRegressor</span>
+
+<span class="c1"># Define</span>
+<span class="n">melbourne_model</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Fit</span>
+<span class="n">melbourne_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DecisionTreeRegressor(random_state=1)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Many machine learning models allow some randomness in model training. Specifying a number for random_state ensures you get the same results in each run. This is considered a good practice. You use any number, and model quality won’t depend meaningfully on exactly what value you choose.</p>
+<p>We now have a fitted model that we can use to make predictions.</p>
+<p>In practice, you’ll want to make predictions for new houses coming on the market rather than the houses we already have prices for. But we’ll make predictions for the first few rows of the training data to see how the predict function works.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Making predictions for the following 5 houses:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The predictions are&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">melbourne_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Making predictions for the following 5 houses:
+   Rooms  Bathroom  Landsize  BuildingArea  YearBuilt  Lattitude  Longtitude
+1      2       1.0     156.0          79.0     1900.0   -37.8079    144.9934
+2      3       2.0     134.0         150.0     1900.0   -37.8093    144.9944
+4      4       1.0     120.0         142.0     2014.0   -37.8072    144.9941
+6      3       2.0     245.0         210.0     1910.0   -37.8024    144.9993
+7      2       1.0     256.0         107.0     1890.0   -37.8060    144.9954
+The predictions are
+[1035000. 1465000. 1600000. 1876000. 1636000.]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="model-validation">
+<h2>Model Validation<a class="headerlink" href="#model-validation" title="Permalink to this headline">¶</a></h2>
+<p>We have successfully trained our very first model. However, we have no clue how good our model is. Yet, measuring model quality is the key to iteratively improving our models.</p>
+<p>In most (though not all) applications, the relevant measure of model quality is predictive accuracy. In other words, will the model’s predictions be close to what actually happens.</p>
+<div class="section" id="metrics">
+<h3>Metrics<a class="headerlink" href="#metrics" title="Permalink to this headline">¶</a></h3>
+<p>To evaluate the performance of our model we need to find a way to summarize the model quality in an understandable way. If we compare predicted and actual home values in our example dataset for 10,000 houses, we will find a mix of good and bad predictions. However, looking through a list of 10,000 predicted and actual values would be pointless. We need to summarize this into a single metric.</p>
+<p>There are many metrics for summarizing model quality, but we’ll start with one called Mean Absolute Error (<strong>MAE</strong>). Let’s break down this metric starting with the last word, error.</p>
+<p>The prediction error for each house is:</p>
+<p><code class="docutils literal notranslate"><span class="pre">error=actual−predicted</span></code></p>
+<p>So, if a house cost $150,000 and you predicted it would cost $100,000 the error is $50,000.</p>
+<p>With the MAE metric, we take the absolute value of each error. This converts each error to a positive number. We then take the average of those absolute errors. This is our measure of model quality.</p>
+<p>We could implement a function to calculate this metric (or any other metric) on our dataframe. However, Scikit-learn provides implementations of the most common metrics that can be easily imported.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>So lets use our decision tree model to make predictions for all observations in our dataset and calculate the MAE:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predicted_home_prices</span> <span class="o">=</span> <span class="n">melbourne_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">predicted_home_prices</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The MAE of our model is: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mae</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The MAE of our model is: 434.71594577146544
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="in-sample-vs-out-of-sample-scores">
+<h2>In-Sample vs. Out-of-Sample Scores<a class="headerlink" href="#in-sample-vs-out-of-sample-scores" title="Permalink to this headline">¶</a></h2>
+<p>The MAE of our model looks very promising. However, we used a single “sample” of houses for both building the model and evaluating it. Hence, the measure we just computed can be called an “in-sample” score.</p>
+<p>Trusting the in-sample score to evaluate a model is very dangerous. Imagine that there is a variable in the dataset that is unrelated to the home price (e.g., the name of the current owner). However, in the sample of data we used to build the model, all names are unique and hence, all house prices in the sample can be explained by this feature. Our model will see this pattern and it will try to apply it to new datasets.</p>
+<p>Since models’ practical value come from making predictions on new data, we measure performance on data that wasn’t used to build the model. The most straightforward way to do this is to exclude some data from the model-building process, and then use those to test the model’s accuracy on data it hasn’t seen before. This data is called validation data.</p>
+<p>The scikit-learn library has a function train_test_split to break up the data into two pieces. We’ll use some of that data as training data to fit the model, and we’ll use the other data as validation data to calculate the MAE.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Split the data</span>
+<span class="n">train_X</span><span class="p">,</span> <span class="n">val_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">val_y</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Build the model</span>
+<span class="n">melbourne_model</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">melbourne_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">)</span>
+
+<span class="c1"># Evaluate the performance</span>
+<span class="n">val_predictions</span> <span class="o">=</span> <span class="n">melbourne_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">val_X</span><span class="p">)</span>
+<span class="n">val_mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">val_y</span><span class="p">,</span> <span class="n">val_predictions</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The MAE of our model is: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">val_mae</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The MAE of our model is: 262494.3027759845
+</pre></div>
+</div>
+</div>
+</div>
+<p>The MAE for the in-sample data was about $500. Out-of-sample it is more than $250,000.</p>
+<p>This is the difference between a model that is almost exactly right, and one that is unusable for most practical purposes. As a point of reference, the average home value in the validation data is about $1.1 million. So the error in new data is about a quarter of the average home value.</p>
+<p>There are many ways to improve this model, such as experimenting to find better features or different model types.</p>
+</div>
+<div class="section" id="model-tuning">
+<h2>Model Tuning<a class="headerlink" href="#model-tuning" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have a reliable way to measure the model performance, we can experiment with different parameters of the decision tree (or entirely different models) and see which combination gives us the best predictions. You can find the available models and parameters in the Scikit-learn <a class="reference external" href="https://scikit-learn.org/stable/modules/classes.html">documentation</a>.</p>
+<p>In this simple example we will stick with our decision tree model and only vary one of the parameters.</p>
+<p>You can see in the decision tree <a class="reference external" href="http://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html">documentation</a> that the model has many parameters (more than you’ll want or need for a long time). The most important parameters determine the tree’s depth.</p>
+<p>In practice, it’s not uncommon for a tree to have 10 splits between the top level (all houses) and a leaf. As the tree gets deeper, the dataset gets sliced up into leaves with fewer houses. If a tree only had 1 split, it divides the data into 2 groups. If each group is split again, we would get 4 groups of houses. Splitting each of those again would create 8 groups. If we keep doubling the number of groups by adding more splits at each level, we’ll have <span class="math notranslate nohighlight">\(2^{10}\)</span>  groups of houses by the time we get to the 10th level. That’s 1024 leaves.</p>
+<p>When we divide the houses amongst many leaves, we also have fewer houses in each leaf. Leaves with very few houses will make predictions that are quite close to those homes’ actual values, but they may make very unreliable predictions for new data (because each prediction is based on only a few houses). This is a phenomenon called <strong>overfitting</strong>, where a model matches the training data almost perfectly, but does poorly in validation and other new data.</p>
+<p>On the flip side, if we make our tree very shallow, it doesn’t divide up the houses into very distinct groups. At an extreme, if a tree divides houses into only 2 or 4, each group still has a wide variety of houses. Resulting predictions may be far off for most houses, even in the training data (and it will be bad in validation too for the same reason). When a model fails to capture important distinctions and patterns in the data, so it performs poorly even in training data, that is called <strong>underfitting</strong>.</p>
+<p>Since we care about accuracy on new data, which we estimate from our validation data, we want to find the sweet spot between underfitting and overfitting.</p>
+<p>There are a few alternatives for controlling the tree depth, and many allow for some routes through the tree to have greater depth than other routes. But the max_leaf_nodes argument provides a very sensible way to control overfitting vs underfitting. The more leaves we allow the model to make, the more we move from the underfitting area in the above graph to the overfitting area.</p>
+<p>We write a short utility function to help compare MAE scores from different values for max_leaf_nodes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_mae</span><span class="p">(</span><span class="n">max_leaf_nodes</span><span class="p">,</span> <span class="n">train_X</span><span class="p">,</span> <span class="n">val_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">val_y</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">(</span><span class="n">max_leaf_nodes</span><span class="o">=</span><span class="n">max_leaf_nodes</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">)</span>
+    <span class="n">preds_val</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">val_X</span><span class="p">)</span>
+    <span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">val_y</span><span class="p">,</span> <span class="n">preds_val</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">mae</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we loop over different values for the parameter to compare the in-sample and the out-of-sample performance of our model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">max_leaf_nodes</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">5000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">]:</span>
+    <span class="n">is_mae</span> <span class="o">=</span> <span class="n">get_mae</span><span class="p">(</span><span class="n">max_leaf_nodes</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">oos_mae</span> <span class="o">=</span> <span class="n">get_mae</span><span class="p">(</span><span class="n">max_leaf_nodes</span><span class="p">,</span> <span class="n">train_X</span><span class="p">,</span> <span class="n">val_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">val_y</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Max leaf nodes: </span><span class="si">%d</span><span class="s2">  </span><span class="se">\t</span><span class="s2"> In-sample:  </span><span class="si">%d</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> Out-of-sample:  </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">max_leaf_nodes</span><span class="p">,</span> <span class="n">is_mae</span><span class="p">,</span> <span class="n">oos_mae</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Max leaf nodes: 2  	 In-sample:  411930 	 Out-of-sample:  433608
+Max leaf nodes: 5  	 In-sample:  325389 	 Out-of-sample:  347380
+Max leaf nodes: 50  	 In-sample:  221593 	 Out-of-sample:  258171
+Max leaf nodes: 500  	 In-sample:  116715 	 Out-of-sample:  246793
+Max leaf nodes: 5000  	 In-sample:  1881 	 Out-of-sample:  262706
+Max leaf nodes: 10000  	 In-sample:  434 	 Out-of-sample:  262706
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here’s the takeaway: Models can suffer from either:</p>
+<ul class="simple">
+<li><p>Overfitting: capturing spurious patterns that won’t recur in the future, leading to less accurate predictions, or</p></li>
+<li><p>Underfitting: failing to capture relevant patterns, again leading to less accurate predictions.</p></li>
+</ul>
+<p>We use validation data, which isn’t used in model training, to measure a candidate model’s accuracy. This lets us try many candidate models and keep the best one.</p>
+</div>
+<div class="section" id="training-a-random-forest">
+<h2>Training a Random Forest<a class="headerlink" href="#training-a-random-forest" title="Permalink to this headline">¶</a></h2>
+<p>Decision trees leave us with a difficult trade-off. A deep tree with lots of leaves will overfit because each prediction is coming from historical data from only the few houses at its leaf. But a shallow tree with few leaves will perform poorly because it fails to capture as many distinctions in the raw data.</p>
+<p>Even today’s most sophisticated modeling techniques face this tension between underfitting and overfitting. But, many models have clever ideas that can lead to better performance. We’ll look at the random forest as an example.</p>
+<p>The random forest uses many trees, and it makes a prediction by averaging the predictions of each component tree. It generally has much better predictive accuracy than a single decision tree and it works well with default parameters. If you keep modeling, you can learn more models with even better performance, but many of those are sensitive to getting the right parameters.</p>
+<p>Thanks to our Scikit-learn modeling pipeline we can reuse most of our code to train a random forest model with 100 trees.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define</span>
+<span class="n">forest_model</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Fit</span>
+<span class="n">forest_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">)</span>
+
+<span class="c1"># Evaluate</span>
+<span class="n">melb_preds</span> <span class="o">=</span> <span class="n">forest_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">val_X</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The MAE of our model is: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">val_y</span><span class="p">,</span> <span class="n">melb_preds</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The MAE of our model is: 191669.7536453626
+</pre></div>
+</div>
+</div>
+</div>
+<p>There is likely room for further improvement, but this is a big improvement over the best decision tree error of 243,000. There are parameters which allow you to change the performance of the Random Forest much as we changed the maximum depth of the single decision tree. But one of the best features of Random Forest models is that they generally work reasonably even without this tuning.</p>
+</div>
+<div class="section" id="missing-value-imputation">
+<h2>Missing Value Imputation<a class="headerlink" href="#missing-value-imputation" title="Permalink to this headline">¶</a></h2>
+<p>We just finished training our first machine learning models. To further improve the predictive power of the models we will have to work on our dataset.</p>
+<p>We will start with handling missing values in the data. Most machine learning libraries (including scikit-learn) give an error if we try to build a model using data with missing values. So we’ll need to choose a strategy to handle missing values.</p>
+<p>We have already used a very simple strategy and dropped all rows containing missing values in the first example. To evaluate different approaches we will first load the full dataset and create a train-test split. (Note: As we cannot apply all imputation functions (e.g., mean) to categorical data we will only use numerical predictions in this simple example</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load dataset</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">melbourne_file_path</span><span class="p">)</span>
+
+<span class="c1"># Target variable</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Price&#39;</span><span class="p">]</span>
+
+<span class="c1"># Drop non-numeric variables</span>
+<span class="n">melb_predictors</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Price&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">melb_predictors</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">])</span>
+
+<span class="c1"># Train-test split</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_valid</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_valid</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="simple-imputation">
+<h3>Simple Imputation<a class="headerlink" href="#simple-imputation" title="Permalink to this headline">¶</a></h3>
+<p>One popular way to handle missing values is called imputation. Here, we fill in the missing values with some number. For instance, we can fill in the mean value along each column. The imputed value won’t be exactly right in most cases, but it usually leads to more accurate models than you would get from dropping the column entirely.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imputation</span>
+<span class="n">simple_imputer</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">()</span>
+<span class="n">imputed_X_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">simple_imputer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">))</span>
+<span class="n">imputed_X_valid</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">simple_imputer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_valid</span><span class="p">))</span>
+
+<span class="c1"># &quot;Repair&quot; column names</span>
+<span class="n">imputed_X_train</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">imputed_X_valid</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">X_valid</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To evaluate the performance of the approach, we modify our helper function (get_mae) to train and evaluate our model on different datasets:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">score_dataset</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_valid</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">preds</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mae_imputation</span> <span class="o">=</span> <span class="n">score_dataset</span><span class="p">(</span><span class="n">imputed_X_train</span><span class="p">,</span> <span class="n">imputed_X_valid</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MAE using Imputation: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mae_imputation</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MAE using Imputation: 168341.16436233255
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="advanced-imputation">
+<h3>Advanced Imputation<a class="headerlink" href="#advanced-imputation" title="Permalink to this headline">¶</a></h3>
+<p>We see that the imputation approach performs much better compared to the simple solution dropping all rows with NA values.</p>
+<p>Imputation is the standard approach, and it usually works well. However, imputed values may be systematically above or below their actual values (which weren’t collected in the dataset). Or rows with missing values may be unique in some other way. In that case, your model would make better predictions by considering which values were originally missing.</p>
+<p>In the advanced imputation approach, we impute the missing values, as before. And, additionally, for each column with missing entries in the original dataset, we add a new column that shows the location of the imputed entries.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make a copy of the original datasets to avoid chaning the original data frame</span>
+<span class="n">X_train_plus</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">X_valid_plus</span> <span class="o">=</span> <span class="n">X_valid</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Find all columns with missing values:</span>
+<span class="n">cols_with_missing</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">X_train</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Make new columns indicating what will be imputed</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cols_with_missing</span><span class="p">:</span>
+    <span class="n">X_train_plus</span><span class="p">[</span><span class="n">col</span> <span class="o">+</span> <span class="s1">&#39;_was_missing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">X_train_plus</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span>
+    <span class="n">X_valid_plus</span><span class="p">[</span><span class="n">col</span> <span class="o">+</span> <span class="s1">&#39;_was_missing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">X_valid_plus</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span>
+    
+<span class="c1"># Imputation</span>
+<span class="n">simple_imputer</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">()</span>
+<span class="n">imputed_X_train_plus</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">simple_imputer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train_plus</span><span class="p">))</span>
+<span class="n">imputed_X_valid_plus</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">simple_imputer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_valid_plus</span><span class="p">))</span>
+
+<span class="c1"># &quot;Repair&quot; column names</span>
+<span class="n">imputed_X_train_plus</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">X_train_plus</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">imputed_X_valid_plus</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">X_valid_plus</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mae_imputation_advanced</span> <span class="o">=</span> <span class="n">score_dataset</span><span class="p">(</span><span class="n">imputed_X_train_plus</span><span class="p">,</span> <span class="n">imputed_X_valid_plus</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MAE using Imputation: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mae_imputation_advanced</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MAE using Imputation: 168603.5723904201
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we see, advanced imputation does not improve the performance of our model in the problem at hand. In general, advanced imputation will meaningfully improve results in some cases. In other cases, it doesn’t help at all.</p>
+</div>
+</div>
+<div class="section" id="encoding-categorical-variables">
+<h2>Encoding Categorical Variables<a class="headerlink" href="#encoding-categorical-variables" title="Permalink to this headline">¶</a></h2>
+<p>Until now we only used numerical features for our models. However, valuable information is often encoded in categorical variables (e.g., gender, city, job).</p>
+<p>If we simply plug these variables into machine learning models we will get an error. Hence, we need to find an  appropriate preprocessing to capture the information hidden in categorical variables.</p>
+<p>The easiest approach to deal with categorical variables is to drop them from the dataset (that is what we have done before). However, this approach will only produce satisfying results if the dropped columns did not contain useful information.</p>
+<div class="section" id="label-encoding">
+<h3>Label Encoding<a class="headerlink" href="#label-encoding" title="Permalink to this headline">¶</a></h3>
+<p>One common approach to handle categorical variables is called label encoding. Here, we assign each unique value to a different integer (e.g., bad = 0, neutral = 1, good = 2). This assumption makes sense in this example, because there is an indisputable ranking to the categories. Not all categorical variables have a clear ordering in the values, but we refer to those that do as ordinal variables. For tree-based models (like decision trees and random forests), you can expect label encoding to work well with ordinal variables.</p>
+<p>For simplicity, we will drop columns with missing values for the following evaluation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load dataset</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">melbourne_file_path</span><span class="p">)</span>
+
+<span class="c1"># Drop NA</span>
+<span class="n">data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Separate target from predictors</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Price&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Price&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Train-test split</span>
+<span class="n">X_train_full</span><span class="p">,</span> <span class="n">X_valid_full</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_valid</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As we do not want to use all categorical variables we focus on those with a limited number of categories:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">low_cardinality_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">cname</span> <span class="k">for</span> <span class="n">cname</span> <span class="ow">in</span> <span class="n">X_train_full</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">X_train_full</span><span class="p">[</span><span class="n">cname</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="ow">and</span> 
+                        <span class="n">X_train_full</span><span class="p">[</span><span class="n">cname</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s2">&quot;object&quot;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">low_cardinality_cols</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Type&#39;, &#39;Method&#39;, &#39;Regionname&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>…and combine them with the numerical variables:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select numerical columns</span>
+<span class="n">numerical_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">cname</span> <span class="k">for</span> <span class="n">cname</span> <span class="ow">in</span> <span class="n">X_train_full</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">X_train_full</span><span class="p">[</span><span class="n">cname</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;int64&#39;</span><span class="p">,</span> <span class="s1">&#39;float64&#39;</span><span class="p">]]</span>
+
+<span class="c1"># Keep only selected columns</span>
+<span class="n">cols_to_keep</span> <span class="o">=</span> <span class="n">low_cardinality_cols</span> <span class="o">+</span> <span class="n">numerical_cols</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">X_train_full</span><span class="p">[</span><span class="n">cols_to_keep</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">X_valid</span> <span class="o">=</span> <span class="n">X_valid_full</span><span class="p">[</span><span class="n">cols_to_keep</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">X_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Type</th>
+      <th>Method</th>
+      <th>Regionname</th>
+      <th>Rooms</th>
+      <th>Distance</th>
+      <th>Postcode</th>
+      <th>Bedroom2</th>
+      <th>Bathroom</th>
+      <th>Car</th>
+      <th>Landsize</th>
+      <th>BuildingArea</th>
+      <th>YearBuilt</th>
+      <th>Lattitude</th>
+      <th>Longtitude</th>
+      <th>Propertycount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>6584</th>
+      <td>u</td>
+      <td>VB</td>
+      <td>Southern Metropolitan</td>
+      <td>2</td>
+      <td>5.1</td>
+      <td>3181.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>71.0</td>
+      <td>1970.0</td>
+      <td>-37.85550</td>
+      <td>145.00180</td>
+      <td>4380.0</td>
+    </tr>
+    <tr>
+      <th>11369</th>
+      <td>h</td>
+      <td>S</td>
+      <td>South-Eastern Metropolitan</td>
+      <td>3</td>
+      <td>38.0</td>
+      <td>3199.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>578.0</td>
+      <td>123.0</td>
+      <td>1984.0</td>
+      <td>-38.13743</td>
+      <td>145.16702</td>
+      <td>17055.0</td>
+    </tr>
+    <tr>
+      <th>11942</th>
+      <td>h</td>
+      <td>S</td>
+      <td>South-Eastern Metropolitan</td>
+      <td>5</td>
+      <td>27.0</td>
+      <td>3196.0</td>
+      <td>5.0</td>
+      <td>5.0</td>
+      <td>4.0</td>
+      <td>570.0</td>
+      <td>243.0</td>
+      <td>1990.0</td>
+      <td>-38.03335</td>
+      <td>145.13212</td>
+      <td>2076.0</td>
+    </tr>
+    <tr>
+      <th>5830</th>
+      <td>u</td>
+      <td>VB</td>
+      <td>Southern Metropolitan</td>
+      <td>1</td>
+      <td>6.1</td>
+      <td>3182.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>52.0</td>
+      <td>2012.0</td>
+      <td>-37.86760</td>
+      <td>144.99010</td>
+      <td>13240.0</td>
+    </tr>
+    <tr>
+      <th>1717</th>
+      <td>u</td>
+      <td>VB</td>
+      <td>Southern Metropolitan</td>
+      <td>2</td>
+      <td>11.4</td>
+      <td>3163.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>70.0</td>
+      <td>1970.0</td>
+      <td>-37.90320</td>
+      <td>145.05550</td>
+      <td>7822.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We can now perform label encoding on our new dataset using the functions provided by Scikit-learn. Subsequently, we can evaluate our approach by using our score_dataset utility function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make a copy to protect original data</span>
+<span class="n">label_X_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">label_X_valid</span> <span class="o">=</span> <span class="n">X_valid</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Apply label encoder</span>
+<span class="n">label_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">low_cardinality_cols</span><span class="p">:</span>
+    <span class="n">label_X_train</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+    <span class="n">label_X_valid</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_valid</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+    
+
+<span class="c1"># Evaluate performance</span>
+<span class="n">mae_label_encoding</span> <span class="o">=</span> <span class="n">score_dataset</span><span class="p">(</span><span class="n">label_X_train</span><span class="p">,</span> <span class="n">label_X_valid</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MAE using Label Encoding: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mae_label_encoding</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MAE using Label Encoding: 181607.95878225807
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="one-hot-encoding">
+<h3>One-hot Encoding<a class="headerlink" href="#one-hot-encoding" title="Permalink to this headline">¶</a></h3>
+<p>One-hot encoding creates new binary columns indicating the presence (or absence) of each possible value in the original data.</p>
+<p>In contrast to label encoding, one-hot encoding does not assume an ordering of the categories. Thus, you can expect this approach to work particularly well if there is no clear ordering in the categorical data. We refer to categorical variables without an intrinsic ranking as nominal variables.</p>
+<p>One-hot encoding generally does not perform well if the categorical variable takes on a large number of values (i.e., you generally won’t use it for variables taking more than 15 different values).</p>
+<p>Again, we can use Scikit-learn functions to implement one-hot encodings:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Appley one-hot encoder to each column with categorical data</span>
+<span class="n">one_hot_encoder</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">one_hot_cols_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">one_hot_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">low_cardinality_cols</span><span class="p">]))</span>
+<span class="n">one_hot_cols_valid</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">one_hot_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_valid</span><span class="p">[</span><span class="n">low_cardinality_cols</span><span class="p">]))</span>
+
+<span class="c1"># Repair index </span>
+<span class="n">one_hot_cols_train</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">index</span>
+<span class="n">one_hot_cols_valid</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">X_valid</span><span class="o">.</span><span class="n">index</span>
+
+<span class="c1"># Remove categorical columns and replace with one-hot encoding</span>
+<span class="n">num_X_train</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">low_cardinality_cols</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">num_X_valid</span> <span class="o">=</span> <span class="n">X_valid</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">low_cardinality_cols</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">one_hot_X_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">num_X_train</span><span class="p">,</span> <span class="n">one_hot_cols_train</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">one_hot_X_valid</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">num_X_valid</span><span class="p">,</span> <span class="n">one_hot_cols_valid</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Evaluate performance</span>
+<span class="n">one_hot_encoding</span> <span class="o">=</span> <span class="n">score_dataset</span><span class="p">(</span><span class="n">one_hot_X_train</span><span class="p">,</span> <span class="n">one_hot_X_valid</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MAE using One-hot Encoding: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">one_hot_encoding</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MAE using One-hot Encoding: 180070.44173387098
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="creating-model-pipelines">
+<h2>Creating Model Pipelines<a class="headerlink" href="#creating-model-pipelines" title="Permalink to this headline">¶</a></h2>
+<p>Up to now, we learned how to prepare our datasets, train, tune, and evaluate powerful models. However, we wrote lots of code and functions to perform all the required tasks. Scikit-learn pipelines are a simple way to keep our data preprocessing and modeling code organized. Specifically, a pipeline bundles preprocessing and modeling steps so we can use the whole bundle as if it were a single step.</p>
+<p>Using pipelines provides multiple benefits:</p>
+<ul class="simple">
+<li><p>Cleaner Code</p></li>
+<li><p>Fewer Bugs</p></li>
+<li><p>Easier to Productionize</p></li>
+<li><p>More Options for Model Validation</p></li>
+</ul>
+<p>We will build a pipeline using all numerical variables as well as the low cardinatlity categorical variables</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load dataset</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">melbourne_file_path</span><span class="p">)</span>
+
+<span class="c1"># Separate target from predictors</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Price&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">cols_to_keep</span><span class="p">]</span>
+
+<span class="c1"># Train-test split</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_valid</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_valid</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">X_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Type</th>
+      <th>Method</th>
+      <th>Regionname</th>
+      <th>Rooms</th>
+      <th>Distance</th>
+      <th>Postcode</th>
+      <th>Bedroom2</th>
+      <th>Bathroom</th>
+      <th>Car</th>
+      <th>Landsize</th>
+      <th>BuildingArea</th>
+      <th>YearBuilt</th>
+      <th>Lattitude</th>
+      <th>Longtitude</th>
+      <th>Propertycount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12167</th>
+      <td>u</td>
+      <td>S</td>
+      <td>Southern Metropolitan</td>
+      <td>1</td>
+      <td>5.0</td>
+      <td>3182.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>1940.0</td>
+      <td>-37.85984</td>
+      <td>144.9867</td>
+      <td>13240.0</td>
+    </tr>
+    <tr>
+      <th>6524</th>
+      <td>h</td>
+      <td>SA</td>
+      <td>Western Metropolitan</td>
+      <td>2</td>
+      <td>8.0</td>
+      <td>3016.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>193.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-37.85800</td>
+      <td>144.9005</td>
+      <td>6380.0</td>
+    </tr>
+    <tr>
+      <th>8413</th>
+      <td>h</td>
+      <td>S</td>
+      <td>Western Metropolitan</td>
+      <td>3</td>
+      <td>12.6</td>
+      <td>3020.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>555.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>-37.79880</td>
+      <td>144.8220</td>
+      <td>3755.0</td>
+    </tr>
+    <tr>
+      <th>2919</th>
+      <td>u</td>
+      <td>SP</td>
+      <td>Northern Metropolitan</td>
+      <td>3</td>
+      <td>13.0</td>
+      <td>3046.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>265.0</td>
+      <td>NaN</td>
+      <td>1995.0</td>
+      <td>-37.70830</td>
+      <td>144.9158</td>
+      <td>8870.0</td>
+    </tr>
+    <tr>
+      <th>6043</th>
+      <td>h</td>
+      <td>S</td>
+      <td>Western Metropolitan</td>
+      <td>3</td>
+      <td>13.3</td>
+      <td>3020.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>673.0</td>
+      <td>673.0</td>
+      <td>1970.0</td>
+      <td>-37.76230</td>
+      <td>144.8272</td>
+      <td>4217.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Writing a pipeline in Scikit-learn can be broken down into 3 steps:</p>
+<ol class="simple">
+<li><p>Define preprocessing steps</p></li>
+<li><p>Define the model</p></li>
+<li><p>Create and evaluate the pipeline</p></li>
+</ol>
+<div class="section" id="define-preprocessing-steps">
+<h3>Define Preprocessing steps<a class="headerlink" href="#define-preprocessing-steps" title="Permalink to this headline">¶</a></h3>
+<p>We use the <code class="docutils literal notranslate"><span class="pre">ColumnTransformer</span></code> class to bundle together different preprocessing steps. To this end, we will impute missing values in the numerical columns and impute missing values and use one-hot encoding in the categorical columns.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Preprocessing numerical columns</span>
+<span class="n">numerical_transformer</span> <span class="o">=</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+
+<span class="c1"># Preprocessing categorical columns</span>
+<span class="n">categorical_transformer</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;imputer&#39;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;most_frequent&#39;</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">&#39;onehot&#39;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">))</span> 
+<span class="p">])</span>
+
+<span class="c1"># Bundle both preprocessors</span>
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span><span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;num&#39;</span><span class="p">,</span> <span class="n">numerical_transformer</span><span class="p">,</span> <span class="n">numerical_cols</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="n">categorical_transformer</span><span class="p">,</span> <span class="n">low_cardinality_cols</span><span class="p">)</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="define-the-model">
+<h3>Define the Model<a class="headerlink" href="#define-the-model" title="Permalink to this headline">¶</a></h3>
+<p>Next, we define a random forest model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="create-and-evaluate-the-pipeline">
+<h3>Create and Evaluate the Pipeline<a class="headerlink" href="#create-and-evaluate-the-pipeline" title="Permalink to this headline">¶</a></h3>
+<p>Finally, we use the <code class="docutils literal notranslate"><span class="pre">Pipeline</span></code> class to define a pipeline that bundles the preprocessing and modeling steps. There are a few important things to notice:</p>
+<ul class="simple">
+<li><p>With the pipeline, we preprocess the training data and fit the model in a single line of code. (In contrast, without a pipeline, we have to do imputation, one-hot encoding, and model training in separate steps. This becomes especially messy if we have to deal with both numerical and categorical variables!)</p></li>
+<li><p>With the pipeline, we supply the unprocessed features in X_valid to the predict() command, and the pipeline automatically preprocesses the features before generating predictions. (However, without a pipeline, we have to remember to preprocess the validation data before making predictions.)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bundle preprocessing and modeling code in a pipeline</span>
+<span class="n">complete_pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;preprocessor&#39;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
+<span class="p">])</span>
+
+<span class="c1"># Preprocess the raw training data and fit the model</span>
+<span class="n">complete_pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Preprocess the raw validation data and make predictions</span>
+<span class="n">preds</span> <span class="o">=</span> <span class="n">complete_pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid</span><span class="p">)</span>
+
+<span class="c1"># Evaluate the model</span>
+<span class="n">score</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">preds</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MAE using the complete pipeline: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">score</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MAE using the complete pipeline: 159756.40385510906
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="wrapping-up">
+<h2>Wrapping up<a class="headerlink" href="#wrapping-up" title="Permalink to this headline">¶</a></h2>
+<p>In this lecture we learned how to build powerful machine learning models leveraging numerical as well as categorical variables. Additionally, we learned about model pipelines which are helpful for creating reproducible and understandable code.</p>
+<p>To keep improving, view the <a class="reference external" href="https://scikit-learn.org/stable/">scikit-learn documentation</a> and keep working on your own projects!</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./nbs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

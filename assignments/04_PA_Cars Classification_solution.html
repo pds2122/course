@@ -1,0 +1,1212 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Programming Assignment 4 - Cars Classification &#8212; Practical Data Science 2021/2022</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/unilogo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Practical Data Science 2021/2022</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README.html">
+   Practical Data Science 2021/2022
+  </a>
+ </li>
+</ul>
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/assignments/04_PA_Cars Classification_solution.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/assignments/04_PA_Cars Classification_solution.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction-and-dataset">
+   Introduction and Dataset
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-the-dataloaders">
+   Creating the Dataloaders
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#train-the-model">
+   Train the Model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#result-interpretation">
+   Result Interpretation
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p><em>Practical Data Science 21/22</em></p>
+<div class="tex2jax_ignore mathjax_ignore section" id="programming-assignment-4-cars-classification">
+<h1>Programming Assignment 4 - Cars Classification<a class="headerlink" href="#programming-assignment-4-cars-classification" title="Permalink to this headline">¶</a></h1>
+<p>In this programming assignment, you will need to apply your new deep learning knowledge on image classification.</p>
+<p>First, you need to import all the necessary packages for this assignment.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install git+https://github.com/fastai/fastai.git # upgrade fastai on colab</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fastai.vision.all</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">scipy.io</span> <span class="kn">import</span> <span class="n">loadmat</span> <span class="c1">#this package is used to load matlab files</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="introduction-and-dataset">
+<h2>Introduction and Dataset<a class="headerlink" href="#introduction-and-dataset" title="Permalink to this headline">¶</a></h2>
+<p>You are provided with the <a class="reference external" href="https://ai.stanford.edu/~jkrause/cars/car_dataset.html">Cars Dataset</a> by <a class="reference external" href="https://www.cv-foundation.org//openaccess/content_iccv_workshops_2013/W19/papers/Krause_3D_Object_Representations_2013_ICCV_paper.pdf">Krause, Jonathan, et al., 2013</a>. The Cars dataset contains 16,185 images of 196 classes of cars. The data is split into 8,144 training images and 8,041 testing images, where each class has been split roughly in a 50-50 split. Classes are typically at the level of Make, Model, Year, e.g. 2012 Tesla Model S or 2012 BMW M3 coupe.</p>
+<p><img alt="Example Car" src="https://ai.stanford.edu/~jkrause/cars/car4.jpg" /></p>
+<p>To help you get started, you can use the following code block to download and store the data (this may take a while!)</p>
+<ul class="simple">
+<li><p>You may use the Google Drive <a class="reference external" href="https://colab.research.google.com/notebooks/io.ipynb">Integration</a> for Google Colab to save and quickly access the data.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>wget <span class="s1">&#39;http://ai.stanford.edu/~jkrause/car196/cars_train.tgz&#39;</span>
+<span class="o">!</span>wget <span class="s1">&#39;http://ai.stanford.edu/~jkrause/cars/car_devkit.tgz&#39;</span>
+<span class="o">!</span>tar -xf cars_train.tgz <span class="o">&amp;&amp;</span> tar -xf car_devkit.tgz
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2021-12-08 10:13:59--  http://ai.stanford.edu/~jkrause/car196/cars_train.tgz
+Resolving ai.stanford.edu (ai.stanford.edu)... 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>171.64.68.10
+Connecting to ai.stanford.edu (ai.stanford.edu)|171.64.68.10|:80... 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>connected.
+HTTP request sent, awaiting response... 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>200 OK
+Length: 979269282 (934M) [application/x-gzip]
+Saving to: &#39;cars_train.tgz.1&#39;
+
+
+cars_train.tgz.1      0%[                    ]       0  --.-KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      0%[                    ]  36.46K   115KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      0%[                    ]  88.78K   139KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      0%[                    ] 178.79K   187KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      0%[                    ] 309.37K   266KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      0%[                    ] 402.70K   281KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      0%[                    ] 663.07K   405KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      0%[                    ] 846.90K   460KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      0%[                    ]   1.05M   518KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      0%[                    ]   1.58M   709KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      0%[                    ]   1.97M   817KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      0%[                    ]   2.43M   918KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      0%[                    ]   3.36M  1.15MB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      0%[                    ]   4.10M  1.32MB/s    eta 11m 46s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      0%[                    ]   4.92M  1.54MB/s    eta 11m 46s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      0%[                    ]   6.53M  2.01MB/s    eta 11m 46s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      0%[                    ]   7.68M  2.33MB/s    eta 11m 46s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      0%[                    ]   8.90M  2.75MB/s    eta 11m 46s
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      1%[                    ]  11.17M  3.40MB/s    eta 5m 46s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      1%[                    ]  12.84M  3.85MB/s    eta 5m 46s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      1%[                    ]  14.70M  4.49MB/s    eta 5m 46s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      1%[                    ]  18.10M  5.44MB/s    eta 5m 46s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      2%[                    ]  20.91M  6.19MB/s    eta 5m 46s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      2%[                    ]  24.15M  7.25MB/s    eta 3m 18s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      2%[                    ]  27.99M  8.27MB/s    eta 3m 18s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      3%[                    ]  31.45M  9.13MB/s    eta 3m 18s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      3%[                    ]  34.74M  9.90MB/s    eta 3m 18s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      4%[                    ]  38.19M  11.1MB/s    eta 3m 18s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      4%[                    ]  41.63M  11.8MB/s    eta 2m 14s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      4%[                    ]  45.26M  12.5MB/s    eta 2m 14s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      5%[&gt;                   ]  48.91M  13.6MB/s    eta 2m 14s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      5%[&gt;                   ]  52.77M  14.3MB/s    eta 2m 14s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      6%[&gt;                   ]  56.36M  15.3MB/s    eta 2m 14s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      6%[&gt;                   ]  59.85M  15.8MB/s    eta 1m 46s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      6%[&gt;                   ]  63.27M  16.2MB/s    eta 1m 46s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      7%[&gt;                   ]  66.73M  16.6MB/s    eta 1m 46s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      7%[&gt;                   ]  70.23M  17.2MB/s    eta 1m 46s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      7%[&gt;                   ]  73.86M  17.4MB/s    eta 1m 46s 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      8%[&gt;                   ]  77.50M  17.5MB/s    eta 92s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      8%[&gt;                   ]  80.92M  17.4MB/s    eta 92s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      9%[&gt;                   ]  84.31M  17.3MB/s    eta 92s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      9%[&gt;                   ]  87.88M  17.2MB/s    eta 92s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1      9%[&gt;                   ]  91.80M  17.4MB/s    eta 92s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     10%[=&gt;                  ]  95.59M  17.5MB/s    eta 82s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     10%[=&gt;                  ]  98.92M  17.5MB/s    eta 82s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     10%[=&gt;                  ] 102.36M  17.4MB/s    eta 82s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     11%[=&gt;                  ] 105.91M  17.4MB/s    eta 82s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     11%[=&gt;                  ] 109.75M  17.5MB/s    eta 82s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     12%[=&gt;                  ] 113.34M  17.4MB/s    eta 75s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     12%[=&gt;                  ] 116.74M  17.3MB/s    eta 75s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     12%[=&gt;                  ] 120.18M  17.5MB/s    eta 75s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     13%[=&gt;                  ] 124.02M  17.5MB/s    eta 75s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     13%[=&gt;                  ] 127.84M  17.5MB/s    eta 75s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     13%[=&gt;                  ] 129.75M  17.1MB/s    eta 70s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     14%[=&gt;                  ] 131.75M  16.6MB/s    eta 70s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     14%[=&gt;                  ] 134.73M  16.4MB/s    eta 70s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     14%[=&gt;                  ] 138.14M  16.4MB/s    eta 70s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     15%[==&gt;                 ] 141.79M  16.5MB/s    eta 70s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     15%[==&gt;                 ] 145.42M  16.4MB/s    eta 67s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     15%[==&gt;                 ] 149.33M  16.5MB/s    eta 67s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     16%[==&gt;                 ] 152.76M  16.5MB/s    eta 67s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     16%[==&gt;                 ] 156.45M  16.7MB/s    eta 67s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     17%[==&gt;                 ] 160.12M  16.6MB/s    eta 67s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     17%[==&gt;                 ] 163.57M  16.5MB/s    eta 63s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     17%[==&gt;                 ] 166.92M  16.5MB/s    eta 63s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     18%[==&gt;                 ] 170.36M  16.6MB/s    eta 63s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     18%[==&gt;                 ] 173.95M  16.4MB/s    eta 63s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     19%[==&gt;                 ] 177.58M  16.4MB/s    eta 63s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     19%[==&gt;                 ] 181.23M  16.9MB/s    eta 60s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     19%[==&gt;                 ] 184.88M  17.2MB/s    eta 60s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     20%[===&gt;                ] 188.65M  17.6MB/s    eta 60s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     20%[===&gt;                ] 192.01M  17.6MB/s    eta 60s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     20%[===&gt;                ] 195.55M  17.5MB/s    eta 60s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     21%[===&gt;                ] 198.25M  17.2MB/s    eta 57s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     21%[===&gt;                ] 200.44M  16.7MB/s    eta 57s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     21%[===&gt;                ] 202.50M  16.2MB/s    eta 57s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     22%[===&gt;                ] 206.03M  16.2MB/s    eta 57s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     22%[===&gt;                ] 209.29M  16.2MB/s    eta 57s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     22%[===&gt;                ] 212.59M  16.0MB/s    eta 56s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     22%[===&gt;                ] 213.39M  14.6MB/s    eta 56s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     23%[===&gt;                ] 216.05M  14.3MB/s    eta 56s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     23%[===&gt;                ] 217.64M  13.7MB/s    eta 56s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     23%[===&gt;                ] 220.02M  13.4MB/s    eta 56s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     23%[===&gt;                ] 222.02M  12.8MB/s    eta 56s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     23%[===&gt;                ] 223.46M  12.2MB/s    eta 56s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     24%[===&gt;                ] 224.92M  11.8MB/s    eta 56s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     24%[===&gt;                ] 226.95M  11.0MB/s    eta 56s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     24%[===&gt;                ] 228.58M  10.5MB/s    eta 56s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     24%[===&gt;                ] 232.12M  10.7MB/s    eta 56s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     25%[====&gt;               ] 235.77M  11.1MB/s    eta 56s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     25%[====&gt;               ] 239.40M  11.5MB/s    eta 56s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     26%[====&gt;               ] 243.04M  11.6MB/s    eta 56s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     26%[====&gt;               ] 246.95M  11.8MB/s    eta 56s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     26%[====&gt;               ] 250.55M  11.9MB/s    eta 54s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     27%[====&gt;               ] 253.91M  12.3MB/s    eta 54s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     27%[====&gt;               ] 257.42M  13.5MB/s    eta 54s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     27%[====&gt;               ] 260.91M  14.0MB/s    eta 54s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     28%[====&gt;               ] 264.37M  14.5MB/s    eta 54s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     28%[====&gt;               ] 267.88M  14.8MB/s    eta 51s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     29%[====&gt;               ] 271.79M  15.6MB/s    eta 51s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     29%[====&gt;               ] 275.44M  16.2MB/s    eta 51s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     29%[====&gt;               ] 278.81M  16.7MB/s    eta 51s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     30%[=====&gt;              ] 282.27M  17.5MB/s    eta 51s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     30%[=====&gt;              ] 285.88M  17.6MB/s    eta 49s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     30%[=====&gt;              ] 289.20M  17.7MB/s    eta 49s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     31%[=====&gt;              ] 292.99M  17.7MB/s    eta 49s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     31%[=====&gt;              ] 296.38M  17.5MB/s    eta 49s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     32%[=====&gt;              ] 299.97M  17.6MB/s    eta 49s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     32%[=====&gt;              ] 303.61M  17.6MB/s    eta 47s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     32%[=====&gt;              ] 307.24M  17.6MB/s    eta 47s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     33%[=====&gt;              ] 310.95M  17.5MB/s    eta 47s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     33%[=====&gt;              ] 314.66M  17.6MB/s    eta 47s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     34%[=====&gt;              ] 318.35M  17.6MB/s    eta 47s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     34%[=====&gt;              ] 322.21M  17.6MB/s    eta 45s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     34%[=====&gt;              ] 325.65M  17.6MB/s    eta 45s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     35%[======&gt;             ] 329.05M  17.6MB/s    eta 45s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     35%[======&gt;             ] 332.54M  17.5MB/s    eta 45s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     35%[======&gt;             ] 334.66M  17.0MB/s    eta 45s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     36%[======&gt;             ] 336.72M  16.7MB/s    eta 44s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     36%[======&gt;             ] 340.41M  16.7MB/s    eta 44s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     36%[======&gt;             ] 342.84M  16.3MB/s    eta 44s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     36%[======&gt;             ] 344.98M  15.7MB/s    eta 44s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     37%[======&gt;             ] 348.58M  15.8MB/s    eta 44s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     37%[======&gt;             ] 352.18M  15.8MB/s    eta 43s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     37%[======&gt;             ] 354.43M  15.3MB/s    eta 43s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     38%[======&gt;             ] 356.99M  15.1MB/s    eta 43s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     38%[======&gt;             ] 360.74M  15.0MB/s    eta 43s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     39%[======&gt;             ] 364.70M  14.8MB/s    eta 43s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     39%[======&gt;             ] 368.75M  14.6MB/s    eta 41s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     39%[======&gt;             ] 372.69M  14.7MB/s    eta 41s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     40%[=======&gt;            ] 376.71M  14.5MB/s    eta 41s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     40%[=======&gt;            ] 380.78M  14.8MB/s    eta 41s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     41%[=======&gt;            ] 384.79M  15.4MB/s    eta 41s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     41%[=======&gt;            ] 388.82M  15.3MB/s    eta 39s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     42%[=======&gt;            ] 392.86M  15.7MB/s    eta 39s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     42%[=======&gt;            ] 396.88M  16.0MB/s    eta 39s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     42%[=======&gt;            ] 400.87M  16.2MB/s    eta 39s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cars_train.tgz.1     43%[=======&gt;            ] 404.86M  16.0MB/s    eta 39s    
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>^C
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2021-12-08 10:14:29--  http://ai.stanford.edu/~jkrause/cars/car_devkit.tgz
+Resolving ai.stanford.edu (ai.stanford.edu)... 171.64.68.10
+Connecting to ai.stanford.edu (ai.stanford.edu)|171.64.68.10|:80... 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>connected.
+HTTP request sent, awaiting response... 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>200 OK
+Length: 330960 (323K) [application/x-gzip]
+Saving to: &#39;car_devkit.tgz&#39;
+
+
+car_devkit.tgz        0%[                    ]       0  --.-KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>car_devkit.tgz       11%[=&gt;                  ]  36.46K   115KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>car_devkit.tgz       35%[======&gt;             ] 115.65K   182KB/s               
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>car_devkit.tgz       76%[==============&gt;     ] 248.57K   260KB/s               
+car_devkit.tgz      100%[===================&gt;] 323.20K   338KB/s    in 1.0s    
+
+2021-12-08 10:14:30 (338 KB/s) - &#39;car_devkit.tgz&#39; saved [330960/330960]
+</pre></div>
+</div>
+</div>
+</div>
+<p>All images of this data set are now stored in the <code class="docutils literal notranslate"><span class="pre">cars_train</span></code> directory. List the first 10 image files in this directory.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your code here</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;cars_train&#39;</span>
+<span class="n">fnames</span> <span class="o">=</span> <span class="n">get_image_files</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="n">fnames</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(#10) [Path(&#39;cars_train/06052.jpg&#39;),Path(&#39;cars_train/07473.jpg&#39;),Path(&#39;cars_train/08033.jpg&#39;),Path(&#39;cars_train/00811.jpg&#39;),Path(&#39;cars_train/05877.jpg&#39;),Path(&#39;cars_train/07505.jpg&#39;),Path(&#39;cars_train/00643.jpg&#39;),Path(&#39;cars_train/03364.jpg&#39;),Path(&#39;cars_train/00442.jpg&#39;),Path(&#39;cars_train/05012.jpg&#39;)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Different data sets are labeled in many different ways. The images of this data set are stored in only one directory with their <code class="docutils literal notranslate"><span class="pre">id</span></code> as file name. The labels are stored in a different file called ‘cars_annos.mat’. You can use the following code block to load this file into a DataFrame.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create Labels from class names</span>
+<span class="n">cars_annos</span> <span class="o">=</span> <span class="n">loadmat</span><span class="p">(</span><span class="s1">&#39;devkit/cars_train_annos.mat&#39;</span><span class="p">)</span>
+<span class="n">class_names</span> <span class="o">=</span> <span class="n">loadmat</span><span class="p">(</span><span class="s1">&#39;devkit/cars_meta.mat&#39;</span><span class="p">)[</span><span class="s1">&#39;class_names&#39;</span><span class="p">]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">class_names</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;labels&#39;</span><span class="p">])</span>
+<span class="n">labels</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">labels</span><span class="o">.</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span>
+<span class="c1"># Create Data Frame from .mat file</span>
+<span class="n">frame</span> <span class="o">=</span> <span class="p">[[</span><span class="n">i</span><span class="o">.</span><span class="n">flat</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">line</span><span class="p">]</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">cars_annos</span><span class="p">[</span><span class="s1">&#39;annotations&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bbox_x1&#39;</span><span class="p">,</span> <span class="s1">&#39;bbox_y1&#39;</span><span class="p">,</span> <span class="s1">&#39;bbox_x2&#39;</span><span class="p">,</span> <span class="s1">&#39;bbox_y2&#39;</span><span class="p">,</span> <span class="s1">&#39;class&#39;</span><span class="p">,</span><span class="s1">&#39;fname&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;fname&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">path</span><span class="o">+</span><span class="s2">&quot;/&quot;</span><span class="o">+</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;fname&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;class&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bbox_x1</th>
+      <th>bbox_y1</th>
+      <th>bbox_x2</th>
+      <th>bbox_y2</th>
+      <th>class</th>
+      <th>fname</th>
+      <th>labels</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>39</td>
+      <td>116</td>
+      <td>569</td>
+      <td>375</td>
+      <td>14</td>
+      <td>cars_train/00001.jpg</td>
+      <td>Audi TTS Coupe 2012</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>39</td>
+      <td>52</td>
+      <td>233</td>
+      <td>150</td>
+      <td>14</td>
+      <td>cars_train/00017.jpg</td>
+      <td>Audi TTS Coupe 2012</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>52</td>
+      <td>47</td>
+      <td>586</td>
+      <td>260</td>
+      <td>14</td>
+      <td>cars_train/00411.jpg</td>
+      <td>Audi TTS Coupe 2012</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>47</td>
+      <td>92</td>
+      <td>209</td>
+      <td>178</td>
+      <td>14</td>
+      <td>cars_train/00467.jpg</td>
+      <td>Audi TTS Coupe 2012</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>7</td>
+      <td>51</td>
+      <td>253</td>
+      <td>156</td>
+      <td>14</td>
+      <td>cars_train/00888.jpg</td>
+      <td>Audi TTS Coupe 2012</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="creating-the-dataloaders">
+<h2>Creating the Dataloaders<a class="headerlink" href="#creating-the-dataloaders" title="Permalink to this headline">¶</a></h2>
+<p>Use the <a class="reference external" href="https://docs.fast.ai/data.block.html#DataBlock">data block API</a> to load the data using <code class="docutils literal notranslate"><span class="pre">df</span></code></p>
+<ol class="simple">
+<li><p>Define the blocks</p></li>
+<li><p>Define the <code class="docutils literal notranslate"><span class="pre">get_x</span></code>and <code class="docutils literal notranslate"><span class="pre">get_y</span></code> using the <code class="docutils literal notranslate"><span class="pre">ColReader()</span></code> function (see <a class="reference external" href="https://docs.fast.ai/data.transforms#ColReader">docs</a> or <a class="reference external" href="https://docs.fast.ai/tutorial.vision.html#Multi-label-classification---With-the-data-block-API">example</a>)</p></li>
+<li><p>Split the images randomly into 85% train and 15% validation set (<a class="reference external" href="https://docs.fast.ai/data.transforms#RandomSplitter">docs</a>, use seed = 42)</p></li>
+<li><p>Define suitable <a class="reference external" href="https://docs.fast.ai/vision.augment.html#aug_transforms">transforms</a></p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cars</span> <span class="o">=</span> <span class="n">DataBlock</span><span class="p">(</span><span class="n">blocks</span> <span class="o">=</span> <span class="p">(</span><span class="n">ImageBlock</span><span class="p">,</span> <span class="n">CategoryBlock</span><span class="p">),</span>
+                 <span class="n">get_x</span><span class="o">=</span><span class="n">ColReader</span><span class="p">(</span><span class="s1">&#39;fname&#39;</span><span class="p">),</span>
+                 <span class="n">get_y</span><span class="o">=</span><span class="n">ColReader</span><span class="p">(</span><span class="s1">&#39;labels&#39;</span><span class="p">),</span>
+                 <span class="n">splitter</span><span class="o">=</span><span class="n">RandomSplitter</span><span class="p">(</span><span class="n">valid_pct</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
+                 <span class="n">item_tfms</span><span class="o">=</span><span class="n">Resize</span><span class="p">(</span><span class="mi">460</span><span class="p">),</span>
+                 <span class="n">batch_tfms</span><span class="o">=</span><span class="n">aug_transforms</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">224</span><span class="p">)</span>
+                 <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="simple">
+<li><p>Create the dataloaders from <code class="docutils literal notranslate"><span class="pre">df</span></code></p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dls</span> <span class="o">=</span> <span class="n">cars</span><span class="o">.</span><span class="n">dataloaders</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, use the Dataloaders to display three rows of random pictures from a batch.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your code here</span>
+<span class="n">dls</span><span class="o">.</span><span class="n">show_batch</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/04_PA_Cars Classification_solution_18_0.png" src="../_images/04_PA_Cars Classification_solution_18_0.png" />
+</div>
+</div>
+<p>How many vehicle classes are in the dataset?</p>
+<p><strong>Hint</strong>: use <code class="docutils literal notranslate"><span class="pre">dls.vocab</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your code here</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">dls</span><span class="o">.</span><span class="n">vocab</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>127
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="train-the-model">
+<h2>Train the Model<a class="headerlink" href="#train-the-model" title="Permalink to this headline">¶</a></h2>
+<p>Once the data is ready you can start training a model. Use the <code class="docutils literal notranslate"><span class="pre">cnn_learner</span></code> to create a model with</p>
+<ul class="simple">
+<li><p>a Resnet34 architecture</p></li>
+<li><p>the metrics <em>accuracy</em> and <a class="reference external" href="https://docs.fast.ai/metrics.html#top_k_accuracy"><em>top-5 accuracy</em></a></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your code here</span>
+<span class="n">learn</span> <span class="o">=</span> <span class="n">cnn_learner</span><span class="p">(</span><span class="n">dls</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">resnet34</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">top_k_accuracy</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, you can train the model. Apply the concepts from the lecture, i.e.,</p>
+<ul class="simple">
+<li><p>finding the learning rate</p></li>
+<li><p>training the last layers</p></li>
+<li><p>unfreezing the model</p></li>
+<li><p>train all layers (learning rate rule of thumb!)</p></li>
+</ul>
+<p>Always provide an explanation <strong>why</strong> you chose the number of epochs and the learning rate.</p>
+<p>Save the model after each training</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">learn</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;stage-x&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>so that you can reload the model</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">learn</span> <span class="o">=</span> <span class="n">learn</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;stage-x&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>if something goes wrong. If you load a model with <em>freezed</em> layers, you need to <em>unfreeze</em> the layers again.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your code and explanations here</span>
+<span class="n">learn</span><span class="o">.</span><span class="n">lr_find</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SuggestedLRs(valley=0.0030199517495930195)
+</pre></div>
+</div>
+<img alt="../_images/04_PA_Cars Classification_solution_25_2.png" src="../_images/04_PA_Cars Classification_solution_25_2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your code and explanations here</span>
+<span class="c1"># Fit the model with the suggested learning rate</span>
+<span class="n">learn</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">lr_max</span><span class="o">=</span><span class="mf">0.003</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy</th>
+      <th>top_k_accuracy</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>6.031754</td>
+      <td>4.190085</td>
+      <td>0.108449</td>
+      <td>0.254729</td>
+      <td>00:16</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>4.393240</td>
+      <td>2.851493</td>
+      <td>0.287516</td>
+      <td>0.609079</td>
+      <td>00:16</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>3.218117</td>
+      <td>2.248684</td>
+      <td>0.412358</td>
+      <td>0.721311</td>
+      <td>00:16</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>2.411521</td>
+      <td>1.864182</td>
+      <td>0.491803</td>
+      <td>0.795712</td>
+      <td>00:16</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>1.978946</td>
+      <td>1.657401</td>
+      <td>0.552333</td>
+      <td>0.849937</td>
+      <td>00:16</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>1.644582</td>
+      <td>1.472147</td>
+      <td>0.601513</td>
+      <td>0.860025</td>
+      <td>00:16</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>1.353804</td>
+      <td>1.361685</td>
+      <td>0.633039</td>
+      <td>0.886507</td>
+      <td>00:16</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>1.108137</td>
+      <td>1.290166</td>
+      <td>0.640605</td>
+      <td>0.899117</td>
+      <td>00:16</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>0.986839</td>
+      <td>1.249390</td>
+      <td>0.645649</td>
+      <td>0.904161</td>
+      <td>00:16</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>0.915454</td>
+      <td>1.245507</td>
+      <td>0.650694</td>
+      <td>0.904161</td>
+      <td>00:16</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your code and explanations here</span>
+<span class="n">learn</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;stage-1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Path(&#39;models/stage-1.pth&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your code and explanations here</span>
+<span class="c1"># Since our model is working as we expect it to, we will unfreeze our </span>
+<span class="c1"># model and train some more.</span>
+<span class="n">learn</span><span class="o">.</span><span class="n">unfreeze</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your code and explanations here</span>
+<span class="c1"># The basic rule of thumb is after you unfreeze (i.e. train the whole thing),</span>
+<span class="c1"># pass a max learning rate parameter, pass it a slice, make the second </span>
+<span class="c1"># part of that slice about 10 times smaller than your first stage.</span>
+<span class="n">learn</span><span class="o">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="nb">slice</span><span class="p">(</span><span class="mf">1e-4</span><span class="p">,</span> <span class="mf">1e-3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+    <div>
+        <style>
+            /* Turns off some styling */
+            progress {
+                /* gets rid of default border in Firefox and Opera. */
+                border: none;
+                /* Needs to be in here for Safari polyfill so background images work as expected. */
+                background-size: auto;
+            }
+            .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+                background: #F44336;
+            }
+        </style>
+      <progress value='0' class='' max='10' style='width:300px; height:20px; vertical-align: middle;'></progress>
+      0.00% [0/10 00:00<00:00]
+    </div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>accuracy</th>
+      <th>top_k_accuracy</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table><p>
+
+    <div>
+        <style>
+            /* Turns off some styling */
+            progress {
+                /* gets rid of default border in Firefox and Opera. */
+                border: none;
+                /* Needs to be in here for Safari polyfill so background images work as expected. */
+                background-size: auto;
+            }
+            .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+                background: #F44336;
+            }
+        </style>
+      <progress value='0' class='' max='13' style='width:300px; height:20px; vertical-align: middle;'></progress>
+      0.00% [0/13 00:00<00:00]
+    </div>
+</div></div>
+</div>
+</div>
+<div class="section" id="result-interpretation">
+<h2>Result Interpretation<a class="headerlink" href="#result-interpretation" title="Permalink to this headline">¶</a></h2>
+<p>Explain the difference betweeen the metrics <em>accuracy</em> and <em>top_5_accuracy</em>. Why can it be useful to report both metrics?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your answer here</span>
+<span class="c1"># Top-1 accuracy is the conventional accuracy: the model answer </span>
+<span class="c1"># (the one with highest probability) must be exactly the expected answer.</span>
+<span class="c1"># Top-5 accuracy means that any of your model 5 highest probability answers </span>
+<span class="c1"># must match the expected answer.</span>
+<span class="c1"># Depending on the problem, both metrics can provide useful insights about </span>
+<span class="c1"># the model&#39;s performance</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Use the <a class="reference external" href="https://docs.fast.ai/interpret.html">ClassificationInterpretation</a> to analyze the results in more detail. What are your main findings?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Write your code and explanations here</span>
+<span class="c1"># E.g., try explaing the top losses</span>
+<span class="n">interp</span> <span class="o">=</span> <span class="n">ClassificationInterpretation</span><span class="o">.</span><span class="n">from_learner</span><span class="p">(</span><span class="n">learn</span><span class="p">)</span>
+<span class="n">interp</span><span class="o">.</span><span class="n">plot_top_losses</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span><span class="mi">25</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"></div><img alt="../_images/04_PA_Cars Classification_solution_34_1.png" src="../_images/04_PA_Cars Classification_solution_34_1.png" />
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "pds2122"
+        },
+        kernelOptions: {
+            kernelName: "pds2122",
+            path: "./assignments"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'pds2122'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
